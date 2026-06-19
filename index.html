@@ -913,30 +913,10 @@
 
     /* ─── DONNÉES PAR DÉFAUT (fallback si JSON indisponible) ─── */
     const DEFAULTS = {
-        projets: [
-            { id: 1, titre: "Construction école à Agodou", date: "2022", cat: "education", description: "Bâtiment de 3 classes et latrines pour 120 enfants scolarisés. Projet réalisé avec 45 volontaires internationaux sur 3 semaines.", images: ["https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=600", "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600"] },
-            { id: 2, titre: "Campagne anti-paludisme", date: "Avril 2023", cat: "sante", description: "Distribution de 500 moustiquaires imprégnées et sensibilisation de 800 personnes dans 5 villages autour de Tsévie.", images: ["https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=600"] },
-            { id: 3, titre: "Reboisement Tsévie", date: "Juin 2023", cat: "environnement", description: "Plantation de 1 000 arbres avec les jeunes locaux. Ateliers éducatifs sur l'environnement dans 3 écoles primaires.", images: ["https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600"] },
-            { id: 4, titre: "Forage eau potable — Agome", date: "Mars 2024", cat: "sante", description: "Construction d'un forage solaire alimentant 300 familles en eau potable toute l'année.", images: ["https://images.unsplash.com/photo-1548690312-e3b507d8c110?w=600"] }
-        ],
-        galerie: [
-            { id: 1, url: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=500", legende: "Chantier école Agodou" },
-            { id: 2, url: "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=500", legende: "Distribution moustiquaires" },
-            { id: 3, url: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=500", legende: "Reboisement communautaire" },
-            { id: 4, url: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=500", legende: "Équipe de volontaires" },
-            { id: 5, url: "https://images.unsplash.com/photo-1548690312-e3b507d8c110?w=500", legende: "Installation forage" },
-            { id: 6, url: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500", legende: "Soutien scolaire" }
-        ],
-        membres: [
-            { id: 1, nom: "Kodjo Amegah", fonction: "Président fondateur", email: "kodjo@3aplus.org", tel: "+228 90 00 00 00", photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300" },
-            { id: 2, nom: "Ama Bossou", fonction: "Coordinatrice terrain", email: "ama@3aplus.org", tel: "+228 91 11 11 11", photo: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=300" },
-            { id: 3, nom: "Koffi Mensah", fonction: "Responsable santé", email: "koffi@3aplus.org", tel: "+228 92 22 22 22", photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300" }
-        ],
-        temoignages: [
-            { id: 1, nom: "Sophie Durand", role: "Volontaire française, 2023", texte: "Une expérience humaine incomparable. J'ai vu des enfants dont les yeux s'éclairaient en entrant pour la première fois dans leur nouvelle école. Je reviendrai l'an prochain.", photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150" },
-            { id: 2, nom: "Marcus Schmidt", role: "Volontaire allemand, 2022", texte: "3APLUS-TOGO m'a appris que le développement durable ne se fait pas pour les communautés, mais avec elles. L'équipe locale est extraordinaire.", photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150" },
-            { id: 3, nom: "Ayoko Mensah", role: "Bénéficiaire, mère de 3 enfants", texte: "Avant le forage, nous marchions 2 heures chaque jour pour trouver de l'eau. Aujourd'hui, mes enfants vont à l'école au lieu de porter des jerricans.", photo: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=150" }
-        ]
+        projets: [],
+        galerie: [],
+        membres: [],
+        temoignages: []
     };
 
     /* ─── STATE ─────────────────────────────── */
