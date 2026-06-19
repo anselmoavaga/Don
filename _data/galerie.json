@@ -1,1 +1,9 @@
-{"galerie":[]}
+{
+  "galerie": [
+    {
+      "id": 1,
+      "url": "/images/uploads/1000247636.jpg",
+      "legende": "Dons"
+    }
+  ]
+}
