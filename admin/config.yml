@@ -2,6 +2,7 @@ backend:
   name: github
   repo: anselmoavaga/Don
   branch: main
+  auth_scope: repo
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
@@ -18,63 +19,5 @@ collections:
             name: "projets"
             widget: "list"
             fields:
-              - { label: "ID", name: "id", widget: "number", value_type: "int" }
               - { label: "Titre", name: "titre", widget: "string" }
-              - { label: "Date", name: "date", widget: "string" }
-              - { label: "Catégorie", name: "cat", widget: "select", options: ["education", "sante", "environnement", "social"] }
               - { label: "Description", name: "description", widget: "text" }
-              - label: "Images"
-                name: "images"
-                widget: "list"
-                summary: '{{fields.url}}'
-                field: { label: "URL de l'image", name: "url", widget: "image" } # Remplacé string par image pour charger des fichiers depuis votre téléphone
-
-  - name: "galerie"
-    label: "Galerie"
-    files:
-      - file: "_data/galerie.json"
-        label: "Galerie d'images"
-        name: "galerie"
-        fields:
-          - label: "Images"
-            name: "galerie"
-            widget: "list"
-            fields:
-              - { label: "ID", name: "id", widget: "number", value_type: "int" }
-              - { label: "URL Image", name: "url", widget: "image" } # Modifié en widget: "image"
-              - { label: "Légende", name: "legende", widget: "string" }
-
-  - name: "membres"
-    label: "Membres"
-    files:
-      - file: "_data/membres.json"
-        label: "Équipe"
-        name: "membres"
-        fields:
-          - label: "Membres"
-            name: "membres"
-            widget: "list"
-            fields:
-              - { label: "ID", name: "id", widget: "number", value_type: "int" }
-              - { label: "Nom", name: "nom", widget: "string" }
-              - { label: "Fonction", name: "fonction", widget: "string" }
-              - { label: "Email", name: "email", widget: "string", required: false }
-              - { label: "Téléphone", name: "tel", widget: "string", required: false }
-              - { label: "Photo", name: "photo", widget: "image" } # Modifié en widget: "image" pour pouvoir téléverser une photo
-
-  - name: "temoignages"
-    label: "Témoignages"
-    files:
-      - file: "_data/temoignages.json"
-        label: "Témoignages"
-        name: "temoignages"
-        fields:
-          - label: "Témoignages"
-            name: "temoignages"
-            widget: "list"
-            fields:
-              - { label: "ID", name: "id", widget: "number", value_type: "int" }
-              - { label: "Nom", name: "nom", widget: "string" }
-              - { label: "Rôle", name: "role", widget: "string" }
-              - { label: "Texte", name: "texte", widget: "text" }
-              - { label: "Photo", name: "photo", widget: "image" } # Modifié en widget: "image"
