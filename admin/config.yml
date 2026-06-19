@@ -19,62 +19,62 @@ collections:
             name: "projets"
             widget: "list"
             fields:
-              - { label: "ID", name: "id", widget: "number", value_type: "int" }
-              - { label: "Titre", name: "titre", widget: "string" }
-              - { label: "Date", name: "date", widget: "string" }
-              - { label: "Catégorie", name: "cat", widget: "select", options: ["education", "sante", "environnement", "social"] }
-              - { label: "Description", name: "description", widget: "text" }
+              - {label: "ID", name: "id", widget: "number", value_type: "int"}
+              - {label: "Titre", name: "titre", widget: "string"}
+              - {label: "Date", name: "date", widget: "string"}
+              - {label: "Cat", name: "cat", widget: "select", options: ["education", "sante", "environnement", "social"]}
+              - {label: "Description", name: "description", widget: "text"}
               - label: "Images"
                 name: "images"
                 widget: "list"
-                field: { label: "Image", name: "url", widget: "image" }
+                field: {label: "Image", name: "url", widget: "image"}
 
   - name: "galerie"
     label: "Galerie"
     files:
       - file: "_data/galerie.json"
-        label: "Galerie d'images"
+        label: "Galerie"
         name: "galerie"
         fields:
           - label: "Images"
             name: "galerie"
             widget: "list"
             fields:
-              - { label: "ID", name: "id", widget: "number", value_type: "int" }
-              - { label: "Image", name: "url", widget: "image" }
-              - { label: "Légende", name: "legende", widget: "string" }
+              - {label: "ID", name: "id", widget: "number", value_type: "int"}
+              - {label: "Image", name: "url", widget: "image"}
+              - {label: "Legende", name: "legende", widget: "string"}
 
   - name: "membres"
     label: "Membres"
     files:
       - file: "_data/membres.json"
-        label: "Équipe"
+        label: "Equipe"
         name: "membres"
         fields:
           - label: "Membres"
             name: "membres"
             widget: "list"
             fields:
-              - { label: "ID", name: "id", widget: "number", value_type: "int" }
-              - { label: "Nom", name: "nom", widget: "string" }
-              - { label: "Fonction", name: "fonction", widget: "string" }
-              - { label: "Email", name: "email", widget: "string", required: false }
-              - { label: "Téléphone", name: "tel", widget: "string", required: false }
-              - { label: "Photo", name: "photo", widget: "image" }
+              - {label: "ID", name: "id", widget: "number", value_type: "int"}
+              - {label: "Nom", name: "nom", widget: "string"}
+              - {label: "Fonction", name: "fonction", widget: "string"}
+              - {label: "Email", name: "email", widget: "string", required: false}
+              - {label: "Tel", name: "tel", widget: "string", required: false}
+              - {label: "Photo", name: "photo", widget: "image"}
 
   - name: "temoignages"
-    label: "Témoignages"
+    label: "Temoignages"
     files:
       - file: "_data/temoignages.json"
-        label: "Témoignages"
+        label: "Temoignages"
         name: "temoignages"
         fields:
-          - label: "Témoignages"
+          - label: "Temoignages"
             name: "temoignages"
             widget: "list"
             fields:
-              - { label: "ID", name: "id", widget: "number", value_type: "int" }
-              - { label: "Nom", name: "nom", widget: "string" }
-              - { label: "Rôle", name: "role", widget: "string" }
-              - { label: "Texte", name: "texte", widget: "text" }
-              - { label: "Photo", name: "photo", widget: "image" }
+              - {label: "ID", name: "id", widget: "number", value_type: "int"}
+              - {label: "Nom", name: "nom", widget: "string"}
+              - {label: "Role", name: "role", widget: "string"}
+              - {label: "Texte", name: "texte", widget: "text"}
+              - {label: "Photo", name: "photo", widget: "image"}
