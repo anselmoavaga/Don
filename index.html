@@ -10,9 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* ═══════════════════════════════════════════
-           TOKENS
-        ═══════════════════════════════════════════ */
         :root {
             --blue-night: #0B1F4B;
             --blue-mid: #1A3A6B;
@@ -42,306 +39,140 @@
             --text-body: #CBD5E1;
             --shadow-card: 0 8px 32px rgba(0,0,0,0.4);
         }
-
         *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
         html { scroll-behavior: smooth; }
-        body {
-            font-family: var(--font-body);
-            background: var(--cream);
-            color: var(--text-body);
-            line-height: 1.65;
-            transition: background var(--transition), color var(--transition);
-        }
+        body { font-family: var(--font-body); background: var(--cream); color: var(--text-body); line-height: 1.65; transition: background var(--transition), color var(--transition); }
         img { display:block; max-width:100%; }
         a { color: inherit; text-decoration: none; }
         button { font-family: var(--font-body); cursor: pointer; border: none; }
-
         .container { max-width: var(--container-max); margin: 0 auto; padding: 0 32px; }
         .section-pad { padding: 96px 0; }
-        .section-pad-sm { padding: 64px 0; }
-
-        .display { font-family: var(--font-display); }
-        .eyebrow {
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 12px;
-        }
+        .eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
         h1, h2, h3 { font-family: var(--font-display); color: var(--text-dark); line-height: 1.2; }
         h1 { font-size: clamp(2.4rem, 5vw, 4.2rem); }
         h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); }
         h3 { font-size: 1.25rem; }
-
-        .btn {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 14px 28px; border-radius: 50px;
-            font-weight: 600; font-size: 0.95rem;
-            transition: var(--transition); cursor: pointer;
-        }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 50px; font-weight: 600; font-size: 0.95rem; transition: var(--transition); cursor: pointer; }
         .btn-gold { background: var(--gold); color: var(--blue-night); box-shadow: 0 4px 20px rgba(232,160,32,0.35); }
         .btn-gold:hover { background: #d4901a; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(232,160,32,0.45); }
         .btn-outline { background: transparent; border: 2px solid var(--white); color: var(--white); }
         .btn-outline:hover { background: var(--white); color: var(--blue-night); }
-        .btn-ghost { background: transparent; border: 2px solid var(--blue-night); color: var(--blue-night); }
-        .btn-ghost:hover { background: var(--blue-night); color: var(--white); }
+        .btn-ghost { background: transparent; border: 2px solid var(--gold); color: var(--gold); }
+        .btn-ghost:hover { background: var(--gold); color: var(--blue-night); }
         .btn-sm { padding: 8px 18px; font-size: 0.85rem; }
+        .text-center { text-align: center; }
+        .mt-32 { margin-top: 32px; }
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        .empty-state { text-align: center; padding: 64px 24px; color: var(--gray-mid); font-size: 0.95rem; }
+        .empty-state i { font-size: 2.5rem; margin-bottom: 12px; display: block; }
 
-        #site-header {
-            position: sticky; top: 0; z-index: 900;
-            background: rgba(11,31,75,0.97);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-            transition: box-shadow var(--transition);
-        }
+        /* ── HEADER ── */
+        #site-header { position: sticky; top: 0; z-index: 900; background: rgba(11,31,75,0.97); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.08); transition: box-shadow var(--transition); }
         #site-header.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.25); }
-        .nav-inner {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 18px 0; gap: 24px;
-        }
-        .logo {
-            font-family: var(--font-display);
-            font-size: 1.6rem; font-weight: 900;
-            color: var(--white);
-        }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; gap: 24px; }
+        .logo { font-family: var(--font-display); font-size: 1.6rem; font-weight: 900; color: var(--white); }
         .logo span { color: var(--gold); }
-        .nav-links {
-            display: flex; align-items: center; gap: 32px;
-            list-style: none;
-        }
-        .nav-links a {
-            color: rgba(255,255,255,0.75);
-            font-size: 0.9rem; font-weight: 500;
-            transition: color var(--transition); position: relative;
-        }
-        .nav-links a::after {
-            content: ''; position: absolute; bottom: -4px; left: 0;
-            width: 0; height: 2px; background: var(--gold);
-            transition: width var(--transition);
-        }
+        .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+        .nav-links a { color: rgba(255,255,255,0.75); font-size: 0.9rem; font-weight: 500; transition: color var(--transition); position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--gold); transition: width var(--transition); }
         .nav-links a:hover, .nav-links a.active { color: var(--white); }
         .nav-links a:hover::after { width: 100%; }
         .nav-actions { display: flex; align-items: center; gap: 12px; }
-        .theme-toggle {
-            background: rgba(255,255,255,0.1); border: none;
-            width: 38px; height: 38px; border-radius: 50%;
-            color: white; font-size: 1rem; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            transition: background var(--transition);
-        }
+        .theme-toggle { background: rgba(255,255,255,0.1); border: none; width: 38px; height: 38px; border-radius: 50%; color: white; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background var(--transition); }
         .theme-toggle:hover { background: rgba(255,255,255,0.2); }
-        .menu-toggle {
-            display: none; background: none; border: none;
-            color: white; font-size: 1.6rem; cursor: pointer;
-        }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.6rem; cursor: pointer; }
 
-        #hero {
-            position: relative;
-            background: var(--blue-night);
-            min-height: 100vh;
-            display: flex; flex-direction: column; justify-content: center;
-            overflow: hidden;
-        }
-        .hero-bg {
-            position: absolute; inset: 0;
-            background-image: url('https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1400&q=80');
-            background-size: cover; background-position: center;
-            opacity: 0.18;
-        }
-        .hero-overlay {
-            position: absolute; inset: 0;
-            background: linear-gradient(160deg, rgba(11,31,75,0.9) 40%, rgba(45,106,79,0.5) 100%);
-        }
-        .hero-content {
-            position: relative; z-index: 2;
-            padding: 100px 0 80px;
-        }
-        .hero-impact-number {
-            font-family: var(--font-display);
-            font-size: clamp(7rem, 20vw, 18rem);
-            font-weight: 900;
-            color: transparent;
-            -webkit-text-stroke: 2px rgba(232,160,32,0.3);
-            line-height: 0.85;
-            position: absolute; right: -2%; top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none; user-select: none;
-            z-index: 1;
-        }
+        /* ── HERO ── */
+        #hero { position: relative; background: var(--blue-night); min-height: 100vh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+        .hero-bg { position: absolute; inset: 0; background-image: url('https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1400&q=80'); background-size: cover; background-position: center; opacity: 0.18; }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(11,31,75,0.9) 40%, rgba(45,106,79,0.5) 100%); }
+        .hero-content { position: relative; z-index: 2; padding: 100px 0 80px; }
         .hero-inner { position: relative; z-index: 2; max-width: 700px; }
         .hero-eyebrow { color: var(--gold); font-weight: 600; letter-spacing: 0.1em; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 20px; }
         .hero-title { color: var(--white); margin-bottom: 24px; }
         .hero-title em { color: var(--gold); font-style: italic; }
         .hero-subtitle { color: rgba(255,255,255,0.72); font-size: 1.1rem; max-width: 520px; margin-bottom: 40px; }
         .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; }
-        .hero-stats {
-            position: relative; z-index: 2;
-            display: flex; flex-wrap: wrap; gap: 0;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            margin-top: 64px; padding-top: 40px;
-        }
-        .hero-stat {
-            flex: 1; min-width: 140px;
-            padding: 0 32px 0 0;
-            border-right: 1px solid rgba(255,255,255,0.1);
-        }
-        .hero-stat:last-child { border-right: none; }
-        .hero-stat-num {
-            font-family: var(--font-display);
-            font-size: 2.6rem; font-weight: 700;
-            color: var(--gold);
-        }
-        .hero-stat-label { color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-top: 4px; }
 
-        .scroll-hint {
-            position: absolute; bottom: 32px; left: 50%;
-            transform: translateX(-50%); z-index: 3;
-            display: flex; flex-direction: column; align-items: center; gap: 8px;
-            color: rgba(255,255,255,0.4); font-size: 0.75rem;
-            animation: bob 2s ease-in-out infinite;
-        }
+        /* Hero impact visuel : 3 piliers au lieu des compteurs */
+        .hero-pillars { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 56px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .hero-pillar { display: flex; align-items: center; gap: 14px; }
+        .hero-pillar-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(232,160,32,0.15); border: 1px solid rgba(232,160,32,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--gold); flex-shrink: 0; }
+        .hero-pillar-text strong { display: block; color: white; font-size: 0.95rem; font-weight: 600; }
+        .hero-pillar-text span { color: rgba(255,255,255,0.55); font-size: 0.78rem; }
+
+        .scroll-hint { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 8px; color: rgba(255,255,255,0.4); font-size: 0.75rem; animation: bob 2s ease-in-out infinite; }
         @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
 
+        /* ── MISSIONS ── */
         #missions { background: var(--white); }
-        .missions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 24px; margin-top: 48px;
-        }
-        .mission-card {
-            background: var(--cream);
-            border-radius: var(--radius);
-            padding: 36px 28px;
-            border: 1px solid transparent;
-            transition: var(--transition);
-        }
-        .mission-card:hover {
-            border-color: var(--gold);
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-hover);
-        }
-        .mission-icon {
-            width: 56px; height: 56px; border-radius: var(--radius-sm);
-            background: var(--gold-light);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; color: var(--gold);
-            margin-bottom: 20px;
-        }
-        .mission-card h3 { margin-bottom: 10px; color: var(--text-dark); }
-        .mission-card p { font-size: 0.92rem; color: var(--text-body); }
+        .missions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 48px; }
+        .mission-card { background: var(--cream); border-radius: var(--radius); padding: 36px 28px; border: 1px solid transparent; transition: var(--transition); }
+        .mission-card:hover { border-color: var(--gold); transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+        .mission-icon { width: 56px; height: 56px; border-radius: var(--radius-sm); background: var(--gold-light); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--gold); margin-bottom: 20px; }
+        .mission-card h3 { margin-bottom: 10px; }
+        .mission-card p { font-size: 0.92rem; }
 
+        /* ── IMPACT DYNAMIQUE (remplace les compteurs codés en dur) ── */
+        #impact { background: var(--blue-night); padding: 80px 0; }
+        .impact-intro { text-align: center; margin-bottom: 48px; }
+        .impact-intro h2 { color: white; }
+        .impact-intro p { color: rgba(255,255,255,0.6); margin-top: 12px; max-width: 500px; margin-left: auto; margin-right: auto; font-size: 0.95rem; }
+        .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+        .impact-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 32px 24px; text-align: center; transition: var(--transition); }
+        .impact-card:hover { background: rgba(232,160,32,0.1); border-color: rgba(232,160,32,0.3); }
+        .impact-icon { font-size: 2rem; color: var(--gold); margin-bottom: 16px; }
+        .impact-value { font-family: var(--font-display); font-size: 2.4rem; font-weight: 700; color: white; }
+        .impact-label { color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-top: 6px; }
+        /* Les valeurs d'impact sont chargées depuis _data/impact.json */
+
+        /* ── PROJETS ── */
         #projets { background: var(--cream); }
-        .filters {
-            display: flex; flex-wrap: wrap; gap: 10px;
-            margin: 32px 0 40px;
-        }
-        .filter-btn {
-            padding: 8px 20px; border-radius: 50px;
-            background: var(--gray-soft);
-            color: var(--text-body);
-            border: 2px solid transparent;
-            font-size: 0.88rem; font-weight: 500;
-            transition: var(--transition); cursor: pointer;
-        }
-        .filter-btn.active {
-            background: var(--blue-night); color: white;
-            border-color: var(--blue-night);
-        }
-        .projets-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-            gap: 32px;
-        }
-        .projet-card {
-            background: var(--white);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-card);
-            transition: var(--transition);
-            cursor: pointer;
-        }
+        .filters { display: flex; flex-wrap: wrap; gap: 10px; margin: 32px 0 40px; }
+        .filter-btn { padding: 8px 20px; border-radius: 50px; background: var(--gray-soft); color: var(--text-body); border: 2px solid transparent; font-size: 0.88rem; font-weight: 500; transition: var(--transition); cursor: pointer; }
+        .filter-btn.active { background: var(--blue-night); color: white; border-color: var(--blue-night); }
+        .projets-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 32px; }
+        .projet-card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card); transition: var(--transition); cursor: pointer; }
         .projet-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
-        .projet-img-wrap { position: relative; overflow: hidden; height: 240px; }
+        .projet-img-wrap { position: relative; overflow: hidden; height: 220px; }
         .projet-img-wrap img { width:100%; height:100%; object-fit:cover; transition: transform 0.5s ease; }
         .projet-card:hover .projet-img-wrap img { transform: scale(1.06); }
-        .projet-tag {
-            position: absolute; top: 14px; left: 14px;
-            background: var(--blue-night); color: white;
-            padding: 4px 12px; border-radius: 50px;
-            font-size: 0.75rem; font-weight: 600;
-        }
+        .projet-tag { position: absolute; top: 14px; left: 14px; background: var(--blue-night); color: white; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; }
         .projet-body { padding: 22px 24px; }
         .projet-date { color: var(--gold); font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; }
-        .projet-body h3 { margin-bottom: 10px; font-size: 1.1rem; }
-        .projet-body p { font-size: 0.88rem; color: var(--text-body); margin-bottom: 16px; }
-        .projet-footer {
-            display: flex; justify-content: space-between; align-items: center;
-            padding-top: 16px; border-top: 1px solid var(--gray-soft);
-        }
+        .projet-body h3 { margin-bottom: 10px; font-size: 1.05rem; }
+        .projet-body p { font-size: 0.88rem; margin-bottom: 16px; }
+        .projet-footer { display: flex; justify-content: flex-end; padding-top: 12px; border-top: 1px solid var(--gray-soft); }
         .projet-read-more { color: var(--gold); font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 4px; }
 
+        /* ── GALERIE ── */
         #galerie { background: var(--blue-night); }
-        #galerie h2, #galerie .eyebrow { color: var(--white); }
-        .galerie-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 20px; margin-top: 40px;
-        }
-        .galerie-item {
-            position: relative; border-radius: var(--radius-sm);
-            overflow: hidden; cursor: zoom-in;
-            aspect-ratio: 4/3;
-        }
+        #galerie h2 { color: white; }
+        .galerie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin-top: 40px; }
+        .galerie-item { position: relative; border-radius: var(--radius-sm); overflow: hidden; cursor: zoom-in; aspect-ratio: 4/3; }
         .galerie-item img { width:100%; height:100%; object-fit:cover; transition: transform 0.5s ease; }
-        .galerie-overlay {
-            position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(11,31,75,0.85) 0%, transparent 60%);
-            opacity: 0; transition: var(--transition);
-            display: flex; align-items: flex-end; padding: 16px;
-        }
+        .galerie-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(11,31,75,0.85) 0%, transparent 60%); opacity: 0; transition: var(--transition); display: flex; align-items: flex-end; padding: 16px; }
         .galerie-overlay p { color: white; font-size: 0.85rem; font-weight: 500; }
         .galerie-item:hover img { transform: scale(1.08); }
         .galerie-item:hover .galerie-overlay { opacity: 1; }
 
+        /* ── TEMOIGNAGES ── */
         #temoignages { background: var(--white); }
-        .temoignages-track {
-            display: flex; gap: 24px;
-            overflow-x: auto;
-            padding-bottom: 16px;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-        }
+        .temoignages-track { display: flex; gap: 24px; overflow-x: auto; padding-bottom: 16px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; margin-top: 40px; }
         .temoignages-track::-webkit-scrollbar { display: none; }
-        .temoignage-card {
-            flex: 0 0 340px; scroll-snap-align: start;
-            background: var(--cream);
-            border-radius: var(--radius);
-            padding: 32px;
-            border-left: 4px solid var(--gold);
-        }
+        .temoignage-card { flex: 0 0 340px; scroll-snap-align: start; background: var(--cream); border-radius: var(--radius); padding: 32px; border-left: 4px solid var(--gold); }
         .temoignage-quote { font-size: 2.5rem; color: var(--gold); font-family: var(--font-display); line-height: 1; margin-bottom: 12px; }
-        .temoignage-text { font-size: 0.92rem; color: var(--text-body); margin-bottom: 20px; font-style: italic; }
+        .temoignage-text { font-size: 0.92rem; margin-bottom: 20px; font-style: italic; }
         .temoignage-author { display: flex; align-items: center; gap: 12px; }
         .temoignage-author img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; }
         .temoignage-name { font-weight: 600; font-size: 0.9rem; color: var(--text-dark); }
         .temoignage-role { font-size: 0.78rem; color: var(--gray-mid); }
 
+        /* ── MEMBRES ── */
         #membres { background: var(--cream); }
-        .membres-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 24px; margin-top: 40px;
-        }
-        .membre-card {
-            background: var(--white);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-card);
-            transition: var(--transition);
-            text-align: center;
-        }
+        .membres-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; margin-top: 40px; }
+        .membre-card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card); transition: var(--transition); text-align: center; }
         .membre-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
         .membre-photo-wrap { position: relative; height: 200px; overflow: hidden; }
         .membre-photo-wrap img { width:100%; height:100%; object-fit:cover; }
@@ -349,225 +180,114 @@
         .membre-body h3 { margin-bottom: 4px; font-size: 1rem; }
         .membre-fonction { color: var(--gold); font-size: 0.82rem; font-weight: 600; margin-bottom: 10px; }
         .membre-contacts { display: flex; justify-content: center; gap: 10px; }
-        .membre-contacts a {
-            width: 34px; height: 34px; border-radius: 50%;
-            background: var(--gray-soft);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 0.85rem; color: var(--text-body);
-            transition: var(--transition);
-        }
+        .membre-contacts a { width: 34px; height: 34px; border-radius: 50%; background: var(--gray-soft); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; transition: var(--transition); }
         .membre-contacts a:hover { background: var(--gold); color: white; }
 
-        #don {
-            background: linear-gradient(135deg, var(--blue-night) 0%, var(--blue-mid) 50%, var(--green-togo) 100%);
-            padding: 96px 0; text-align: center; position: relative; overflow: hidden;
-        }
-        #don::before {
-            content: '♥'; position: absolute;
-            font-size: 40rem; opacity: 0.03;
-            font-family: var(--font-display);
-            top: 50%; left: 50%; transform: translate(-50%,-50%);
-            pointer-events: none;
-        }
-        #don h2 { color: var(--white); margin-bottom: 16px; }
-        #don p { color: rgba(255,255,255,0.72); max-width: 520px; margin: 0 auto 40px; }
-        .don-amounts {
-            display: flex; flex-wrap: wrap; justify-content: center;
-            gap: 12px; margin-bottom: 32px;
-        }
-        .don-amount-btn {
-            padding: 10px 24px; border-radius: 50px;
-            background: rgba(255,255,255,0.12);
-            color: white; font-weight: 600; border: 2px solid rgba(255,255,255,0.25);
-            font-size: 0.95rem; cursor: pointer;
-            transition: var(--transition);
-        }
-        .don-amount-btn:hover, .don-amount-btn.selected {
-            background: var(--gold); border-color: var(--gold); color: var(--blue-night);
-        }
-        .don-progress-wrap { max-width: 500px; margin: 0 auto 32px; }
-        .don-progress-label { display: flex; justify-content: space-between; color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-bottom: 10px; }
-        .don-progress-bar { height: 10px; background: rgba(255,255,255,0.15); border-radius: 50px; overflow: hidden; }
-        .don-progress-fill { height: 100%; background: var(--gold); border-radius: 50px; transition: width 1.5s ease; }
+        /* ── DON — Mobile Money Togo ── */
+        #don { background: linear-gradient(135deg, var(--blue-night) 0%, var(--blue-mid) 50%, var(--green-togo) 100%); padding: 96px 0; text-align: center; position: relative; overflow: hidden; }
+        #don::before { content: '♥'; position: absolute; font-size: 40rem; opacity: 0.03; font-family: var(--font-display); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; }
+        #don h2 { color: white; margin-bottom: 16px; }
+        #don > .container > p { color: rgba(255,255,255,0.72); max-width: 540px; margin: 0 auto 48px; }
+        .don-methods { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; max-width: 900px; margin: 0 auto 40px; }
+        .don-method { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius); padding: 28px 24px; transition: var(--transition); }
+        .don-method:hover { background: rgba(255,255,255,0.14); border-color: var(--gold); transform: translateY(-4px); }
+        .don-method-icon { font-size: 2.2rem; margin-bottom: 14px; }
+        .don-method h3 { color: white; font-size: 1.05rem; margin-bottom: 8px; }
+        .don-method p { color: rgba(255,255,255,0.65); font-size: 0.88rem; margin-bottom: 16px; line-height: 1.5; }
+        .don-method-num { display: inline-block; background: var(--gold); color: var(--blue-night); font-weight: 700; font-size: 1rem; padding: 8px 20px; border-radius: 50px; letter-spacing: 0.05em; }
+        .don-note { color: rgba(255,255,255,0.45); font-size: 0.8rem; margin-top: 24px; }
 
-        #newsletter { background: var(--gold-light); padding: 64px 0; }
-        .newsletter-inner {
-            display: flex; flex-wrap: wrap; gap: 32px;
-            align-items: center; justify-content: space-between;
-        }
-        .newsletter-text h2 { font-size: 1.9rem; }
-        .newsletter-text p { color: var(--text-body); margin-top: 8px; }
-        .newsletter-form { display: flex; gap: 12px; flex-wrap: wrap; }
-        .newsletter-form input {
-            padding: 14px 20px; border-radius: 50px; border: 2px solid transparent;
-            background: white; font-size: 0.95rem; width: 280px;
-            font-family: var(--font-body); outline: none;
-            transition: border-color var(--transition);
-        }
-        .newsletter-form input:focus { border-color: var(--gold); }
-
+        /* ── CONTACT ── */
         #contact { background: var(--white); }
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 48px; }
         .contact-info h3 { margin-bottom: 24px; }
-        .contact-line {
-            display: flex; gap: 16px; align-items: flex-start;
-            margin-bottom: 20px; font-size: 0.95rem;
-        }
-        .contact-line-icon {
-            width: 40px; height: 40px; border-radius: var(--radius-sm);
-            background: var(--gold-light); color: var(--gold);
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0; font-size: 1rem;
-        }
-        .contact-form input, .contact-form textarea, .contact-form select {
-            width: 100%; padding: 14px 18px;
-            border-radius: var(--radius-sm); border: 2px solid var(--gray-soft);
-            background: var(--cream); font-family: var(--font-body);
-            font-size: 0.95rem; color: var(--text-dark); margin-bottom: 14px;
-            outline: none; transition: border-color var(--transition);
-        }
+        .contact-line { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 20px; font-size: 0.95rem; }
+        .contact-line-icon { width: 42px; height: 42px; border-radius: var(--radius-sm); background: var(--gold-light); color: var(--gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1rem; }
+        .contact-form input, .contact-form textarea, .contact-form select { width: 100%; padding: 14px 18px; border-radius: var(--radius-sm); border: 2px solid var(--gray-soft); background: var(--cream); font-family: var(--font-body); font-size: 0.95rem; color: var(--text-dark); margin-bottom: 14px; outline: none; transition: border-color var(--transition); }
         .contact-form input:focus, .contact-form textarea:focus { border-color: var(--gold); }
         .contact-form textarea { resize: vertical; min-height: 120px; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-        .map-wrap { margin-top: 32px; border-radius: var(--radius); overflow: hidden; }
 
-        footer {
-            background: #060F25; color: rgba(255,255,255,0.55);
-            padding: 64px 0 32px;
-        }
+        /* Carte Google Maps */
+        .map-wrap { margin-top: 28px; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card); }
+        .map-wrap iframe { display: block; width: 100%; height: 260px; border: 0; }
+
+        /* ── NEWSLETTER ── */
+        #newsletter { background: var(--gold-light); padding: 64px 0; }
+        .newsletter-inner { display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: space-between; }
+        .newsletter-text h2 { font-size: 1.9rem; }
+        .newsletter-text p { margin-top: 8px; }
+        .newsletter-form { display: flex; gap: 12px; flex-wrap: wrap; }
+        .newsletter-form input { padding: 14px 20px; border-radius: 50px; border: 2px solid transparent; background: white; font-size: 0.95rem; width: 280px; font-family: var(--font-body); outline: none; transition: border-color var(--transition); }
+        .newsletter-form input:focus { border-color: var(--gold); }
+
+        /* ── FOOTER ── */
+        footer { background: #060F25; color: rgba(255,255,255,0.55); padding: 64px 0 32px; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
         .footer-logo { font-family: var(--font-display); font-size: 1.6rem; font-weight: 900; color: white; margin-bottom: 16px; }
         .footer-logo span { color: var(--gold); }
         .footer-desc { font-size: 0.88rem; line-height: 1.7; max-width: 280px; }
-        .footer-col h4 { color: white; font-size: 0.9rem; font-weight: 600; margin-bottom: 20px; letter-spacing: 0.05em; }
+        .footer-col h4 { color: white; font-size: 0.9rem; font-weight: 600; margin-bottom: 20px; }
         .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
         .footer-links a { font-size: 0.88rem; transition: color var(--transition); }
         .footer-links a:hover { color: var(--gold); }
         .social-links { display: flex; gap: 10px; margin-top: 20px; }
-        .social-link {
-            width: 38px; height: 38px; border-radius: 50%;
-            background: rgba(255,255,255,0.08);
-            display: flex; align-items: center; justify-content: center;
-            color: rgba(255,255,255,0.7); transition: var(--transition);
-        }
+        .social-link { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.7); transition: var(--transition); }
         .social-link:hover { background: var(--gold); color: var(--blue-night); }
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.06);
-            padding-top: 24px; display: flex; justify-content: space-between;
-            align-items: center; flex-wrap: wrap; gap: 12px;
-            font-size: 0.83rem;
-        }
-        .footer-bottom a { transition: color var(--transition); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 0.83rem; }
         .footer-bottom a:hover { color: var(--gold); }
 
-        .whatsapp-fab {
-            position: fixed; bottom: 28px; right: 28px;
-            width: 58px; height: 58px; border-radius: 50%;
-            background: #25D366; color: white;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.7rem; z-index: 800;
-            box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-            transition: var(--transition);
-        }
-        .whatsapp-fab:hover { transform: scale(1.1); box-shadow: 0 8px 28px rgba(37,211,102,0.5); }
-        .back-to-top {
-            position: fixed; bottom: 100px; right: 28px;
-            width: 48px; height: 48px; border-radius: 50%;
-            background: rgba(11,31,75,0.8); color: white;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1rem; z-index: 800; cursor: pointer;
-            opacity: 0; pointer-events: none;
-            transition: var(--transition);
-        }
+        /* ── FIXED UI ── */
+        .whatsapp-fab { position: fixed; bottom: 28px; right: 28px; width: 58px; height: 58px; border-radius: 50%; background: #25D366; color: white; display: flex; align-items: center; justify-content: center; font-size: 1.7rem; z-index: 800; box-shadow: 0 4px 20px rgba(37,211,102,0.4); transition: var(--transition); }
+        .whatsapp-fab:hover { transform: scale(1.1); }
+        .back-to-top { position: fixed; bottom: 100px; right: 28px; width: 48px; height: 48px; border-radius: 50%; background: rgba(11,31,75,0.8); color: white; display: flex; align-items: center; justify-content: center; font-size: 1rem; z-index: 800; cursor: pointer; opacity: 0; pointer-events: none; transition: var(--transition); }
         .back-to-top.visible { opacity: 1; pointer-events: all; }
         .back-to-top:hover { background: var(--blue-night); }
 
-        .modal-backdrop {
-            display: none; position: fixed; inset: 0;
-            background: rgba(6,15,37,0.85);
-            backdrop-filter: blur(4px);
-            z-index: 1000; align-items: center; justify-content: center;
-            padding: 24px;
-        }
+        /* ── MODAL ── */
+        .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(6,15,37,0.85); backdrop-filter: blur(4px); z-index: 1000; align-items: center; justify-content: center; padding: 24px; }
         .modal-backdrop.open { display: flex; }
-        .modal-box {
-            background: var(--white); border-radius: 28px;
-            width: 100%; max-width: 720px;
-            max-height: 90vh; overflow-y: auto;
-            position: relative; padding: 36px;
-        }
-        .modal-close-btn {
-            position: sticky; top: 0; float: right;
-            background: var(--gray-soft); border: none;
-            width: 38px; height: 38px; border-radius: 50%;
-            font-size: 1.1rem; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            color: var(--text-dark); transition: var(--transition);
-        }
+        .modal-box { background: var(--white); border-radius: 28px; width: 100%; max-width: 720px; max-height: 90vh; overflow-y: auto; position: relative; padding: 36px; }
+        .modal-close-btn { position: sticky; top: 0; float: right; background: var(--gray-soft); border: none; width: 38px; height: 38px; border-radius: 50%; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-dark); transition: var(--transition); }
         .modal-close-btn:hover { background: var(--blue-night); color: white; }
         .modal-proj-images { display: flex; gap: 12px; overflow-x: auto; margin: 20px 0; padding-bottom: 8px; }
         .modal-proj-images img { height: 200px; border-radius: var(--radius-sm); flex-shrink: 0; }
 
+        /* ── LIGHTBOX ── */
         #lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1100; align-items: center; justify-content: center; }
         #lightbox.open { display: flex; }
         #lightbox img { max-width: 90vw; max-height: 90vh; border-radius: var(--radius-sm); }
-        #lightbox-close { position: absolute; top: 20px; right: 24px; color: white; font-size: 2rem; cursor: pointer; }
-        #lightbox-prev, #lightbox-next {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            background: rgba(255,255,255,0.1); color: white;
-            border: none; width: 50px; height: 50px; border-radius: 50%;
-            font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
-            transition: background var(--transition);
-        }
+        #lightbox-close { position: absolute; top: 20px; right: 24px; color: white; font-size: 2rem; cursor: pointer; background: none; border: none; }
+        #lightbox-prev, #lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); color: white; border: none; width: 50px; height: 50px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background var(--transition); }
         #lightbox-prev:hover, #lightbox-next:hover { background: var(--gold); color: var(--blue-night); }
         #lightbox-prev { left: 20px; }
         #lightbox-next { right: 20px; }
 
+        /* ── TOAST ── */
         #toast-container { position: fixed; top: 80px; right: 24px; z-index: 2000; display: flex; flex-direction: column; gap: 10px; }
-        .toast {
-            background: var(--blue-night); color: white;
-            padding: 14px 20px; border-radius: var(--radius-sm);
-            font-size: 0.9rem; box-shadow: var(--shadow-card);
-            display: flex; align-items: center; gap: 10px;
-            animation: slideIn 0.3s ease;
-            min-width: 240px;
-        }
+        .toast { background: var(--blue-night); color: white; padding: 14px 20px; border-radius: var(--radius-sm); font-size: 0.9rem; box-shadow: var(--shadow-card); display: flex; align-items: center; gap: 10px; animation: slideIn 0.3s ease; min-width: 240px; }
         .toast.success { border-left: 4px solid #22C55E; }
         .toast.error { border-left: 4px solid #EF4444; }
-        .toast.info { border-left: 4px solid var(--gold); }
         @keyframes slideIn { from{transform:translateX(100%);opacity:0} to{transform:translateX(0);opacity:1} }
 
-        .text-center { text-align: center; }
-        .mt-8 { margin-top: 8px; }
-        .mt-16 { margin-top: 16px; }
-        .mt-32 { margin-top: 32px; }
-        .mb-16 { margin-bottom: 16px; }
-        .empty-state {
-            text-align: center; padding: 64px 24px;
-            color: var(--gray-mid); font-size: 0.95rem;
-        }
-        .empty-state i { font-size: 2.5rem; margin-bottom: 12px; display: block; }
-        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
-        .fade-up.visible { opacity: 1; transform: translateY(0); }
-
+        /* ── RESPONSIVE ── */
         @media (max-width: 900px) {
             .footer-grid { grid-template-columns: 1fr 1fr; }
             .contact-grid { grid-template-columns: 1fr; }
+            .hero-pillars { grid-template-columns: 1fr; gap: 14px; }
         }
         @media (max-width: 768px) {
             .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--blue-night); flex-direction: column; align-items: center; gap: 24px; padding: 32px; border-top: 1px solid rgba(255,255,255,0.1); }
             .nav-links.open { display: flex; }
             .menu-toggle { display: block; }
-            .hero-impact-number { font-size: 30vw; opacity: 0.08; }
-            .hero-stats { gap: 20px; }
-            .hero-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 0 0 20px; }
             .footer-grid { grid-template-columns: 1fr; gap: 32px; }
             .form-row { grid-template-columns: 1fr; }
             .newsletter-inner { flex-direction: column; }
             .newsletter-form input { width: 100%; }
-            .contact-grid { grid-template-columns: 1fr; }
             .projets-grid { grid-template-columns: 1fr; }
             .galerie-grid { grid-template-columns: 1fr 1fr; }
+            .don-methods { grid-template-columns: 1fr; }
+            .container { padding: 0 20px; }
         }
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -576,7 +296,7 @@
 </head>
 <body>
 
-<!-- ══════════════════ HEADER ══════════════════ -->
+<!-- ══ HEADER ══ -->
 <header id="site-header">
     <div class="container">
         <nav class="nav-inner">
@@ -594,19 +314,16 @@
                     <i class="fas fa-moon" id="theme-icon"></i>
                 </button>
                 <a href="#don" class="btn btn-gold btn-sm">Faire un don</a>
-                <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
-                    <i class="fas fa-bars"></i>
-                </button>
+                <button class="menu-toggle" id="menu-toggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
             </div>
         </nav>
     </div>
 </header>
 
-<!-- ══════════════════ HERO ══════════════════ -->
+<!-- ══ HERO ══ -->
 <section id="hero">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
-    <div class="hero-impact-number" id="hero-big-num">+620</div>
     <div class="container">
         <div class="hero-content">
             <div class="hero-inner">
@@ -614,28 +331,33 @@
                 <h1 class="hero-title">
                     Agir pour <em>l'éducation</em>,<br>la santé et l'environnement
                 </h1>
-                <p class="hero-subtitle">Nous mobilisons des volontaires internationaux pour transformer des vies dans les communautés togolaises.</p>
+                <p class="hero-subtitle">Nous mobilisons des volontaires internationaux pour transformer des vies dans les communautés togolaises — chaque jour, sur le terrain.</p>
                 <div class="hero-cta">
                     <a href="#don" class="btn btn-gold"><i class="fas fa-heart"></i> Soutenir la cause</a>
                     <a href="#projets" class="btn btn-outline"><i class="fas fa-arrow-right"></i> Voir nos projets</a>
                 </div>
             </div>
-            <div class="hero-stats" id="hero-stats">
-                <div class="hero-stat">
-                    <div class="hero-stat-num" data-target="15">0</div>
-                    <div class="hero-stat-label">Projets réalisés</div>
+            <div class="hero-pillars">
+                <div class="hero-pillar">
+                    <div class="hero-pillar-icon"><i class="fas fa-book-open"></i></div>
+                    <div class="hero-pillar-text">
+                        <strong>Éducation</strong>
+                        <span>Écoles, bibliothèques, soutien scolaire</span>
+                    </div>
                 </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-num" data-target="620">0</div>
-                    <div class="hero-stat-label">Enfants aidés</div>
+                <div class="hero-pillar">
+                    <div class="hero-pillar-icon"><i class="fas fa-heartbeat"></i></div>
+                    <div class="hero-pillar-text">
+                        <strong>Santé</strong>
+                        <span>Forages, lutte anti-paludisme, soins</span>
+                    </div>
                 </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-num" data-target="245">0</div>
-                    <div class="hero-stat-label">Volontaires</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-num" data-target="7">0</div>
-                    <div class="hero-stat-label">Forages construits</div>
+                <div class="hero-pillar">
+                    <div class="hero-pillar-icon"><i class="fas fa-tree"></i></div>
+                    <div class="hero-pillar-text">
+                        <strong>Environnement</strong>
+                        <span>Reboisement, jardins communautaires</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -646,7 +368,7 @@
     </div>
 </section>
 
-<!-- ══════════════════ MISSIONS ══════════════════ -->
+<!-- ══ MISSIONS ══ -->
 <section id="missions" class="section-pad">
     <div class="container">
         <p class="eyebrow text-center fade-up">Ce que nous faisons</p>
@@ -676,7 +398,21 @@
     </div>
 </section>
 
-<!-- ══════════════════ PROJETS ══════════════════ -->
+<!-- ══ IMPACT DYNAMIQUE ══ -->
+<section id="impact">
+    <div class="container">
+        <div class="impact-intro fade-up">
+            <p class="eyebrow" style="color:var(--gold)">Notre empreinte</p>
+            <h2>Ce que nous avons accompli ensemble</h2>
+            <p>Chaque projet laisse une trace durable. Voici le bilan de nos actions depuis 2015.</p>
+        </div>
+        <div class="impact-grid" id="impact-container">
+            <!-- Chargé depuis _data/impact.json — modifiable via /admin -->
+        </div>
+    </div>
+</section>
+
+<!-- ══ PROJETS ══ -->
 <section id="projets" class="section-pad">
     <div class="container">
         <p class="eyebrow text-center fade-up">Ce que nous avons accompli</p>
@@ -692,25 +428,25 @@
     </div>
 </section>
 
-<!-- ══════════════════ GALERIE ══════════════════ -->
+<!-- ══ GALERIE ══ -->
 <section id="galerie" class="section-pad">
     <div class="container">
         <p class="eyebrow text-center fade-up" style="color:var(--gold)">Nos moments</p>
         <h2 class="text-center fade-up" style="color:white">Galerie d'images</h2>
-        <div class="galerie-grid mt-32" id="galerie-container"></div>
+        <div class="galerie-grid" id="galerie-container"></div>
     </div>
 </section>
 
-<!-- ══════════════════ TÉMOIGNAGES ══════════════════ -->
+<!-- ══ TEMOIGNAGES ══ -->
 <section id="temoignages" class="section-pad">
     <div class="container">
         <p class="eyebrow text-center fade-up">Ils parlent de nous</p>
         <h2 class="text-center fade-up">Témoignages</h2>
-        <div class="temoignages-track mt-32" id="temoignages-container"></div>
+        <div class="temoignages-track" id="temoignages-container"></div>
     </div>
 </section>
 
-<!-- ══════════════════ MEMBRES ══════════════════ -->
+<!-- ══ MEMBRES ══ -->
 <section id="membres" class="section-pad">
     <div class="container">
         <p class="eyebrow text-center fade-up">Les personnes derrière la mission</p>
@@ -719,35 +455,40 @@
     </div>
 </section>
 
-<!-- ══════════════════ DON ══════════════════ -->
+<!-- ══ DON — Mobile Money Togo ══ -->
 <section id="don">
     <div class="container">
         <p class="eyebrow text-center" style="color:var(--gold)">Agir ensemble</p>
         <h2>Chaque don change une vie</h2>
-        <p>Votre contribution finance directement nos projets sur le terrain à Tsévie et dans les villages environnants.</p>
-        <div class="don-amounts">
-            <button class="don-amount-btn" data-amount="10">10€</button>
-            <button class="don-amount-btn selected" data-amount="25">25€</button>
-            <button class="don-amount-btn" data-amount="50">50€</button>
-            <button class="don-amount-btn" data-amount="100">100€</button>
-            <button class="don-amount-btn" data-amount="custom">Autre</button>
-        </div>
-        <div class="don-progress-wrap">
-            <div class="don-progress-label">
-                <span>Objectif 2025 : 5 000€</span>
-                <span id="don-raised">3 240€ collectés (65%)</span>
+        <p>Soutenez nos actions directement depuis votre téléphone, sans compte bancaire. Choisissez votre opérateur :</p>
+        <div class="don-methods">
+            <div class="don-method">
+                <div class="don-method-icon">📱</div>
+                <h3>Flooz (Moov Africa)</h3>
+                <p>Envoyez votre don via Flooz directement depuis votre téléphone Moov.</p>
+                <span class="don-method-num">+228 98 04 55 76</span>
             </div>
-            <div class="don-progress-bar">
-                <div class="don-progress-fill" id="don-bar" style="width:0%"></div>
+            <div class="don-method">
+                <div class="don-method-icon">💛</div>
+                <h3>T-Money (Togocel)</h3>
+                <p>Transférez via T-Money depuis votre téléphone Togocel en quelques secondes.</p>
+                <span class="don-method-num">+228 70 12 17 98</span>
+            </div>
+            <div class="don-method">
+                <div class="don-method-icon">🏦</div>
+                <h3>Virement bancaire</h3>
+                <p>Pour les dons plus importants ou depuis l'étranger, contactez-nous par email.</p>
+                <span class="don-method-num" style="font-size:0.8rem; padding: 8px 14px;">troisaplustogo@gmail.com</span>
             </div>
         </div>
-        <a href="https://www.helloasso.com/associations/3aplustogo" class="btn btn-gold" target="_blank" rel="noopener">
-            <i class="fas fa-heart"></i> Faire un don sécurisé via HelloAsso
-        </a>
+        <p class="don-note">
+            <i class="fas fa-shield-alt"></i>
+            Votre don est utilisé directement sur le terrain à Tsévie. Nous accusons réception par SMS ou email sur demande.
+        </p>
     </div>
 </section>
 
-<!-- ══════════════════ NEWSLETTER ══════════════════ -->
+<!-- ══ NEWSLETTER ══ -->
 <section id="newsletter">
     <div class="container">
         <div class="newsletter-inner">
@@ -756,7 +497,7 @@
                 <h2>Notre newsletter</h2>
                 <p>Recevez les actualités de nos projets, les dates de chantiers et les appels aux dons.</p>
             </div>
-            <div class="newsletter-form" id="newsletter-form">
+            <div class="newsletter-form">
                 <input type="email" id="nl-email" placeholder="votre@email.com" required>
                 <button type="button" class="btn btn-gold" id="nl-submit">
                     <i class="fas fa-paper-plane"></i> S'abonner
@@ -766,7 +507,7 @@
     </div>
 </section>
 
-<!-- ══════════════════ CONTACT ══════════════════ -->
+<!-- ══ CONTACT ══ -->
 <section id="contact" class="section-pad">
     <div class="container">
         <p class="eyebrow text-center fade-up">Parlons-nous</p>
@@ -780,25 +521,32 @@
                 </div>
                 <div class="contact-line">
                     <div class="contact-line-icon"><i class="fas fa-phone"></i></div>
-                    <div><strong>Téléphone</strong><br>+228 98 04 55 76 / +228 70 12 17 98</div>
+                    <div>
+                        <strong>Téléphone</strong><br>
+                        <a href="tel:+22898045576" style="color:var(--gold)">+228 98 04 55 76</a><br>
+                        <a href="tel:+22870121798" style="color:var(--gold)">+228 70 12 17 98</a>
+                    </div>
                 </div>
                 <div class="contact-line">
                     <div class="contact-line-icon"><i class="fas fa-envelope"></i></div>
-                    <div><strong>Email</strong><br>troisaplustogo@gmail.com</div>
+                    <div><strong>Email</strong><br><a href="mailto:troisaplustogo@gmail.com" style="color:var(--gold)">troisaplustogo@gmail.com</a></div>
                 </div>
                 <div class="contact-line">
                     <div class="contact-line-icon"><i class="fab fa-whatsapp"></i></div>
-                    <div><strong>WhatsApp</strong><br>+228 70 12 17 98</div>
+                    <div><strong>WhatsApp</strong><br><a href="https://wa.me/22870121798" target="_blank" style="color:var(--gold)">+228 70 12 17 98</a></div>
                 </div>
                 <div class="map-wrap">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15858.218623481362!2d1.1995471!3d6.4303519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10223b7d7b5c7b5f%3A0x4a2b5c8d9e0f1a2b!2sTs%C3%A9vi%C3%A9!5e0!3m2!1sfr!2stg!4v1712345678901!5m2!1sfr!2stg" width="100%" height="260" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15858.218623481362!2d1.1995471!3d6.4303519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10223b7d7b5c7b5f%3A0x4a2b5c8d9e0f1a2b!2sTs%C3%A9vi%C3%A9!5e0!3m2!1sfr!2stg!4v1712345678901!5m2!1sfr!2stg"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
                 </div>
             </div>
             <div class="fade-up">
                 <h3>Envoyer un message</h3>
-                <!-- Remplacez l'URL ci-dessous par votre propre endpoint Formspree -->
-                <form class="contact-form mt-16" id="contact-form"
-                      action="https://formspree.io/f/xyz123" method="POST">
+                <form class="contact-form" style="margin-top:16px" id="contact-form" action="https://formspree.io/f/xyz123" method="POST">
                     <div class="form-row">
                         <input type="text" name="prenom" placeholder="Prénom" required>
                         <input type="text" name="nom" placeholder="Nom" required>
@@ -816,21 +564,21 @@
                     <button type="submit" class="btn btn-gold"><i class="fas fa-paper-plane"></i> Envoyer</button>
                 </form>
                 <p style="font-size:0.8rem; color:var(--gray-mid); margin-top:12px;">
-                    🔒 En soumettant, vous acceptez notre politique de confidentialité.
+                    🔒 Vos données ne sont pas partagées avec des tiers.
                 </p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ══════════════════ FOOTER ══════════════════ -->
+<!-- ══ FOOTER ══ -->
 <footer>
     <div class="container">
         <div class="footer-grid">
             <div>
                 <div class="footer-logo">3APLUS<span>-TOGO</span></div>
                 <p class="footer-desc">Association de solidarité internationale active depuis 2015, œuvrant pour l'éducation, la santé et l'environnement à Tsévie, Togo.</p>
-                <p class="footer-desc mt-8" style="font-size:0.78rem; margin-top:12px;">Numéro d'enregistrement : 0105/MATDCL-SG-DLPAP-DOCA</p>
+                <p class="footer-desc" style="font-size:0.78rem; margin-top:12px;">N° d'enregistrement : 0105/MATDCL-SG-DLPAP-DOCA</p>
                 <div class="social-links">
                     <a href="https://www.facebook.com/3APLUS.TG" target="_blank" rel="noopener" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -868,24 +616,22 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <span>© 2025 3APLUS-TOGO — Solidarité et action humanitaire</span>
-            <span><a href="#">Mentions légales</a> · <a href="#">Politique de confidentialité</a></span>
+            <span id="footer-year">© 2025 3APLUS-TOGO — Solidarité et action humanitaire</span>
+            <span><a href="#">Mentions légales</a> · <a href="#">Confidentialité</a></span>
         </div>
     </div>
 </footer>
 
-<!-- ══════════════════ FIXED UI ══════════════════ -->
+<!-- ══ FIXED UI ══ -->
 <a href="https://wa.me/22870121798" class="whatsapp-fab" target="_blank" rel="noopener" aria-label="WhatsApp">
     <i class="fab fa-whatsapp"></i>
 </a>
 <button class="back-to-top" id="back-to-top" aria-label="Retour en haut">
     <i class="fas fa-chevron-up"></i>
 </button>
-
-<!-- TOAST CONTAINER -->
 <div id="toast-container"></div>
 
-<!-- ══════════════════ MODAL PROJET ══════════════════ -->
+<!-- ══ MODAL PROJET ══ -->
 <div class="modal-backdrop" id="proj-modal">
     <div class="modal-box">
         <button class="modal-close-btn" data-close="proj-modal"><i class="fas fa-times"></i></button>
@@ -897,7 +643,7 @@
     </div>
 </div>
 
-<!-- LIGHTBOX -->
+<!-- ══ LIGHTBOX ══ -->
 <div id="lightbox">
     <button id="lightbox-close"><i class="fas fa-times"></i></button>
     <button id="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
@@ -905,389 +651,319 @@
     <button id="lightbox-next"><i class="fas fa-chevron-right"></i></button>
 </div>
 
-<!-- ══════════════════════════════════════════
-     JAVASCRIPT (lecture des JSON, rendu, interactions)
-══════════════════════════════════════════ -->
 <script>
-    'use strict';
+'use strict';
 
-    /* ─── DONNÉES PAR DÉFAUT (fallback si JSON indisponible) ─── */
-    const DEFAULTS = {
-        projets: [],
-        galerie: [],
-        membres: [],
-        temoignages: []
-    };
+/* ── DONNÉES PAR DÉFAUT (vides — tout vient du CMS) ── */
+const DEFAULTS = {
+    projets: [],
+    galerie: [],
+    membres: [],
+    temoignages: [],
+    impact: []
+};
 
-    /* ─── STATE ─────────────────────────────── */
-    const STATE = {
-        projets: [],
-        galerie: [],
-        membres: [],
-        temoignages: [],
-        lightboxIndex: 0,
-        currentFilter: 'all'
-    };
+const STATE = {
+    projets: [], galerie: [], membres: [], temoignages: [], impact: [],
+    lightboxIndex: 0, currentFilter: 'all'
+};
 
-    /* ─── CHARGEMENT DES DONNÉES DEPUIS LES FICHIERS JSON ─── */
-  
+/* ── ANNÉE FOOTER AUTO ── */
+document.getElementById('footer-year').textContent =
+    `© ${new Date().getFullYear()} 3APLUS-TOGO — Solidarité et action humanitaire`;
+
+/* ── CHARGEMENT JSON ── */
 async function loadJSON(filename) {
     try {
-        const response = await fetch(`/_data/${filename}.json`);
-        if (!response.ok) throw new Error('Fichier introuvable');
-        const data = await response.json();
-        // Si c'est un objet avec une clé du même nom que le fichier
+        const r = await fetch(`/_data/${filename}.json`);
+        if (!r.ok) throw new Error('not found');
+        const data = await r.json();
         if (data && typeof data === 'object' && !Array.isArray(data)) {
             return data[filename] || [];
         }
         return Array.isArray(data) ? data : [];
-    } catch (error) {
-        console.warn(`Fallback pour ${filename}`);
+    } catch {
         return DEFAULTS[filename] || [];
     }
 }
 
-    /* ─── TOAST ─────────────────────────────── */
-    function toast(msg, type = 'success') {
-        const container = document.getElementById('toast-container');
-        const el = document.createElement('div');
-        el.className = `toast ${type}`;
-        const icon = type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle';
-        el.innerHTML = `<i class="fas fa-${icon}"></i> ${msg}`;
-        container.appendChild(el);
-        setTimeout(() => el.remove(), 3500);
+async function fetchAllData() {
+    [STATE.projets, STATE.galerie, STATE.membres, STATE.temoignages, STATE.impact] =
+        await Promise.all([
+            loadJSON('projets'),
+            loadJSON('galerie'),
+            loadJSON('membres'),
+            loadJSON('temoignages'),
+            loadJSON('impact')
+        ]);
+}
+
+/* ── TOAST ── */
+function toast(msg, type = 'success') {
+    const el = document.createElement('div');
+    el.className = `toast ${type}`;
+    el.innerHTML = `<i class="fas fa-${type==='success'?'check-circle':'exclamation-circle'}"></i> ${msg}`;
+    document.getElementById('toast-container').appendChild(el);
+    setTimeout(() => el.remove(), 3500);
+}
+
+/* ── RENDER IMPACT ── */
+function renderImpact() {
+    const c = document.getElementById('impact-container');
+    if (!STATE.impact.length) {
+        c.innerHTML = `<div class="empty-state" style="color:rgba(255,255,255,0.4); grid-column:1/-1"><i class="fas fa-chart-bar"></i>Ajoutez vos données d'impact depuis /admin</div>`;
+        return;
     }
+    c.innerHTML = STATE.impact.map(item => `
+        <div class="impact-card fade-up">
+            <div class="impact-icon"><i class="${item.icone || 'fas fa-star'}"></i></div>
+            <div class="impact-value">${item.valeur}</div>
+            <div class="impact-label">${item.label}</div>
+        </div>
+    `).join('');
+    observeFadeUps();
+}
 
-    /* ─── RENDER PROJETS ────────────────────── */
-    function renderProjets() {
-        const c = document.getElementById('projets-container');
-        const filtered = STATE.currentFilter === 'all'
-            ? STATE.projets
-            : STATE.projets.filter(p => p.cat === STATE.currentFilter);
-
-        if (!filtered.length) {
-            c.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><i class="fas fa-folder-open"></i>Aucun projet dans cette catégorie.</div>`;
-            return;
-        }
-        c.innerHTML = filtered.map(p => `
-            <div class="projet-card fade-up" data-id="${p.id}">
-                <div class="projet-img-wrap">
-                    <img src="${p.images?.[0] || 'https://via.placeholder.com/600x300'}" alt="${p.titre}" loading="lazy">
-                    <span class="projet-tag">${catLabel(p.cat)}</span>
-                </div>
-                <div class="projet-body">
-                    <div class="projet-date"><i class="fas fa-calendar-alt"></i> ${p.date}</div>
-                    <h3>${p.titre}</h3>
-                    <p>${p.description.substring(0, 110)}…</p>
-                    <div class="projet-footer">
-                        <span class="projet-read-more">Lire plus <i class="fas fa-arrow-right"></i></span>
-                    </div>
+/* ── RENDER PROJETS ── */
+function renderProjets() {
+    const c = document.getElementById('projets-container');
+    const filtered = STATE.currentFilter === 'all'
+        ? STATE.projets
+        : STATE.projets.filter(p => p.cat === STATE.currentFilter);
+    if (!filtered.length) {
+        c.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><i class="fas fa-folder-open"></i>Aucun projet dans cette catégorie.</div>`;
+        return;
+    }
+    c.innerHTML = filtered.map(p => `
+        <div class="projet-card fade-up" data-id="${p.id}">
+            <div class="projet-img-wrap">
+                <img src="${p.images?.[0] || 'https://via.placeholder.com/600x300?text=3APLUS'}" alt="${p.titre}" loading="lazy">
+                <span class="projet-tag">${catLabel(p.cat)}</span>
+            </div>
+            <div class="projet-body">
+                <div class="projet-date"><i class="fas fa-calendar-alt"></i> ${p.date}</div>
+                <h3>${p.titre}</h3>
+                <p>${(p.description||'').substring(0, 110)}…</p>
+                <div class="projet-footer">
+                    <span class="projet-read-more">Lire plus <i class="fas fa-arrow-right"></i></span>
                 </div>
             </div>
-        `).join('');
+        </div>
+    `).join('');
+    c.querySelectorAll('.projet-card').forEach(card => {
+        card.addEventListener('click', () => openProjModal(parseInt(card.dataset.id)));
+    });
+    observeFadeUps();
+}
 
-        c.querySelectorAll('.projet-card').forEach(card => {
-            card.addEventListener('click', () => openProjModal(parseInt(card.dataset.id)));
-        });
-        observeFadeUps();
+function catLabel(cat) {
+    return { education:'Éducation', sante:'Santé', environnement:'Environnement', social:'Social' }[cat] || cat;
+}
+
+/* ── RENDER GALERIE ── */
+function renderGalerie() {
+    const c = document.getElementById('galerie-container');
+    if (!STATE.galerie.length) {
+        c.innerHTML = `<div class="empty-state" style="grid-column:1/-1;color:rgba(255,255,255,0.5)"><i class="fas fa-images"></i>Aucune image.</div>`;
+        return;
     }
+    c.innerHTML = STATE.galerie.map((img, idx) => `
+        <div class="galerie-item" data-idx="${idx}">
+            <img src="${img.url}" alt="${img.legende||''}" loading="lazy">
+            <div class="galerie-overlay"><p>${img.legende||''}</p></div>
+        </div>
+    `).join('');
+    c.querySelectorAll('.galerie-item').forEach(item => {
+        item.addEventListener('click', () => openLightbox(parseInt(item.dataset.idx)));
+    });
+}
 
-    function catLabel(cat) {
-        const map = { education:'Éducation', sante:'Santé', environnement:'Environnement', social:'Social' };
-        return map[cat] || cat;
+/* ── RENDER MEMBRES ── */
+function renderMembres() {
+    const c = document.getElementById('membres-container');
+    if (!STATE.membres.length) {
+        c.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><i class="fas fa-users"></i>Aucun membre.</div>`;
+        return;
     }
-
-    /* ─── RENDER GALERIE ────────────────────── */
-    function renderGalerie() {
-        const c = document.getElementById('galerie-container');
-        STATE.lightboxIndex = 0;
-        if (document.getElementById('lightbox').classList.contains('open')) {
-            document.getElementById('lightbox').classList.remove('open');
-        }
-
-        if (!STATE.galerie.length) {
-            c.innerHTML = `<div class="empty-state" style="grid-column:1/-1; color:rgba(255,255,255,0.5)"><i class="fas fa-images"></i>Aucune image.</div>`;
-            return;
-        }
-        c.innerHTML = STATE.galerie.map((img, idx) => `
-            <div class="galerie-item" data-idx="${idx}">
-                <img src="${img.url}" alt="${img.legende}" loading="lazy">
-                <div class="galerie-overlay">
-                    <p>${img.legende || ''}</p>
+    c.innerHTML = STATE.membres.map(m => `
+        <div class="membre-card fade-up">
+            <div class="membre-photo-wrap">
+                <img src="${m.photo || 'https://via.placeholder.com/300?text=Photo'}" alt="${m.nom}" loading="lazy">
+            </div>
+            <div class="membre-body">
+                <h3>${m.nom}</h3>
+                <p class="membre-fonction">${m.fonction}</p>
+                <div class="membre-contacts">
+                    ${m.email ? `<a href="mailto:${m.email}" title="Email"><i class="fas fa-envelope"></i></a>` : ''}
+                    ${m.tel ? `<a href="tel:${m.tel}" title="Téléphone"><i class="fas fa-phone"></i></a>` : ''}
                 </div>
             </div>
-        `).join('');
+        </div>
+    `).join('');
+    observeFadeUps();
+}
 
-        c.querySelectorAll('.galerie-item').forEach(item => {
-            item.addEventListener('click', () => openLightbox(parseInt(item.dataset.idx)));
-        });
+/* ── RENDER TEMOIGNAGES ── */
+function renderTemoignages() {
+    const c = document.getElementById('temoignages-container');
+    if (!STATE.temoignages.length) {
+        c.innerHTML = `<div class="empty-state"><i class="fas fa-comment"></i>Aucun témoignage.</div>`;
+        return;
     }
-
-    /* ─── RENDER MEMBRES ────────────────────── */
-    function renderMembres() {
-        const c = document.getElementById('membres-container');
-        if (!STATE.membres.length) {
-            c.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><i class="fas fa-users"></i>Aucun membre.</div>`;
-            return;
-        }
-        c.innerHTML = STATE.membres.map(m => `
-            <div class="membre-card fade-up">
-                <div class="membre-photo-wrap">
-                    <img src="${m.photo || 'https://via.placeholder.com/300'}" alt="${m.nom}" loading="lazy">
-                </div>
-                <div class="membre-body">
-                    <h3>${m.nom}</h3>
-                    <p class="membre-fonction">${m.fonction}</p>
-                    <div class="membre-contacts">
-                        ${m.email ? `<a href="mailto:${m.email}" title="Email"><i class="fas fa-envelope"></i></a>` : ''}
-                        ${m.tel ? `<a href="tel:${m.tel}" title="Téléphone"><i class="fas fa-phone"></i></a>` : ''}
-                    </div>
+    c.innerHTML = STATE.temoignages.map(t => `
+        <div class="temoignage-card">
+            <div class="temoignage-quote">"</div>
+            <p class="temoignage-text">${t.texte}</p>
+            <div class="temoignage-author">
+                <img src="${t.photo || 'https://via.placeholder.com/80?text=Photo'}" alt="${t.nom}">
+                <div>
+                    <div class="temoignage-name">${t.nom}</div>
+                    <div class="temoignage-role">${t.role}</div>
                 </div>
             </div>
-        `).join('');
-        observeFadeUps();
+        </div>
+    `).join('');
+}
+
+function renderAll() {
+    renderImpact();
+    renderProjets();
+    renderGalerie();
+    renderMembres();
+    renderTemoignages();
+}
+
+/* ── MODAL PROJET ── */
+function openProjModal(id) {
+    const p = STATE.projets.find(x => x.id === id);
+    if (!p) return;
+    document.getElementById('modal-tag').textContent = catLabel(p.cat);
+    document.getElementById('modal-title').textContent = p.titre;
+    document.getElementById('modal-date').innerHTML = `<i class="fas fa-calendar-alt"></i> ${p.date}`;
+    document.getElementById('modal-desc').textContent = p.description;
+    document.getElementById('modal-images').innerHTML = (p.images||[]).map(src => `<img src="${src}" alt="${p.titre}">`).join('');
+    document.getElementById('proj-modal').classList.add('open');
+}
+
+/* ── LIGHTBOX ── */
+function openLightbox(idx) {
+    STATE.lightboxIndex = idx;
+    document.getElementById('lightbox-img').src = STATE.galerie[idx]?.url || '';
+    document.getElementById('lightbox').classList.add('open');
+}
+
+/* ── FILTRES ── */
+document.getElementById('proj-filters').addEventListener('click', e => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    STATE.currentFilter = btn.dataset.cat;
+    renderProjets();
+});
+
+/* ── THEME ── */
+document.getElementById('theme-toggle').addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    document.getElementById('theme-icon').className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+    localStorage.setItem('3a_theme', isDark ? 'light' : 'dark');
+});
+(function() {
+    if (localStorage.getItem('3a_theme') === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.getElementById('theme-icon').className = 'fas fa-sun';
     }
+})();
 
-    /* ─── RENDER TÉMOIGNAGES ────────────────── */
-    function renderTemoignages() {
-        const c = document.getElementById('temoignages-container');
-        if (!STATE.temoignages.length) {
-            c.innerHTML = `<div class="empty-state"><i class="fas fa-comment"></i>Aucun témoignage.</div>`;
-            return;
-        }
-        c.innerHTML = STATE.temoignages.map(t => `
-            <div class="temoignage-card">
-                <div class="temoignage-quote">"</div>
-                <p class="temoignage-text">${t.texte}</p>
-                <div class="temoignage-author">
-                    <img src="${t.photo || 'https://via.placeholder.com/80'}" alt="${t.nom}">
-                    <div>
-                        <div class="temoignage-name">${t.nom}</div>
-                        <div class="temoignage-role">${t.role}</div>
-                    </div>
-                </div>
-            </div>
-        `).join('');
+/* ── MENU MOBILE ── */
+document.getElementById('menu-toggle').addEventListener('click', () => {
+    document.getElementById('nav-links').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('nav-links').classList.remove('open'));
+});
+
+/* ── MODALS CLOSE ── */
+document.querySelectorAll('[data-close]').forEach(btn => {
+    btn.addEventListener('click', () => document.getElementById(btn.dataset.close).classList.remove('open'));
+});
+document.querySelectorAll('.modal-backdrop').forEach(modal => {
+    modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
+});
+
+/* ── LIGHTBOX NAV ── */
+document.getElementById('lightbox-close').addEventListener('click', () => document.getElementById('lightbox').classList.remove('open'));
+document.getElementById('lightbox-prev').addEventListener('click', () => {
+    STATE.lightboxIndex = (STATE.lightboxIndex - 1 + STATE.galerie.length) % STATE.galerie.length;
+    document.getElementById('lightbox-img').src = STATE.galerie[STATE.lightboxIndex]?.url || '';
+});
+document.getElementById('lightbox-next').addEventListener('click', () => {
+    STATE.lightboxIndex = (STATE.lightboxIndex + 1) % STATE.galerie.length;
+    document.getElementById('lightbox-img').src = STATE.galerie[STATE.lightboxIndex]?.url || '';
+});
+document.addEventListener('keydown', e => {
+    if (document.getElementById('lightbox').classList.contains('open')) {
+        if (e.key === 'ArrowLeft') document.getElementById('lightbox-prev').click();
+        if (e.key === 'ArrowRight') document.getElementById('lightbox-next').click();
+        if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
     }
+    if (document.getElementById('proj-modal').classList.contains('open') && e.key === 'Escape')
+        document.getElementById('proj-modal').classList.remove('open');
+});
 
-    /* ─── MODAL PROJET ──────────────────────── */
-    function openProjModal(id) {
-        const p = STATE.projets.find(x => x.id === id);
-        if (!p) return;
-        document.getElementById('modal-tag').textContent = catLabel(p.cat);
-        document.getElementById('modal-title').textContent = p.titre;
-        document.getElementById('modal-date').innerHTML = `<i class="fas fa-calendar-alt"></i> ${p.date}`;
-        document.getElementById('modal-desc').textContent = p.description;
-        const imgC = document.getElementById('modal-images');
-        imgC.innerHTML = (p.images||[]).map(src => `<img src="${src}" alt="${p.titre}">`).join('');
-        document.getElementById('proj-modal').classList.add('open');
-    }
+/* ── SCROLL ── */
+const header = document.getElementById('site-header');
+const backTop = document.getElementById('back-to-top');
+window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', scrollY > 40);
+    backTop.classList.toggle('visible', scrollY > 400);
+}, { passive: true });
+backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    /* ─── LIGHTBOX ──────────────────────────── */
-    function openLightbox(idx) {
-        if (!STATE.galerie.length || idx < 0 || idx >= STATE.galerie.length) return;
-        STATE.lightboxIndex = idx;
-        updateLightbox();
-        document.getElementById('lightbox').classList.add('open');
-    }
-    function updateLightbox() {
-        const img = STATE.galerie[STATE.lightboxIndex];
-        if (img) document.getElementById('lightbox-img').src = img.url;
-    }
-
-    /* ─── RENDER ALL ────────────────────────── */
-    function renderAll() {
-        renderProjets();
-        renderGalerie();
-        renderMembres();
-        renderTemoignages();
-    }
-
-    /* ─── FILTRES ────────────────────────────── */
-    document.getElementById('proj-filters').addEventListener('click', e => {
-        const btn = e.target.closest('.filter-btn');
-        if (!btn) return;
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        STATE.currentFilter = btn.dataset.cat;
-        renderProjets();
-    });
-
-    /* ─── THEME TOGGLE ──────────────────────── */
-    document.getElementById('theme-toggle').addEventListener('click', () => {
-        const html = document.documentElement;
-        const isDark = html.getAttribute('data-theme') === 'dark';
-        html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-        document.getElementById('theme-icon').className = isDark ? 'fas fa-moon' : 'fas fa-sun';
-        localStorage.setItem('3a_theme', isDark ? 'light' : 'dark');
-    });
-    (function applyTheme() {
-        const t = localStorage.getItem('3a_theme');
-        if (t === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            document.getElementById('theme-icon').className = 'fas fa-sun';
-        }
-    })();
-
-    /* ─── MOBILE MENU ───────────────────────── */
-    document.getElementById('menu-toggle').addEventListener('click', () => {
-        document.getElementById('nav-links').classList.toggle('open');
-    });
-    document.querySelectorAll('.nav-links a').forEach(a => {
-        a.addEventListener('click', () => document.getElementById('nav-links').classList.remove('open'));
-    });
-
-    /* ─── MODAL CLOSE ───────────────────────── */
-    document.querySelectorAll('[data-close]').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.getElementById(btn.dataset.close).classList.remove('open');
-        });
-    });
-    document.querySelectorAll('.modal-backdrop').forEach(modal => {
-        modal.addEventListener('click', e => {
-            if (e.target === modal) modal.classList.remove('open');
-        });
-    });
-
-    /* ─── LIGHTBOX NAVIGATION ────────────────── */
-    document.getElementById('lightbox-close').addEventListener('click', () => {
-        document.getElementById('lightbox').classList.remove('open');
-    });
-    document.getElementById('lightbox-prev').addEventListener('click', () => {
-        STATE.lightboxIndex = (STATE.lightboxIndex - 1 + STATE.galerie.length) % STATE.galerie.length;
-        updateLightbox();
-    });
-    document.getElementById('lightbox-next').addEventListener('click', () => {
-        STATE.lightboxIndex = (STATE.lightboxIndex + 1) % STATE.galerie.length;
-        updateLightbox();
-    });
-    document.addEventListener('keydown', e => {
-        if (document.getElementById('lightbox').classList.contains('open')) {
-            if (e.key === 'ArrowLeft') document.getElementById('lightbox-prev').click();
-            if (e.key === 'ArrowRight') document.getElementById('lightbox-next').click();
-            if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
-        }
-        if (document.getElementById('proj-modal').classList.contains('open') && e.key === 'Escape') {
-            document.getElementById('proj-modal').classList.remove('open');
+/* ── ACTIVE NAV ── */
+const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            document.querySelectorAll('.nav-links a').forEach(l =>
+                l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
         }
     });
+}, { rootMargin: '-50% 0px -50% 0px' });
+document.querySelectorAll('section[id]').forEach(s => io.observe(s));
 
-    /* ─── SCROLL BEHAVIORS ──────────────────── */
-    const header = document.getElementById('site-header');
-    const backTop = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-        header.classList.toggle('scrolled', scrollY > 40);
-        backTop.classList.toggle('visible', scrollY > 400);
-    }, { passive: true });
-    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+/* ── FADE UP ── */
+function observeFadeUps() {
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up:not(.visible)').forEach(el => obs.observe(el));
+}
 
-    /* ─── ACTIVE NAV ────────────────────────── */
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
-    const io = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + entry.target.id));
-            }
-        });
-    }, { rootMargin: '-50% 0px -50% 0px' });
-    sections.forEach(s => io.observe(s));
+/* ── NEWSLETTER ── */
+document.getElementById('nl-submit').addEventListener('click', () => {
+    const email = document.getElementById('nl-email').value.trim();
+    if (!email || !email.includes('@')) { toast('Veuillez entrer un email valide', 'error'); return; }
+    toast('Merci ! Vous êtes inscrit à la newsletter.', 'success');
+    document.getElementById('nl-email').value = '';
+});
 
-    /* ─── COUNTERS ──────────────────────────── */
-    const counterEls = document.querySelectorAll('[data-target]');
-    const counterMap = new Map();
-    counterEls.forEach(el => counterMap.set(el, parseInt(el.dataset.target)));
+/* ── CONTACT FORM ── */
+document.getElementById('contact-form').addEventListener('submit', async e => {
+    e.preventDefault();
+    try {
+        const r = await fetch(e.target.action, { method:'POST', body: new FormData(e.target), headers:{'Accept':'application/json'} });
+        if (r.ok) { toast('Message envoyé ! Nous répondrons sous 48h.', 'success'); e.target.reset(); }
+        else toast('Erreur lors de l\'envoi. Réessayez.', 'error');
+    } catch { toast('Problème réseau. Vérifiez votre connexion.', 'error'); }
+});
 
-    const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            const el = entry.target;
-            if (entry.isIntersecting) {
-                el.textContent = '0';
-                const target = counterMap.get(el);
-                let start = 0;
-                const step = target / 60;
-                const timer = setInterval(() => {
-                    start += step;
-                    if (start >= target) { el.textContent = target; clearInterval(timer); return; }
-                    el.textContent = Math.ceil(start);
-                }, 16);
-            } else {
-                el.textContent = '0';
-            }
-        });
-    }, { threshold: 0.5 });
-    counterEls.forEach(el => counterObserver.observe(el));
-
-    /* ─── FADE UP ON SCROLL ─────────────────── */
-    function observeFadeUps() {
-        const fadeObs = new IntersectionObserver(entries => {
-            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObs.unobserve(e.target); } });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-up:not(.visible)').forEach(el => fadeObs.observe(el));
-    }
-
-    /* ─── DON PROGRESS ──────────────────────── */
-    document.querySelectorAll('.don-amount-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.don-amount-btn').forEach(b => b.classList.remove('selected'));
-            btn.classList.add('selected');
-        });
-    });
-    (function animateDonBar() {
-        const bar = document.getElementById('don-bar');
-        const barObs = new IntersectionObserver(entries => {
-            if (entries[0].isIntersecting) { bar.style.width = '65%'; barObs.disconnect(); }
-        }, { threshold: 0.5 });
-        barObs.observe(bar);
-    })();
-
-    /* ─── NEWSLETTER ────────────────────────── */
-    document.getElementById('nl-submit').addEventListener('click', () => {
-        const email = document.getElementById('nl-email').value.trim();
-        if (!email || !email.includes('@')) { toast('Veuillez entrer un email valide', 'error'); return; }
-        toast('Merci ! Vous êtes inscrit à la newsletter.', 'success');
-        document.getElementById('nl-email').value = '';
-    });
-
-    /* ─── CONTACT FORM ──────────────────────── */
-    document.getElementById('contact-form').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const form = e.target;
-        const formData = new FormData(form);
-        try {
-            const response = await fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: { 'Accept': 'application/json' }
-            });
-            if (response.ok) {
-                toast('Message envoyé avec succès ! Nous vous répondrons sous 48h.', 'success');
-                form.reset();
-            } else {
-                toast('Erreur lors de l\'envoi. Veuillez réessayer.', 'error');
-            }
-        } catch (error) {
-            toast('Problème réseau. Vérifiez votre connexion.', 'error');
-        }
-    });
-
-    /* ─── GESTION DU BOUTON RETOUR ───────────── */
-    (function handleBackButton() {
-        history.pushState({ page: 'home' }, '', '#');
-        window.addEventListener('popstate', () => {
-            if (window.scrollY > 10) {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                history.pushState({ page: 'home' }, '', '#');
-            }
-        });
-    })();
-
-    /* ─── INIT ──────────────────────────────── */
-    (async function init() {
-        await fetchAllData();
-        renderAll();
-        observeFadeUps();
-    })();
+/* ── INIT ── */
+(async function init() {
+    await fetchAllData();
+    renderAll();
+    observeFadeUps();
+})();
 </script>
 </body>
 </html>
