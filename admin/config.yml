@@ -78,7 +78,8 @@ collections:
               - {label: "Role", name: "role", widget: "string"}
               - {label: "Texte", name: "texte", widget: "text"}
               - {label: "Photo", name: "photo", widget: "image"}
-              - name: "impact"
+
+  - name: "impact"
     label: "Impact"
     files:
       - file: "_data/impact.json"
