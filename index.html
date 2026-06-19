@@ -950,24 +950,22 @@
     };
 
     /* ─── CHARGEMENT DES DONNÉES DEPUIS LES FICHIERS JSON ─── */
-    async function loadJSON(filename) {
-        try {
-            const response = await fetch(`/_data/${filename}.json`);
-            if (!response.ok) throw new Error('Fichier introuvable');
-            const data = await response.json();
-            return Array.isArray(data) ? data : [];
-        } catch (error) {
-            console.warn(`Fallback pour ${filename}`);
-            return DEFAULTS[filename] || [];
+  
+async function loadJSON(filename) {
+    try {
+        const response = await fetch(`/_data/${filename}.json`);
+        if (!response.ok) throw new Error('Fichier introuvable');
+        const data = await response.json();
+        // Si c'est un objet avec une clé du même nom que le fichier
+        if (data && typeof data === 'object' && !Array.isArray(data)) {
+            return data[filename] || [];
         }
+        return Array.isArray(data) ? data : [];
+    } catch (error) {
+        console.warn(`Fallback pour ${filename}`);
+        return DEFAULTS[filename] || [];
     }
-
-    async function fetchAllData() {
-        STATE.projets = await loadJSON('projets');
-        STATE.galerie = await loadJSON('galerie');
-        STATE.membres = await loadJSON('membres');
-        STATE.temoignages = await loadJSON('temoignages');
-    }
+}
 
     /* ─── TOAST ─────────────────────────────── */
     function toast(msg, type = 'success') {
