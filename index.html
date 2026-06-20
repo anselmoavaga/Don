@@ -94,13 +94,15 @@ h3{font-size:clamp(1.2rem,2vw,1.5rem)}
 ═══════════════════════════════════════ */
 #hdr{position:sticky;top:0;z-index:900;background:rgba(9,24,58,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06);transition:box-shadow var(--t)}
 #hdr.scrolled{box-shadow:0 4px 28px rgba(0,0,0,.32)}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:10px 0;gap:16px}
-/* Logo header */
-.logo-link{display:flex;align-items:center;height:auto;text-decoration:none}
-.logo-svg{display:block}
-.brand-text{font-family:var(--fb);font-weight:900;font-size:1.6rem;letter-spacing:.5px;background:linear-gradient(90deg, #EE2A24 0%, #e0b800 45%, #0067C1 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(1px 1px 2px rgba(0,0,0,.1));margin-left:10px}
-.nav-list{display:flex;align-items:center;gap:24px;list-style:none}
-.nav-list a{color:rgba(255,255,255,.65);font-size:.84rem;font-weight:500;transition:color var(--t);position:relative;padding-bottom:2px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:8px 0;gap:12px}
+/* Logo header : même SVG que le footer */
+.logo-link{display:flex;align-items:center;text-decoration:none}
+.logo-container{display:flex;align-items:center;gap:8px}
+.logo-svg{width:50px;height:50px;flex-shrink:0}
+.brand-text{font-family:var(--fb);font-weight:900;font-size:1.2rem;color:#fff;white-space:nowrap}
+.brand-text .sup-plus{color:var(--gold);font-size:0.7em;vertical-align:super;margin-left:1px}
+.nav-list{display:flex;align-items:center;gap:20px;list-style:none}
+.nav-list a{color:rgba(255,255,255,.65);font-size:.82rem;font-weight:500;transition:color var(--t);position:relative;padding-bottom:2px}
 .nav-list a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:var(--gold);border-radius:2px;transition:width var(--t)}
 .nav-list a:hover,.nav-list a.active{color:#fff}
 .nav-list a:hover::after,.nav-list a.active::after{width:100%}
@@ -460,8 +462,8 @@ footer{background:#050E22;color:rgba(255,255,255,.45);padding:56px 0 24px}
     .gal-nav{width:32px;height:32px;font-size:.75rem}
     .gal-prev{left:-8px}
     .gal-next{right:-8px}
-    .brand-text{font-size:1.3rem}
-    .logo-svg{width:50px;height:50px}
+    .brand-text{font-size:1rem}
+    .logo-svg{width:44px;height:44px}
 }
 @media(prefers-reduced-motion:reduce){
     *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
@@ -474,15 +476,14 @@ footer{background:#050E22;color:rgba(255,255,255,.45);padding:56px 0 24px}
 <header id="hdr">
     <div class="container">
         <nav class="nav">
-            <!-- Logo et texte 3AplusTogo -->
+            <!-- Logo et texte 3A⁺ Togo (même SVG que le footer) -->
             <a href="#hero" class="logo-link" aria-label="3APLUS-TOGO Accueil">
-                <div class="logo-container" style="display: flex; align-items: center; gap: 10px;">
-                    <!-- Nouveau SVG pro -->
-                    <svg class="logo-svg" viewBox="0 0 240 240" width="60" height="60" xmlns="http://www.w3.org/2000/svg">
+                <div class="logo-container">
+                    <svg class="logo-svg" viewBox="0 0 240 240" width="50" height="50" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <path id="arc-text" d="M 20, 115 A 100,100 0 0,1 220, 115" fill="none" />
+                            <path id="arc-text-hdr" d="M 20, 115 A 100,100 0 0,1 220, 115" fill="none" />
                         </defs>
-                        <circle cx="120" cy="135" r="28" fill="#E2E8F0" />
+                        <circle cx="120" cy="135" r="28" fill="#1A2744" />
                         <g stroke-width="16" stroke-linecap="round" fill="none">
                             <path d="M 98,118 C 70,50 170,50 142,118" stroke="#EE2A24" />
                             <path d="M 112,158 C 40,180 40,75 92,108" stroke="#FBD202" />
@@ -491,17 +492,16 @@ footer{background:#050E22;color:rgba(255,255,255,.45);padding:56px 0 24px}
                         <circle cx="120" cy="52" r="14" fill="#EE2A24" />
                         <circle cx="52" cy="148" r="14" fill="#FBD202" />
                         <circle cx="188" cy="148" r="14" fill="#0067C1" />
-                        <text x="116" y="145" font-family="'Inter', sans-serif" font-weight="900" font-size="26" fill="#1A2744" text-anchor="end" letter-spacing="-1">3A</text>
+                        <text x="116" y="145" font-family="'Inter', sans-serif" font-weight="900" font-size="26" fill="#ffffff" text-anchor="end" letter-spacing="-1">3A</text>
                         <g transform="translate(122, 131)">
-                            <line x1="-6" y1="0" x2="6" y2="0" stroke="#1A2744" stroke-width="3" stroke-linecap="round" />
-                            <line x1="0" y1="-6" x2="0" y2="6" stroke="#1A2744" stroke-width="3" stroke-linecap="round" />
+                            <line x1="-6" y1="0" x2="6" y2="0" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+                            <line x1="0" y1="-6" x2="0" y2="6" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
                         </g>
-                        <text font-family="'Inter', sans-serif" font-weight="600" font-size="13" fill="#1A2744" letter-spacing="0.5">
-                            <textPath href="#arc-text" startOffset="50%" text-anchor="middle">Associer nos Actions pour un Avenir Plus</textPath>
+                        <text font-family="'Inter', sans-serif" font-weight="600" font-size="13" fill="#ffffff" letter-spacing="0.5">
+                            <textPath href="#arc-text-hdr" startOffset="50%" text-anchor="middle">Associer nos Actions pour un Avenir Plus</textPath>
                         </text>
                     </svg>
-                    <!-- Texte 3AplusTogo avec dégradé aux couleurs du logo -->
-                    <span class="brand-text">3AplusTogo</span>
+                    <span class="brand-text">3A<span class="sup-plus">+</span> Togo</span>
                 </div>
             </a>
             <ul class="nav-list" id="nav-list">
