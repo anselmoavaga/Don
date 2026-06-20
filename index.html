@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>3APLUS-TOGO | Solidarité, Action, Avenir</title>
     <meta name="description" content="Association humanitaire togolaise active depuis 2015 à Tsévie — éducation, santé, environnement.">
+    <meta property="og:title" content="3APLUS-TOGO | Solidarité, Action, Avenir">
+    <meta property="og:description" content="Association humanitaire togolaise active depuis 2015 à Tsévie.">
+    <meta property="og:url" content="https://3aplus.netlify.app">
+    <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
         :root {
             --blue-night: #0B1F4B;
@@ -34,263 +37,313 @@
         [data-theme="dark"] {
             --cream: #0F172A;
             --white: #1E293B;
-            --gray-soft: #1E293B;
+            --gray-soft: #263352;
             --text-dark: #F1F5F9;
             --text-body: #CBD5E1;
             --shadow-card: 0 8px 32px rgba(0,0,0,0.4);
+            --gold-light: #2a2010;
         }
         *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: var(--font-body); background: var(--cream); color: var(--text-body); line-height: 1.65; transition: background var(--transition), color var(--transition); }
+        body { font-family: var(--font-body); background: var(--cream); color: var(--text-body); line-height: 1.65; transition: background var(--transition), color var(--transition); overflow-x: hidden; }
         img { display:block; max-width:100%; }
         a { color: inherit; text-decoration: none; }
-        button { font-family: var(--font-body); cursor: pointer; border: none; }
+        button { font-family: var(--font-body); cursor: pointer; border: none; background: none; }
+
         .container { max-width: var(--container-max); margin: 0 auto; padding: 0 32px; }
         .section-pad { padding: 96px 0; }
-        .eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
-        h1, h2, h3 { font-family: var(--font-display); color: var(--text-dark); line-height: 1.2; }
+        .eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; display: block; }
+        h1,h2,h3 { font-family: var(--font-display); color: var(--text-dark); line-height: 1.2; }
         h1 { font-size: clamp(2.4rem, 5vw, 4.2rem); }
         h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); }
-        h3 { font-size: 1.25rem; }
-        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 50px; font-weight: 600; font-size: 0.95rem; transition: var(--transition); cursor: pointer; }
+        h3 { font-size: 1.2rem; }
+        .text-center { text-align: center; }
+        .mt-8 { margin-top: 8px; }
+        .mt-16 { margin-top: 16px; }
+        .mt-32 { margin-top: 32px; }
+        .mt-48 { margin-top: 48px; }
+
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 50px; font-weight: 600; font-size: 0.95rem; transition: var(--transition); cursor: pointer; border: none; }
         .btn-gold { background: var(--gold); color: var(--blue-night); box-shadow: 0 4px 20px rgba(232,160,32,0.35); }
         .btn-gold:hover { background: #d4901a; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(232,160,32,0.45); }
-        .btn-outline { background: transparent; border: 2px solid var(--white); color: var(--white); }
-        .btn-outline:hover { background: var(--white); color: var(--blue-night); }
+        .btn-outline { background: transparent; border: 2px solid rgba(255,255,255,0.7); color: white; }
+        .btn-outline:hover { background: white; color: var(--blue-night); }
+        .btn-sm { padding: 9px 20px; font-size: 0.85rem; }
         .btn-ghost { background: transparent; border: 2px solid var(--gold); color: var(--gold); }
         .btn-ghost:hover { background: var(--gold); color: var(--blue-night); }
-        .btn-sm { padding: 8px 18px; font-size: 0.85rem; }
-        .text-center { text-align: center; }
-        .mt-32 { margin-top: 32px; }
-        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+
+        /* FADE UP */
+        .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
-        .empty-state { text-align: center; padding: 64px 24px; color: var(--gray-mid); font-size: 0.95rem; }
-        .empty-state i { font-size: 2.5rem; margin-bottom: 12px; display: block; }
 
-        /* ── HEADER ── */
-        #site-header { position: sticky; top: 0; z-index: 900; background: rgba(11,31,75,0.97); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.08); transition: box-shadow var(--transition); }
-        #site-header.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.25); }
-        .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; gap: 24px; }
-        .logo { font-family: var(--font-display); font-size: 1.6rem; font-weight: 900; color: var(--white); }
+        /* EMPTY STATE */
+        .empty-state { text-align: center; padding: 56px 24px; color: var(--gray-mid); }
+        .empty-state i { font-size: 2.2rem; margin-bottom: 12px; display: block; opacity: 0.5; }
+        .empty-state p { font-size: 0.92rem; }
+
+        /* BADGE NOUVEAU */
+        .badge-new { display: inline-block; background: #22C55E; color: white; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 50px; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; margin-left: 6px; }
+
+        /* ══ HEADER ══ */
+        #site-header { position: sticky; top: 0; z-index: 900; background: rgba(11,31,75,0.96); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.07); transition: box-shadow var(--transition); }
+        #site-header.scrolled { box-shadow: 0 4px 28px rgba(0,0,0,0.28); }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; gap: 20px; }
+        .logo { font-family: var(--font-display); font-size: 1.55rem; font-weight: 900; color: white; letter-spacing: -0.01em; }
         .logo span { color: var(--gold); }
-        .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
-        .nav-links a { color: rgba(255,255,255,0.75); font-size: 0.9rem; font-weight: 500; transition: color var(--transition); position: relative; }
-        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--gold); transition: width var(--transition); }
-        .nav-links a:hover, .nav-links a.active { color: var(--white); }
-        .nav-links a:hover::after { width: 100%; }
-        .nav-actions { display: flex; align-items: center; gap: 12px; }
-        .theme-toggle { background: rgba(255,255,255,0.1); border: none; width: 38px; height: 38px; border-radius: 50%; color: white; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background var(--transition); }
-        .theme-toggle:hover { background: rgba(255,255,255,0.2); }
-        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.6rem; cursor: pointer; }
+        .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+        .nav-links a { color: rgba(255,255,255,0.72); font-size: 0.88rem; font-weight: 500; transition: color var(--transition); position: relative; padding-bottom: 2px; }
+        .nav-links a::after { content:''; position: absolute; bottom:-3px; left:0; width:0; height:2px; background: var(--gold); transition: width var(--transition); border-radius: 2px; }
+        .nav-links a:hover, .nav-links a.active { color: white; }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-actions { display: flex; align-items: center; gap: 10px; }
+        .theme-toggle { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.1); color: white; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; transition: background var(--transition); }
+        .theme-toggle:hover { background: rgba(255,255,255,0.18); }
+        .menu-toggle { display: none; color: white; font-size: 1.5rem; padding: 4px; }
 
-        /* ── HERO ── */
+        /* ══ HERO ══ */
         #hero { position: relative; background: var(--blue-night); min-height: 100vh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
-        .hero-bg { position: absolute; inset: 0; background-image: url('https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1400&q=80'); background-size: cover; background-position: center; opacity: 0.18; }
-        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(11,31,75,0.9) 40%, rgba(45,106,79,0.5) 100%); }
-        .hero-content { position: relative; z-index: 2; padding: 100px 0 80px; }
-        .hero-inner { position: relative; z-index: 2; max-width: 700px; }
-        .hero-eyebrow { color: var(--gold); font-weight: 600; letter-spacing: 0.1em; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 20px; }
-        .hero-title { color: var(--white); margin-bottom: 24px; }
+        .hero-bg { position: absolute; inset: 0; background-image: url('https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1600&q=80'); background-size: cover; background-position: center; opacity: 0.15; }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(155deg, rgba(11,31,75,0.92) 35%, rgba(45,106,79,0.55) 100%); }
+        .hero-content { position: relative; z-index: 2; padding: 110px 0 80px; }
+        .hero-inner { max-width: 680px; }
+        .hero-eyebrow { color: var(--gold); font-weight: 600; letter-spacing: 0.12em; font-size: 0.78rem; text-transform: uppercase; margin-bottom: 22px; display: flex; align-items: center; gap: 10px; }
+        .hero-eyebrow::before { content:''; display:inline-block; width:28px; height:2px; background: var(--gold); border-radius: 2px; }
+        .hero-title { color: white; margin-bottom: 22px; }
         .hero-title em { color: var(--gold); font-style: italic; }
-        .hero-subtitle { color: rgba(255,255,255,0.72); font-size: 1.1rem; max-width: 520px; margin-bottom: 40px; }
-        .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; }
-
-        /* Hero impact visuel : 3 piliers au lieu des compteurs */
-        .hero-pillars { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 56px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .hero-subtitle { color: rgba(255,255,255,0.68); font-size: 1.08rem; max-width: 500px; margin-bottom: 36px; line-height: 1.7; }
+        .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; }
+        .hero-pillars { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.09); }
         .hero-pillar { display: flex; align-items: center; gap: 14px; }
-        .hero-pillar-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(232,160,32,0.15); border: 1px solid rgba(232,160,32,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--gold); flex-shrink: 0; }
-        .hero-pillar-text strong { display: block; color: white; font-size: 0.95rem; font-weight: 600; }
-        .hero-pillar-text span { color: rgba(255,255,255,0.55); font-size: 0.78rem; }
+        .hero-pillar-icon { width: 46px; height: 46px; border-radius: 12px; background: rgba(232,160,32,0.12); border: 1px solid rgba(232,160,32,0.25); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--gold); flex-shrink: 0; }
+        .hero-pillar-text strong { display: block; color: white; font-size: 0.92rem; font-weight: 600; margin-bottom: 2px; }
+        .hero-pillar-text span { color: rgba(255,255,255,0.5); font-size: 0.75rem; line-height: 1.4; }
+        .scroll-hint { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 6px; color: rgba(255,255,255,0.35); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; animation: bob 2.2s ease-in-out infinite; }
+        @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(7px)} }
 
-        .scroll-hint { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 8px; color: rgba(255,255,255,0.4); font-size: 0.75rem; animation: bob 2s ease-in-out infinite; }
-        @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
-
-        /* ── MISSIONS ── */
+        /* ══ MISSIONS ══ */
         #missions { background: var(--white); }
-        .missions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 48px; }
-        .mission-card { background: var(--cream); border-radius: var(--radius); padding: 36px 28px; border: 1px solid transparent; transition: var(--transition); }
-        .mission-card:hover { border-color: var(--gold); transform: translateY(-6px); box-shadow: var(--shadow-hover); }
-        .mission-icon { width: 56px; height: 56px; border-radius: var(--radius-sm); background: var(--gold-light); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--gold); margin-bottom: 20px; }
-        .mission-card h3 { margin-bottom: 10px; }
-        .mission-card p { font-size: 0.92rem; }
+        .missions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 20px; margin-top: 44px; }
+        .mission-card { background: var(--cream); border-radius: var(--radius); padding: 32px 26px; border: 1.5px solid transparent; transition: var(--transition); }
+        .mission-card:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+        .mission-icon { width: 52px; height: 52px; border-radius: var(--radius-sm); background: var(--gold-light); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: var(--gold); margin-bottom: 18px; }
+        .mission-card h3 { margin-bottom: 8px; font-size: 1.1rem; }
+        .mission-card p { font-size: 0.9rem; line-height: 1.65; }
 
-        /* ── IMPACT DYNAMIQUE (remplace les compteurs codés en dur) ── */
+        /* ══ IMPACT ══ */
         #impact { background: var(--blue-night); padding: 80px 0; }
-        .impact-intro { text-align: center; margin-bottom: 48px; }
-        .impact-intro h2 { color: white; }
-        .impact-intro p { color: rgba(255,255,255,0.6); margin-top: 12px; max-width: 500px; margin-left: auto; margin-right: auto; font-size: 0.95rem; }
-        .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
-        .impact-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 32px 24px; text-align: center; transition: var(--transition); }
-        .impact-card:hover { background: rgba(232,160,32,0.1); border-color: rgba(232,160,32,0.3); }
-        .impact-icon { font-size: 2rem; color: var(--gold); margin-bottom: 16px; }
-        .impact-value { font-family: var(--font-display); font-size: 2.4rem; font-weight: 700; color: white; }
-        .impact-label { color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-top: 6px; }
-        /* Les valeurs d'impact sont chargées depuis _data/impact.json */
+        .impact-head { text-align: center; margin-bottom: 44px; }
+        .impact-head h2 { color: white; }
+        .impact-head p { color: rgba(255,255,255,0.55); margin-top: 10px; max-width: 480px; margin-left: auto; margin-right: auto; font-size: 0.92rem; }
+        .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 20px; }
+        .impact-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); border-radius: var(--radius); padding: 28px 20px; text-align: center; transition: var(--transition); }
+        .impact-card:hover { background: rgba(232,160,32,0.09); border-color: rgba(232,160,32,0.28); transform: translateY(-4px); }
+        .impact-card i { font-size: 1.8rem; color: var(--gold); margin-bottom: 14px; display: block; }
+        .impact-val { font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; color: white; line-height: 1; }
+        .impact-lbl { color: rgba(255,255,255,0.55); font-size: 0.82rem; margin-top: 7px; line-height: 1.4; }
 
-        /* ── PROJETS ── */
+        /* ══ PROJETS ══ */
         #projets { background: var(--cream); }
-        .filters { display: flex; flex-wrap: wrap; gap: 10px; margin: 32px 0 40px; }
-        .filter-btn { padding: 8px 20px; border-radius: 50px; background: var(--gray-soft); color: var(--text-body); border: 2px solid transparent; font-size: 0.88rem; font-weight: 500; transition: var(--transition); cursor: pointer; }
+        .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 28px 0 36px; }
+        .filter-btn { padding: 7px 18px; border-radius: 50px; background: var(--gray-soft); color: var(--text-body); border: 2px solid transparent; font-size: 0.85rem; font-weight: 500; transition: var(--transition); cursor: pointer; }
         .filter-btn.active { background: var(--blue-night); color: white; border-color: var(--blue-night); }
-        .projets-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 32px; }
+        .projets-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); gap: 28px; }
         .projet-card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card); transition: var(--transition); cursor: pointer; }
         .projet-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
-        .projet-img-wrap { position: relative; overflow: hidden; height: 220px; }
-        .projet-img-wrap img { width:100%; height:100%; object-fit:cover; transition: transform 0.5s ease; }
-        .projet-card:hover .projet-img-wrap img { transform: scale(1.06); }
-        .projet-tag { position: absolute; top: 14px; left: 14px; background: var(--blue-night); color: white; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; }
-        .projet-body { padding: 22px 24px; }
-        .projet-date { color: var(--gold); font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; }
-        .projet-body h3 { margin-bottom: 10px; font-size: 1.05rem; }
-        .projet-body p { font-size: 0.88rem; margin-bottom: 16px; }
-        .projet-footer { display: flex; justify-content: flex-end; padding-top: 12px; border-top: 1px solid var(--gray-soft); }
-        .projet-read-more { color: var(--gold); font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 4px; }
+        .projet-img-wrap { position: relative; overflow: hidden; height: 210px; }
+        .projet-img-wrap img { width:100%; height:100%; object-fit:cover; transition: transform 0.55s ease; }
+        .projet-card:hover .projet-img-wrap img { transform: scale(1.07); }
+        .projet-tag { position: absolute; top: 12px; left: 12px; background: var(--blue-night); color: white; padding: 4px 11px; border-radius: 50px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; }
+        .projet-body { padding: 20px 22px 18px; }
+        .projet-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+        .projet-date { color: var(--gold); font-size: 0.78rem; font-weight: 600; }
+        .projet-body h3 { margin-bottom: 8px; font-size: 1.05rem; line-height: 1.35; }
+        .projet-desc { font-size: 0.87rem; line-height: 1.6; margin-bottom: 14px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .projet-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid var(--gray-soft); }
+        .projet-read-more { color: var(--gold); font-size: 0.83rem; font-weight: 600; display: flex; align-items: center; gap: 5px; transition: gap var(--transition); }
+        .projet-card:hover .projet-read-more { gap: 8px; }
+        .projet-share { color: var(--gray-mid); font-size: 0.83rem; display: flex; align-items: center; gap: 5px; transition: color var(--transition); }
+        .projet-share:hover { color: #25D366; }
 
-        /* ── GALERIE ── */
+        /* ══ GALERIE ══ */
         #galerie { background: var(--blue-night); }
         #galerie h2 { color: white; }
-        .galerie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin-top: 40px; }
+        .galerie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 14px; margin-top: 36px; }
         .galerie-item { position: relative; border-radius: var(--radius-sm); overflow: hidden; cursor: zoom-in; aspect-ratio: 4/3; }
         .galerie-item img { width:100%; height:100%; object-fit:cover; transition: transform 0.5s ease; }
-        .galerie-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(11,31,75,0.85) 0%, transparent 60%); opacity: 0; transition: var(--transition); display: flex; align-items: flex-end; padding: 16px; }
-        .galerie-overlay p { color: white; font-size: 0.85rem; font-weight: 500; }
+        .galerie-overlay { position: absolute; inset:0; background: linear-gradient(to top, rgba(11,31,75,0.88) 0%, transparent 55%); opacity:0; transition: var(--transition); display:flex; align-items:flex-end; padding: 14px; }
+        .galerie-overlay p { color: white; font-size: 0.82rem; font-weight: 500; }
         .galerie-item:hover img { transform: scale(1.08); }
         .galerie-item:hover .galerie-overlay { opacity: 1; }
 
-        /* ── TEMOIGNAGES ── */
+        /* ══ TEMOIGNAGES ══ */
         #temoignages { background: var(--white); }
-        .temoignages-track { display: flex; gap: 24px; overflow-x: auto; padding-bottom: 16px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; margin-top: 40px; }
+        .temoignages-track { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; margin-top: 36px; }
         .temoignages-track::-webkit-scrollbar { display: none; }
-        .temoignage-card { flex: 0 0 340px; scroll-snap-align: start; background: var(--cream); border-radius: var(--radius); padding: 32px; border-left: 4px solid var(--gold); }
-        .temoignage-quote { font-size: 2.5rem; color: var(--gold); font-family: var(--font-display); line-height: 1; margin-bottom: 12px; }
-        .temoignage-text { font-size: 0.92rem; margin-bottom: 20px; font-style: italic; }
-        .temoignage-author { display: flex; align-items: center; gap: 12px; }
-        .temoignage-author img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; }
-        .temoignage-name { font-weight: 600; font-size: 0.9rem; color: var(--text-dark); }
-        .temoignage-role { font-size: 0.78rem; color: var(--gray-mid); }
+        .temoignage-card { flex: 0 0 320px; scroll-snap-align: start; background: var(--cream); border-radius: var(--radius); padding: 28px; border-left: 4px solid var(--gold); transition: var(--transition); }
+        .temoignage-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+        .temoignage-quote { font-size: 2.2rem; color: var(--gold); font-family: var(--font-display); line-height: 1; margin-bottom: 10px; }
+        .temoignage-text { font-size: 0.9rem; margin-bottom: 18px; font-style: italic; line-height: 1.7; }
+        .temoignage-author { display: flex; align-items: center; gap: 11px; }
+        .temoignage-author img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold-light); }
+        .temoignage-name { font-weight: 600; font-size: 0.88rem; color: var(--text-dark); }
+        .temoignage-role { font-size: 0.76rem; color: var(--gray-mid); margin-top: 2px; }
 
-        /* ── MEMBRES ── */
+        /* ══ MEMBRES ══ */
         #membres { background: var(--cream); }
-        .membres-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; margin-top: 40px; }
+        .membres-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 20px; margin-top: 36px; }
         .membre-card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card); transition: var(--transition); text-align: center; }
-        .membre-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
-        .membre-photo-wrap { position: relative; height: 200px; overflow: hidden; }
-        .membre-photo-wrap img { width:100%; height:100%; object-fit:cover; }
-        .membre-body { padding: 20px; }
-        .membre-body h3 { margin-bottom: 4px; font-size: 1rem; }
-        .membre-fonction { color: var(--gold); font-size: 0.82rem; font-weight: 600; margin-bottom: 10px; }
-        .membre-contacts { display: flex; justify-content: center; gap: 10px; }
-        .membre-contacts a { width: 34px; height: 34px; border-radius: 50%; background: var(--gray-soft); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; transition: var(--transition); }
+        .membre-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+        .membre-photo-wrap { height: 190px; overflow: hidden; }
+        .membre-photo-wrap img { width:100%; height:100%; object-fit:cover; transition: transform 0.5s ease; }
+        .membre-card:hover .membre-photo-wrap img { transform: scale(1.05); }
+        .membre-body { padding: 18px 16px; }
+        .membre-body h3 { margin-bottom: 3px; font-size: 0.98rem; }
+        .membre-fonction { color: var(--gold); font-size: 0.8rem; font-weight: 600; margin-bottom: 10px; }
+        .membre-contacts { display: flex; justify-content: center; gap: 8px; }
+        .membre-contacts a { width: 32px; height: 32px; border-radius: 50%; background: var(--gray-soft); display: flex; align-items: center; justify-content: center; font-size: 0.82rem; color: var(--text-body); transition: var(--transition); }
         .membre-contacts a:hover { background: var(--gold); color: white; }
 
-        /* ── DON — Mobile Money Togo ── */
-        #don { background: linear-gradient(135deg, var(--blue-night) 0%, var(--blue-mid) 50%, var(--green-togo) 100%); padding: 96px 0; text-align: center; position: relative; overflow: hidden; }
-        #don::before { content: '♥'; position: absolute; font-size: 40rem; opacity: 0.03; font-family: var(--font-display); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; }
-        #don h2 { color: white; margin-bottom: 16px; }
-        #don > .container > p { color: rgba(255,255,255,0.72); max-width: 540px; margin: 0 auto 48px; }
-        .don-methods { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; max-width: 900px; margin: 0 auto 40px; }
-        .don-method { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius); padding: 28px 24px; transition: var(--transition); }
-        .don-method:hover { background: rgba(255,255,255,0.14); border-color: var(--gold); transform: translateY(-4px); }
-        .don-method-icon { font-size: 2.2rem; margin-bottom: 14px; }
-        .don-method h3 { color: white; font-size: 1.05rem; margin-bottom: 8px; }
-        .don-method p { color: rgba(255,255,255,0.65); font-size: 0.88rem; margin-bottom: 16px; line-height: 1.5; }
-        .don-method-num { display: inline-block; background: var(--gold); color: var(--blue-night); font-weight: 700; font-size: 1rem; padding: 8px 20px; border-radius: 50px; letter-spacing: 0.05em; }
-        .don-note { color: rgba(255,255,255,0.45); font-size: 0.8rem; margin-top: 24px; }
+        /* ══ VOLONTAIRE ══ */
+        #volontaire { background: var(--white); }
+        .volontaire-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 48px; }
+        .volontaire-left h3 { font-size: 1.5rem; margin-bottom: 14px; }
+        .volontaire-left p { font-size: 0.95rem; line-height: 1.75; margin-bottom: 20px; }
+        .volontaire-perks { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+        .volontaire-perk { display: flex; align-items: center; gap: 12px; font-size: 0.9rem; }
+        .volontaire-perk i { color: var(--gold); width: 18px; flex-shrink: 0; }
+        .volontaire-form input, .volontaire-form select, .volontaire-form textarea { width: 100%; padding: 13px 16px; border-radius: var(--radius-sm); border: 2px solid var(--gray-soft); background: var(--cream); font-family: var(--font-body); font-size: 0.92rem; color: var(--text-dark); margin-bottom: 12px; outline: none; transition: border-color var(--transition); }
+        .volontaire-form input:focus, .volontaire-form textarea:focus { border-color: var(--gold); }
+        .volontaire-form textarea { resize: vertical; min-height: 100px; }
+        .volontaire-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
-        /* ── CONTACT ── */
-        #contact { background: var(--white); }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 48px; }
-        .contact-info h3 { margin-bottom: 24px; }
-        .contact-line { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 20px; font-size: 0.95rem; }
-        .contact-line-icon { width: 42px; height: 42px; border-radius: var(--radius-sm); background: var(--gold-light); color: var(--gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1rem; }
-        .contact-form input, .contact-form textarea, .contact-form select { width: 100%; padding: 14px 18px; border-radius: var(--radius-sm); border: 2px solid var(--gray-soft); background: var(--cream); font-family: var(--font-body); font-size: 0.95rem; color: var(--text-dark); margin-bottom: 14px; outline: none; transition: border-color var(--transition); }
-        .contact-form input:focus, .contact-form textarea:focus { border-color: var(--gold); }
-        .contact-form textarea { resize: vertical; min-height: 120px; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        /* ══ DON ══ */
+        #don { background: linear-gradient(140deg, var(--blue-night) 0%, #0d2a5e 45%, var(--green-togo) 100%); padding: 96px 0; text-align: center; position: relative; overflow: hidden; }
+        #don::after { content:''; position:absolute; inset:0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); pointer-events:none; }
+        .don-inner { position: relative; z-index: 1; }
+        #don h2 { color: white; margin-bottom: 14px; }
+        .don-subtitle { color: rgba(255,255,255,0.68); max-width: 520px; margin: 0 auto 48px; font-size: 0.98rem; line-height: 1.7; }
+        .don-methods { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 18px; max-width: 860px; margin: 0 auto 36px; }
+        .don-method { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.13); border-radius: var(--radius); padding: 28px 22px; transition: var(--transition); display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .don-method:hover { background: rgba(255,255,255,0.12); border-color: var(--gold); transform: translateY(-4px); }
+        .don-method-icon { font-size: 2rem; margin-bottom: 12px; }
+        .don-method h3 { color: white; font-size: 1rem; margin-bottom: 8px; font-family: var(--font-display); }
+        .don-method p { color: rgba(255,255,255,0.58); font-size: 0.85rem; margin-bottom: 16px; line-height: 1.55; flex: 1; }
+        .don-method-btn { display: inline-flex; align-items: center; gap: 7px; background: var(--gold); color: var(--blue-night); font-weight: 700; font-size: 0.9rem; padding: 10px 20px; border-radius: 50px; transition: var(--transition); text-decoration: none; border: none; cursor: pointer; }
+        .don-method-btn:hover { background: #d4901a; transform: scale(1.03); }
+        .don-method-btn.outline { background: transparent; border: 2px solid rgba(255,255,255,0.4); color: white; }
+        .don-method-btn.outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
+        .don-note { color: rgba(255,255,255,0.38); font-size: 0.78rem; margin-top: 8px; display: flex; align-items: center; justify-content: center; gap: 6px; }
 
-        /* Carte Google Maps */
-        .map-wrap { margin-top: 28px; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card); }
-        .map-wrap iframe { display: block; width: 100%; height: 260px; border: 0; }
-
-        /* ── NEWSLETTER ── */
-        #newsletter { background: var(--gold-light); padding: 64px 0; }
+        /* ══ NEWSLETTER ══ */
+        #newsletter { background: var(--gold-light); padding: 60px 0; }
         .newsletter-inner { display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: space-between; }
-        .newsletter-text h2 { font-size: 1.9rem; }
-        .newsletter-text p { margin-top: 8px; }
-        .newsletter-form { display: flex; gap: 12px; flex-wrap: wrap; }
-        .newsletter-form input { padding: 14px 20px; border-radius: 50px; border: 2px solid transparent; background: white; font-size: 0.95rem; width: 280px; font-family: var(--font-body); outline: none; transition: border-color var(--transition); }
+        .newsletter-text h2 { font-size: 1.8rem; }
+        .newsletter-text p { margin-top: 6px; font-size: 0.93rem; }
+        .newsletter-form { display: flex; gap: 10px; flex-wrap: wrap; }
+        .newsletter-form input { padding: 13px 20px; border-radius: 50px; border: 2px solid transparent; background: white; font-size: 0.93rem; width: 270px; font-family: var(--font-body); outline: none; transition: border-color var(--transition); box-shadow: var(--shadow-card); }
         .newsletter-form input:focus { border-color: var(--gold); }
 
-        /* ── FOOTER ── */
-        footer { background: #060F25; color: rgba(255,255,255,0.55); padding: 64px 0 32px; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
-        .footer-logo { font-family: var(--font-display); font-size: 1.6rem; font-weight: 900; color: white; margin-bottom: 16px; }
+        /* ══ CONTACT ══ */
+        #contact { background: var(--white); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-top: 44px; }
+        .contact-info h3 { margin-bottom: 22px; }
+        .contact-line { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 18px; font-size: 0.93rem; }
+        .contact-line-icon { width: 40px; height: 40px; border-radius: var(--radius-sm); background: var(--gold-light); color: var(--gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.95rem; }
+        .contact-line a { color: var(--gold); transition: color var(--transition); }
+        .contact-line a:hover { color: var(--blue-night); }
+        .map-wrap { margin-top: 24px; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card); }
+        .map-wrap iframe { display:block; width:100%; height:240px; border:0; }
+        .contact-form input, .contact-form textarea, .contact-form select { width:100%; padding:13px 16px; border-radius:var(--radius-sm); border:2px solid var(--gray-soft); background:var(--cream); font-family:var(--font-body); font-size:0.92rem; color:var(--text-dark); margin-bottom:12px; outline:none; transition:border-color var(--transition); }
+        .contact-form input:focus, .contact-form textarea:focus { border-color: var(--gold); }
+        .contact-form textarea { resize:vertical; min-height:110px; }
+        .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+        .contact-form h3 { margin-bottom: 18px; }
+
+        /* ══ FOOTER ══ */
+        footer { background: #060F25; color: rgba(255,255,255,0.5); padding: 60px 0 28px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 44px; margin-bottom: 44px; }
+        .footer-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 900; color: white; margin-bottom: 14px; }
         .footer-logo span { color: var(--gold); }
-        .footer-desc { font-size: 0.88rem; line-height: 1.7; max-width: 280px; }
-        .footer-col h4 { color: white; font-size: 0.9rem; font-weight: 600; margin-bottom: 20px; }
-        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-        .footer-links a { font-size: 0.88rem; transition: color var(--transition); }
+        .footer-desc { font-size: 0.86rem; line-height: 1.72; max-width: 272px; }
+        .footer-col h4 { color: white; font-size: 0.87rem; font-weight: 600; margin-bottom: 18px; letter-spacing: 0.05em; text-transform: uppercase; }
+        .footer-links { list-style:none; display:flex; flex-direction:column; gap:9px; }
+        .footer-links a { font-size: 0.86rem; transition: color var(--transition); }
         .footer-links a:hover { color: var(--gold); }
-        .social-links { display: flex; gap: 10px; margin-top: 20px; }
-        .social-link { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.7); transition: var(--transition); }
-        .social-link:hover { background: var(--gold); color: var(--blue-night); }
-        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 0.83rem; }
+        .social-links { display:flex; gap:9px; margin-top:18px; }
+        .social-link { width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.07); display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.65); transition:var(--transition); font-size:0.88rem; }
+        .social-link:hover { background:var(--gold); color:var(--blue-night); }
+        .footer-bottom { border-top:1px solid rgba(255,255,255,0.06); padding-top:22px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; font-size:0.81rem; }
         .footer-bottom a:hover { color: var(--gold); }
 
-        /* ── FIXED UI ── */
-        .whatsapp-fab { position: fixed; bottom: 28px; right: 28px; width: 58px; height: 58px; border-radius: 50%; background: #25D366; color: white; display: flex; align-items: center; justify-content: center; font-size: 1.7rem; z-index: 800; box-shadow: 0 4px 20px rgba(37,211,102,0.4); transition: var(--transition); }
-        .whatsapp-fab:hover { transform: scale(1.1); }
-        .back-to-top { position: fixed; bottom: 100px; right: 28px; width: 48px; height: 48px; border-radius: 50%; background: rgba(11,31,75,0.8); color: white; display: flex; align-items: center; justify-content: center; font-size: 1rem; z-index: 800; cursor: pointer; opacity: 0; pointer-events: none; transition: var(--transition); }
-        .back-to-top.visible { opacity: 1; pointer-events: all; }
-        .back-to-top:hover { background: var(--blue-night); }
+        /* ══ FIXED UI ══ */
+        .whatsapp-fab { position:fixed; bottom:28px; right:28px; width:56px; height:56px; border-radius:50%; background:#25D366; color:white; display:flex; align-items:center; justify-content:center; font-size:1.6rem; z-index:800; box-shadow:0 4px 20px rgba(37,211,102,0.4); transition:var(--transition); }
+        .whatsapp-fab:hover { transform:scale(1.1); box-shadow:0 8px 28px rgba(37,211,102,0.5); }
+        .back-to-top { position:fixed; bottom:96px; right:28px; width:44px; height:44px; border-radius:50%; background:rgba(11,31,75,0.82); color:white; display:flex; align-items:center; justify-content:center; font-size:0.95rem; z-index:800; cursor:pointer; opacity:0; pointer-events:none; transition:var(--transition); }
+        .back-to-top.visible { opacity:1; pointer-events:all; }
+        .back-to-top:hover { background:var(--blue-night); }
 
-        /* ── MODAL ── */
-        .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(6,15,37,0.85); backdrop-filter: blur(4px); z-index: 1000; align-items: center; justify-content: center; padding: 24px; }
-        .modal-backdrop.open { display: flex; }
-        .modal-box { background: var(--white); border-radius: 28px; width: 100%; max-width: 720px; max-height: 90vh; overflow-y: auto; position: relative; padding: 36px; }
-        .modal-close-btn { position: sticky; top: 0; float: right; background: var(--gray-soft); border: none; width: 38px; height: 38px; border-radius: 50%; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-dark); transition: var(--transition); }
-        .modal-close-btn:hover { background: var(--blue-night); color: white; }
-        .modal-proj-images { display: flex; gap: 12px; overflow-x: auto; margin: 20px 0; padding-bottom: 8px; }
-        .modal-proj-images img { height: 200px; border-radius: var(--radius-sm); flex-shrink: 0; }
+        /* ══ MODAL ══ */
+        .modal-backdrop { display:none; position:fixed; inset:0; background:rgba(6,15,37,0.88); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); z-index:1000; align-items:center; justify-content:center; padding:20px; }
+        .modal-backdrop.open { display:flex; }
+        .modal-box { background:var(--white); border-radius:24px; width:100%; max-width:700px; max-height:88vh; overflow-y:auto; position:relative; padding:32px; }
+        .modal-close-btn { position:sticky; top:0; float:right; background:var(--gray-soft); width:36px; height:36px; border-radius:50%; font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--text-dark); transition:var(--transition); }
+        .modal-close-btn:hover { background:var(--blue-night); color:white; }
+        .modal-proj-images { display:flex; gap:10px; overflow-x:auto; margin:18px 0; padding-bottom:6px; }
+        .modal-proj-images img { height:180px; border-radius:var(--radius-sm); flex-shrink:0; object-fit:cover; }
+        .modal-share { margin-top:20px; padding-top:16px; border-top:1px solid var(--gray-soft); display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+        .modal-share span { font-size:0.85rem; color:var(--gray-mid); }
+        .share-wa { display:inline-flex; align-items:center; gap:6px; background:#25D366; color:white; padding:8px 16px; border-radius:50px; font-size:0.83rem; font-weight:600; transition:var(--transition); }
+        .share-wa:hover { background:#1ebe5d; }
 
-        /* ── LIGHTBOX ── */
-        #lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1100; align-items: center; justify-content: center; }
-        #lightbox.open { display: flex; }
-        #lightbox img { max-width: 90vw; max-height: 90vh; border-radius: var(--radius-sm); }
-        #lightbox-close { position: absolute; top: 20px; right: 24px; color: white; font-size: 2rem; cursor: pointer; background: none; border: none; }
-        #lightbox-prev, #lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); color: white; border: none; width: 50px; height: 50px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background var(--transition); }
-        #lightbox-prev:hover, #lightbox-next:hover { background: var(--gold); color: var(--blue-night); }
-        #lightbox-prev { left: 20px; }
-        #lightbox-next { right: 20px; }
+        /* ══ LIGHTBOX ══ */
+        #lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.96); z-index:1100; align-items:center; justify-content:center; }
+        #lightbox.open { display:flex; }
+        #lightbox img { max-width:90vw; max-height:88vh; border-radius:var(--radius-sm); object-fit:contain; }
+        #lightbox-close { position:absolute; top:18px; right:22px; color:white; font-size:1.8rem; cursor:pointer; background:rgba(255,255,255,0.1); width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:background var(--transition); border:none; }
+        #lightbox-close:hover { background:rgba(255,255,255,0.2); }
+        #lightbox-prev, #lightbox-next { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.1); color:white; border:none; width:48px; height:48px; border-radius:50%; font-size:1.1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background var(--transition); }
+        #lightbox-prev:hover, #lightbox-next:hover { background:var(--gold); color:var(--blue-night); }
+        #lightbox-prev { left:18px; }
+        #lightbox-next { right:18px; }
 
-        /* ── TOAST ── */
-        #toast-container { position: fixed; top: 80px; right: 24px; z-index: 2000; display: flex; flex-direction: column; gap: 10px; }
-        .toast { background: var(--blue-night); color: white; padding: 14px 20px; border-radius: var(--radius-sm); font-size: 0.9rem; box-shadow: var(--shadow-card); display: flex; align-items: center; gap: 10px; animation: slideIn 0.3s ease; min-width: 240px; }
-        .toast.success { border-left: 4px solid #22C55E; }
-        .toast.error { border-left: 4px solid #EF4444; }
-        @keyframes slideIn { from{transform:translateX(100%);opacity:0} to{transform:translateX(0);opacity:1} }
+        /* ══ TOAST ══ */
+        #toast-container { position:fixed; top:76px; right:20px; z-index:2000; display:flex; flex-direction:column; gap:8px; }
+        .toast { background:var(--blue-night); color:white; padding:13px 18px; border-radius:var(--radius-sm); font-size:0.88rem; box-shadow:var(--shadow-hover); display:flex; align-items:center; gap:9px; animation:slideIn 0.3s ease; min-width:220px; max-width:300px; }
+        .toast.success { border-left:4px solid #22C55E; }
+        .toast.error { border-left:4px solid #EF4444; }
+        .toast.info { border-left:4px solid var(--gold); }
+        @keyframes slideIn { from{transform:translateX(110%);opacity:0} to{transform:translateX(0);opacity:1} }
 
-        /* ── RESPONSIVE ── */
-        @media (max-width: 900px) {
-            .footer-grid { grid-template-columns: 1fr 1fr; }
-            .contact-grid { grid-template-columns: 1fr; }
-            .hero-pillars { grid-template-columns: 1fr; gap: 14px; }
+        /* ══ RESPONSIVE ══ */
+        @media (max-width:1024px) {
+            .footer-grid { grid-template-columns:1fr 1fr; }
         }
-        @media (max-width: 768px) {
-            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--blue-night); flex-direction: column; align-items: center; gap: 24px; padding: 32px; border-top: 1px solid rgba(255,255,255,0.1); }
-            .nav-links.open { display: flex; }
-            .menu-toggle { display: block; }
-            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-            .form-row { grid-template-columns: 1fr; }
-            .newsletter-inner { flex-direction: column; }
-            .newsletter-form input { width: 100%; }
-            .projets-grid { grid-template-columns: 1fr; }
-            .galerie-grid { grid-template-columns: 1fr 1fr; }
-            .don-methods { grid-template-columns: 1fr; }
-            .container { padding: 0 20px; }
+        @media (max-width:900px) {
+            .contact-grid { grid-template-columns:1fr; }
+            .volontaire-inner { grid-template-columns:1fr; gap:32px; }
+            .hero-pillars { grid-template-columns:1fr; gap:12px; }
         }
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+        @media (max-width:768px) {
+            .container { padding:0 18px; }
+            .section-pad { padding:64px 0; }
+            .nav-links { display:none; position:absolute; top:100%; left:0; right:0; background:rgba(11,31,75,0.98); flex-direction:column; align-items:center; gap:22px; padding:28px; border-top:1px solid rgba(255,255,255,0.08); z-index:99; }
+            .nav-links.open { display:flex; }
+            .menu-toggle { display:block; }
+            .footer-grid { grid-template-columns:1fr; gap:28px; }
+            .form-row { grid-template-columns:1fr; }
+            .newsletter-inner { flex-direction:column; }
+            .newsletter-form { width:100%; }
+            .newsletter-form input { width:100%; }
+            .projets-grid { grid-template-columns:1fr; }
+            .galerie-grid { grid-template-columns:1fr 1fr; }
+            .don-methods { grid-template-columns:1fr; max-width:360px; }
+            .hero-cta { flex-direction:column; }
+            .hero-cta .btn { justify-content:center; }
+            .volontaire-form .form-row { grid-template-columns:1fr; }
+            h2 { font-size:clamp(1.6rem,6vw,2.2rem); }
+        }
+        @media (prefers-reduced-motion:reduce) {
+            *,*::before,*::after { animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
         }
     </style>
 </head>
@@ -307,13 +360,12 @@
                 <li><a href="#galerie">Galerie</a></li>
                 <li><a href="#temoignages">Témoignages</a></li>
                 <li><a href="#membres">Équipe</a></li>
+                <li><a href="#volontaire">Volontariat</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="nav-actions">
-                <button class="theme-toggle" id="theme-toggle" aria-label="Changer le thème">
-                    <i class="fas fa-moon" id="theme-icon"></i>
-                </button>
-                <a href="#don" class="btn btn-gold btn-sm">Faire un don</a>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Changer le thème"><i class="fas fa-moon" id="theme-icon"></i></button>
+                <a href="#don" class="btn btn-gold btn-sm"><i class="fas fa-heart"></i> Faire un don</a>
                 <button class="menu-toggle" id="menu-toggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
             </div>
         </nav>
@@ -327,53 +379,39 @@
     <div class="container">
         <div class="hero-content">
             <div class="hero-inner">
-                <p class="hero-eyebrow">✦ Association humanitaire · Tsévie, Togo · Depuis 2015</p>
-                <h1 class="hero-title">
-                    Agir pour <em>l'éducation</em>,<br>la santé et l'environnement
-                </h1>
-                <p class="hero-subtitle">Nous mobilisons des volontaires internationaux pour transformer des vies dans les communautés togolaises — chaque jour, sur le terrain.</p>
+                <p class="hero-eyebrow">Association humanitaire · Tsévie, Togo · Depuis 2015</p>
+                <h1 class="hero-title">Agir pour <em>l'éducation</em>,<br>la santé et l'avenir</h1>
+                <p class="hero-subtitle">Nous mobilisons des volontaires pour transformer des vies dans les communautés togolaises — chaque jour, sur le terrain.</p>
                 <div class="hero-cta">
                     <a href="#don" class="btn btn-gold"><i class="fas fa-heart"></i> Soutenir la cause</a>
-                    <a href="#projets" class="btn btn-outline"><i class="fas fa-arrow-right"></i> Voir nos projets</a>
+                    <a href="#projets" class="btn btn-outline"><i class="fas fa-compass"></i> Voir nos projets</a>
                 </div>
             </div>
             <div class="hero-pillars">
                 <div class="hero-pillar">
                     <div class="hero-pillar-icon"><i class="fas fa-book-open"></i></div>
-                    <div class="hero-pillar-text">
-                        <strong>Éducation</strong>
-                        <span>Écoles, bibliothèques, soutien scolaire</span>
-                    </div>
+                    <div class="hero-pillar-text"><strong>Éducation</strong><span>Écoles, bibliothèques, soutien scolaire</span></div>
                 </div>
                 <div class="hero-pillar">
-                    <div class="hero-pillar-icon"><i class="fas fa-heartbeat"></i></div>
-                    <div class="hero-pillar-text">
-                        <strong>Santé</strong>
-                        <span>Forages, lutte anti-paludisme, soins</span>
-                    </div>
+                    <div class="hero-pillar-icon"><i class="fas fa-tint"></i></div>
+                    <div class="hero-pillar-text"><strong>Santé & Eau</strong><span>Forages, lutte anti-paludisme</span></div>
                 </div>
                 <div class="hero-pillar">
-                    <div class="hero-pillar-icon"><i class="fas fa-tree"></i></div>
-                    <div class="hero-pillar-text">
-                        <strong>Environnement</strong>
-                        <span>Reboisement, jardins communautaires</span>
-                    </div>
+                    <div class="hero-pillar-icon"><i class="fas fa-seedling"></i></div>
+                    <div class="hero-pillar-text"><strong>Environnement</strong><span>Reboisement, jardins communautaires</span></div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="scroll-hint">
-        <i class="fas fa-chevron-down"></i>
-        <span>Découvrir</span>
-    </div>
+    <div class="scroll-hint"><i class="fas fa-chevron-down"></i><span>Découvrir</span></div>
 </section>
 
 <!-- ══ MISSIONS ══ -->
 <section id="missions" class="section-pad">
     <div class="container">
-        <p class="eyebrow text-center fade-up">Ce que nous faisons</p>
+        <span class="eyebrow text-center fade-up">Ce que nous faisons</span>
         <h2 class="text-center fade-up">Nos domaines d'action</h2>
-        <div class="missions-grid mt-32">
+        <div class="missions-grid mt-48">
             <div class="mission-card fade-up">
                 <div class="mission-icon"><i class="fas fa-book-open"></i></div>
                 <h3>Éducation</h3>
@@ -401,22 +439,20 @@
 <!-- ══ IMPACT DYNAMIQUE ══ -->
 <section id="impact">
     <div class="container">
-        <div class="impact-intro fade-up">
-            <p class="eyebrow" style="color:var(--gold)">Notre empreinte</p>
-            <h2>Ce que nous avons accompli ensemble</h2>
-            <p>Chaque projet laisse une trace durable. Voici le bilan de nos actions depuis 2015.</p>
+        <div class="impact-head fade-up">
+            <span class="eyebrow" style="color:var(--gold)">Notre empreinte</span>
+            <h2>Ce que nous avons accompli</h2>
+            <p>Chaque chiffre représente une vie touchée, une communauté transformée depuis 2015.</p>
         </div>
-        <div class="impact-grid" id="impact-container">
-            <!-- Chargé depuis _data/impact.json — modifiable via /admin -->
-        </div>
+        <div class="impact-grid" id="impact-container"></div>
     </div>
 </section>
 
 <!-- ══ PROJETS ══ -->
 <section id="projets" class="section-pad">
     <div class="container">
-        <p class="eyebrow text-center fade-up">Ce que nous avons accompli</p>
-        <h2 class="text-center fade-up">Projets réalisés</h2>
+        <span class="eyebrow text-center fade-up">Sur le terrain</span>
+        <h2 class="text-center fade-up">Nos projets</h2>
         <div class="filters fade-up" id="proj-filters">
             <button class="filter-btn active" data-cat="all">Tous</button>
             <button class="filter-btn" data-cat="education">Éducation</button>
@@ -431,8 +467,8 @@
 <!-- ══ GALERIE ══ -->
 <section id="galerie" class="section-pad">
     <div class="container">
-        <p class="eyebrow text-center fade-up" style="color:var(--gold)">Nos moments</p>
-        <h2 class="text-center fade-up" style="color:white">Galerie d'images</h2>
+        <span class="eyebrow text-center fade-up" style="color:var(--gold)">Nos moments</span>
+        <h2 class="text-center fade-up" style="color:white">Galerie photos</h2>
         <div class="galerie-grid" id="galerie-container"></div>
     </div>
 </section>
@@ -440,7 +476,7 @@
 <!-- ══ TEMOIGNAGES ══ -->
 <section id="temoignages" class="section-pad">
     <div class="container">
-        <p class="eyebrow text-center fade-up">Ils parlent de nous</p>
+        <span class="eyebrow text-center fade-up">Ils parlent de nous</span>
         <h2 class="text-center fade-up">Témoignages</h2>
         <div class="temoignages-track" id="temoignages-container"></div>
     </div>
@@ -449,42 +485,88 @@
 <!-- ══ MEMBRES ══ -->
 <section id="membres" class="section-pad">
     <div class="container">
-        <p class="eyebrow text-center fade-up">Les personnes derrière la mission</p>
-        <h2 class="text-center fade-up">Notre équipe</h2>
+        <span class="eyebrow text-center fade-up">L'équipe</span>
+        <h2 class="text-center fade-up">Les visages derrière la mission</h2>
         <div class="membres-grid" id="membres-container"></div>
     </div>
 </section>
 
-<!-- ══ DON — Mobile Money Togo ══ -->
-<section id="don">
+<!-- ══ VOLONTARIAT ══ -->
+<section id="volontaire" class="section-pad">
     <div class="container">
-        <p class="eyebrow text-center" style="color:var(--gold)">Agir ensemble</p>
+        <span class="eyebrow text-center fade-up">Rejoignez-nous</span>
+        <h2 class="text-center fade-up">Devenir volontaire</h2>
+        <div class="volontaire-inner">
+            <div class="volontaire-left fade-up">
+                <h3>Votre engagement, notre force</h3>
+                <p>Chaque année, des volontaires du monde entier rejoignent 3APLUS-TOGO pour des missions de 2 à 8 semaines. Aucune compétence particulière n'est requise — seulement de la bonne volonté et l'envie d'agir.</p>
+                <div class="volontaire-perks">
+                    <div class="volontaire-perk"><i class="fas fa-check-circle"></i><span>Logement et repas pris en charge sur place</span></div>
+                    <div class="volontaire-perk"><i class="fas fa-check-circle"></i><span>Encadrement par une équipe locale expérimentée</span></div>
+                    <div class="volontaire-perk"><i class="fas fa-check-circle"></i><span>Missions adaptées à vos compétences</span></div>
+                    <div class="volontaire-perk"><i class="fas fa-check-circle"></i><span>Certificat de participation officiel</span></div>
+                </div>
+                <a href="https://wa.me/22870121798?text=Bonjour%2C%20je%20souhaite%20devenir%20volontaire%20avec%203APLUS-TOGO" target="_blank" class="btn btn-ghost"><i class="fab fa-whatsapp"></i> Nous contacter sur WhatsApp</a>
+            </div>
+            <div class="fade-up">
+                <form class="volontaire-form" id="volontaire-form" action="https://formspree.io/f/xyz123" method="POST">
+                    <div class="form-row">
+                        <input type="text" name="prenom" placeholder="Prénom" required>
+                        <input type="text" name="nom" placeholder="Nom" required>
+                    </div>
+                    <input type="email" name="email" placeholder="Votre email" required>
+                    <input type="text" name="pays" placeholder="Votre pays d'origine">
+                    <select name="domaine">
+                        <option value="">Domaine de compétence</option>
+                        <option>Construction / BTP</option>
+                        <option>Santé / Médecine</option>
+                        <option>Éducation / Enseignement</option>
+                        <option>Agriculture / Environnement</option>
+                        <option>Communication / Design</option>
+                        <option>Autre</option>
+                    </select>
+                    <select name="duree">
+                        <option value="">Durée disponible</option>
+                        <option>2 semaines</option>
+                        <option>1 mois</option>
+                        <option>2 mois</option>
+                        <option>Plus de 2 mois</option>
+                    </select>
+                    <textarea name="motivation" placeholder="Parlez-nous de votre motivation…"></textarea>
+                    <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> Envoyer ma candidature</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ DON ══ -->
+<section id="don">
+    <div class="don-inner container">
+        <span class="eyebrow" style="color:var(--gold)">Agir ensemble</span>
         <h2>Chaque don change une vie</h2>
-        <p>Soutenez nos actions directement depuis votre téléphone, sans compte bancaire. Choisissez votre opérateur :</p>
+        <p class="don-subtitle">Soutenez nos actions directement depuis votre téléphone, sans compte bancaire nécessaire. Choisissez votre moyen de paiement :</p>
         <div class="don-methods">
             <div class="don-method">
                 <div class="don-method-icon">📱</div>
-                <h3>Flooz (Moov Africa)</h3>
-                <p>Envoyez votre don via Flooz directement depuis votre téléphone Moov.</p>
-                <span class="don-method-num">+228 98 04 55 76</span>
+                <h3>Flooz — Moov Africa</h3>
+                <p>Envoyez votre don via Flooz depuis n'importe quel téléphone Moov au Togo.</p>
+                <a href="tel:+22898045576" class="don-method-btn"><i class="fas fa-phone"></i> +228 98 04 55 76</a>
             </div>
             <div class="don-method">
                 <div class="don-method-icon">💛</div>
-                <h3>T-Money (Togocel)</h3>
+                <h3>T-Money — Togocel</h3>
                 <p>Transférez via T-Money depuis votre téléphone Togocel en quelques secondes.</p>
-                <span class="don-method-num">+228 70 12 17 98</span>
+                <a href="tel:+22870121798" class="don-method-btn"><i class="fas fa-phone"></i> +228 70 12 17 98</a>
             </div>
             <div class="don-method">
-                <div class="don-method-icon">🏦</div>
-                <h3>Virement bancaire</h3>
-                <p>Pour les dons plus importants ou depuis l'étranger, contactez-nous par email.</p>
-                <span class="don-method-num" style="font-size:0.8rem; padding: 8px 14px;">troisaplustogo@gmail.com</span>
+                <div class="don-method-icon">✉️</div>
+                <h3>Depuis l'étranger</h3>
+                <p>Pour les dons depuis l'Europe ou l'international, contactez-nous par email.</p>
+                <a href="mailto:troisaplustogo@gmail.com?subject=Don%20international%20-%203APLUS-TOGO" class="don-method-btn outline"><i class="fas fa-envelope"></i> Nous écrire</a>
             </div>
         </div>
-        <p class="don-note">
-            <i class="fas fa-shield-alt"></i>
-            Votre don est utilisé directement sur le terrain à Tsévie. Nous accusons réception par SMS ou email sur demande.
-        </p>
+        <p class="don-note"><i class="fas fa-shield-alt"></i> Votre don est utilisé directement sur le terrain à Tsévie. Accusé de réception disponible sur demande.</p>
     </div>
 </section>
 
@@ -493,15 +575,13 @@
     <div class="container">
         <div class="newsletter-inner">
             <div class="newsletter-text">
-                <p class="eyebrow">Restez informés</p>
+                <span class="eyebrow">Restez informés</span>
                 <h2>Notre newsletter</h2>
-                <p>Recevez les actualités de nos projets, les dates de chantiers et les appels aux dons.</p>
+                <p>Recevez les actualités de nos projets et les appels aux dons.</p>
             </div>
             <div class="newsletter-form">
-                <input type="email" id="nl-email" placeholder="votre@email.com" required>
-                <button type="button" class="btn btn-gold" id="nl-submit">
-                    <i class="fas fa-paper-plane"></i> S'abonner
-                </button>
+                <input type="email" id="nl-email" placeholder="votre@email.com">
+                <button type="button" class="btn btn-gold" id="nl-submit"><i class="fas fa-paper-plane"></i> S'abonner</button>
             </div>
         </div>
     </div>
@@ -510,43 +590,37 @@
 <!-- ══ CONTACT ══ -->
 <section id="contact" class="section-pad">
     <div class="container">
-        <p class="eyebrow text-center fade-up">Parlons-nous</p>
+        <span class="eyebrow text-center fade-up">Parlons-nous</span>
         <h2 class="text-center fade-up">Contactez-nous</h2>
         <div class="contact-grid">
             <div class="contact-info fade-up">
-                <h3>Nous rejoindre</h3>
+                <h3>Nous trouver</h3>
                 <div class="contact-line">
                     <div class="contact-line-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    <div><strong>Adresse</strong><br>Quartier Apegam, BP 114 TSÉVIE — TOGO</div>
+                    <div><strong>Adresse</strong><br>Quartier Apegam, BP 114<br>TSÉVIE — TOGO</div>
                 </div>
                 <div class="contact-line">
                     <div class="contact-line-icon"><i class="fas fa-phone"></i></div>
-                    <div>
-                        <strong>Téléphone</strong><br>
-                        <a href="tel:+22898045576" style="color:var(--gold)">+228 98 04 55 76</a><br>
-                        <a href="tel:+22870121798" style="color:var(--gold)">+228 70 12 17 98</a>
+                    <div><strong>Téléphone</strong><br>
+                        <a href="tel:+22898045576">+228 98 04 55 76</a><br>
+                        <a href="tel:+22870121798">+228 70 12 17 98</a>
                     </div>
                 </div>
                 <div class="contact-line">
                     <div class="contact-line-icon"><i class="fas fa-envelope"></i></div>
-                    <div><strong>Email</strong><br><a href="mailto:troisaplustogo@gmail.com" style="color:var(--gold)">troisaplustogo@gmail.com</a></div>
+                    <div><strong>Email</strong><br><a href="mailto:troisaplustogo@gmail.com">troisaplustogo@gmail.com</a></div>
                 </div>
                 <div class="contact-line">
                     <div class="contact-line-icon"><i class="fab fa-whatsapp"></i></div>
-                    <div><strong>WhatsApp</strong><br><a href="https://wa.me/22870121798" target="_blank" style="color:var(--gold)">+228 70 12 17 98</a></div>
+                    <div><strong>WhatsApp</strong><br><a href="https://wa.me/22870121798" target="_blank">+228 70 12 17 98</a></div>
                 </div>
                 <div class="map-wrap">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15858.218623481362!2d1.1995471!3d6.4303519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10223b7d7b5c7b5f%3A0x4a2b5c8d9e0f1a2b!2sTs%C3%A9vi%C3%A9!5e0!3m2!1sfr!2stg!4v1712345678901!5m2!1sfr!2stg"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15858.218623481362!2d1.1995471!3d6.4303519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10223b7d7b5c7b5f%3A0x4a2b5c8d9e0f1a2b!2sTs%C3%A9vi%C3%A9!5e0!3m2!1sfr!2stg!4v1712345678901!5m2!1sfr!2stg" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
             <div class="fade-up">
                 <h3>Envoyer un message</h3>
-                <form class="contact-form" style="margin-top:16px" id="contact-form" action="https://formspree.io/f/xyz123" method="POST">
+                <form class="contact-form mt-16" id="contact-form" action="https://formspree.io/f/xyz123" method="POST">
                     <div class="form-row">
                         <input type="text" name="prenom" placeholder="Prénom" required>
                         <input type="text" name="nom" placeholder="Nom" required>
@@ -561,11 +635,9 @@
                         <option>Autre</option>
                     </select>
                     <textarea name="message" placeholder="Votre message…" required></textarea>
-                    <button type="submit" class="btn btn-gold"><i class="fas fa-paper-plane"></i> Envoyer</button>
+                    <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> Envoyer</button>
                 </form>
-                <p style="font-size:0.8rem; color:var(--gray-mid); margin-top:12px;">
-                    🔒 Vos données ne sont pas partagées avec des tiers.
-                </p>
+                <p style="font-size:0.78rem;color:var(--gray-mid);margin-top:10px;"><i class="fas fa-lock"></i> Vos données ne sont pas partagées avec des tiers.</p>
             </div>
         </div>
     </div>
@@ -578,7 +650,7 @@
             <div>
                 <div class="footer-logo">3APLUS<span>-TOGO</span></div>
                 <p class="footer-desc">Association de solidarité internationale active depuis 2015, œuvrant pour l'éducation, la santé et l'environnement à Tsévie, Togo.</p>
-                <p class="footer-desc" style="font-size:0.78rem; margin-top:12px;">N° d'enregistrement : 0105/MATDCL-SG-DLPAP-DOCA</p>
+                <p class="footer-desc" style="font-size:0.76rem;margin-top:10px;">N° d'enregistrement : 0105/MATDCL-SG-DLPAP-DOCA</p>
                 <div class="social-links">
                     <a href="https://www.facebook.com/3APLUS.TG" target="_blank" rel="noopener" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -600,8 +672,8 @@
                 <h4>Agir</h4>
                 <ul class="footer-links">
                     <li><a href="#don">Faire un don</a></li>
+                    <li><a href="#volontaire">Devenir volontaire</a></li>
                     <li><a href="#newsletter">S'abonner</a></li>
-                    <li><a href="#contact">Devenir volontaire</a></li>
                     <li><a href="#contact">Partenariat</a></li>
                 </ul>
             </div>
@@ -616,163 +688,157 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <span id="footer-year">© 2025 3APLUS-TOGO — Solidarité et action humanitaire</span>
+            <span id="footer-copy"></span>
             <span><a href="#">Mentions légales</a> · <a href="#">Confidentialité</a></span>
         </div>
     </div>
 </footer>
 
-<!-- ══ FIXED UI ══ -->
-<a href="https://wa.me/22870121798" class="whatsapp-fab" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-</a>
-<button class="back-to-top" id="back-to-top" aria-label="Retour en haut">
-    <i class="fas fa-chevron-up"></i>
-</button>
+<!-- FIXED -->
+<a href="https://wa.me/22870121798" class="whatsapp-fab" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+<button class="back-to-top" id="back-to-top" aria-label="Haut de page"><i class="fas fa-chevron-up"></i></button>
 <div id="toast-container"></div>
 
-<!-- ══ MODAL PROJET ══ -->
+<!-- MODAL PROJET -->
 <div class="modal-backdrop" id="proj-modal">
     <div class="modal-box">
         <button class="modal-close-btn" data-close="proj-modal"><i class="fas fa-times"></i></button>
-        <p class="eyebrow" id="modal-tag"></p>
-        <h2 id="modal-title" style="margin-bottom:8px;"></h2>
-        <p id="modal-date" style="color:var(--gold); font-size:0.9rem; margin-bottom:16px;"></p>
-        <p id="modal-desc" style="line-height:1.8;"></p>
+        <span class="eyebrow" id="modal-tag"></span>
+        <h2 id="modal-title" style="margin-bottom:6px;margin-top:4px;"></h2>
+        <p id="modal-date" style="color:var(--gold);font-size:0.88rem;margin-bottom:14px;"></p>
+        <p id="modal-desc" style="line-height:1.8;font-size:0.95rem;"></p>
         <div class="modal-proj-images" id="modal-images"></div>
+        <div class="modal-share">
+            <span>Partager :</span>
+            <a id="modal-share-wa" href="#" target="_blank" class="share-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
     </div>
 </div>
 
-<!-- ══ LIGHTBOX ══ -->
+<!-- LIGHTBOX -->
 <div id="lightbox">
     <button id="lightbox-close"><i class="fas fa-times"></i></button>
     <button id="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
-    <img id="lightbox-img" src="" alt="Galerie">
+    <img id="lightbox-img" src="" alt="Photo galerie">
     <button id="lightbox-next"><i class="fas fa-chevron-right"></i></button>
 </div>
 
 <script>
 'use strict';
 
-/* ── DONNÉES PAR DÉFAUT (vides — tout vient du CMS) ── */
-const DEFAULTS = {
-    projets: [],
-    galerie: [],
-    membres: [],
-    temoignages: [],
-    impact: []
-};
+/* ── DEFAULTS vides ── */
+const DEFAULTS = { projets:[], galerie:[], membres:[], temoignages:[], impact:[] };
+const STATE = { projets:[], galerie:[], membres:[], temoignages:[], impact:[], lightboxIndex:0, currentFilter:'all' };
 
-const STATE = {
-    projets: [], galerie: [], membres: [], temoignages: [], impact: [],
-    lightboxIndex: 0, currentFilter: 'all'
-};
+/* ── ANNÉE AUTO ── */
+document.getElementById('footer-copy').textContent = `© ${new Date().getFullYear()} 3APLUS-TOGO — Solidarité et action humanitaire`;
 
-/* ── ANNÉE FOOTER AUTO ── */
-document.getElementById('footer-year').textContent =
-    `© ${new Date().getFullYear()} 3APLUS-TOGO — Solidarité et action humanitaire`;
-
-/* ── CHARGEMENT JSON ── */
-async function loadJSON(filename) {
-    try {
-        const r = await fetch(`/_data/${filename}.json`);
-        if (!r.ok) throw new Error('not found');
-        const data = await r.json();
-        if (data && typeof data === 'object' && !Array.isArray(data)) {
-            return data[filename] || [];
-        }
-        return Array.isArray(data) ? data : [];
-    } catch {
-        return DEFAULTS[filename] || [];
-    }
-}
-
-async function fetchAllData() {
-    [STATE.projets, STATE.galerie, STATE.membres, STATE.temoignages, STATE.impact] =
-        await Promise.all([
-            loadJSON('projets'),
-            loadJSON('galerie'),
-            loadJSON('membres'),
-            loadJSON('temoignages'),
-            loadJSON('impact')
-        ]);
-}
-
-/* ── TOAST ── */
-function toast(msg, type = 'success') {
+/* ── UTILITAIRES ── */
+function toast(msg, type='success') {
     const el = document.createElement('div');
     el.className = `toast ${type}`;
-    el.innerHTML = `<i class="fas fa-${type==='success'?'check-circle':'exclamation-circle'}"></i> ${msg}`;
+    const icons = { success:'check-circle', error:'exclamation-circle', info:'info-circle' };
+    el.innerHTML = `<i class="fas fa-${icons[type]||'info-circle'}"></i> ${msg}`;
     document.getElementById('toast-container').appendChild(el);
-    setTimeout(() => el.remove(), 3500);
+    setTimeout(() => el.remove(), 3800);
 }
 
-/* ── RENDER IMPACT ── */
-function renderImpact() {
-    const c = document.getElementById('impact-container');
-    if (!STATE.impact.length) {
-        c.innerHTML = `<div class="empty-state" style="color:rgba(255,255,255,0.4); grid-column:1/-1"><i class="fas fa-chart-bar"></i>Ajoutez vos données d'impact depuis /admin</div>`;
-        return;
-    }
-    c.innerHTML = STATE.impact.map(item => `
-        <div class="impact-card fade-up">
-            <div class="impact-icon"><i class="${item.icone || 'fas fa-star'}"></i></div>
-            <div class="impact-value">${item.valeur}</div>
-            <div class="impact-label">${item.label}</div>
-        </div>
-    `).join('');
-    observeFadeUps();
-}
-
-/* ── RENDER PROJETS ── */
-function renderProjets() {
-    const c = document.getElementById('projets-container');
-    const filtered = STATE.currentFilter === 'all'
-        ? STATE.projets
-        : STATE.projets.filter(p => p.cat === STATE.currentFilter);
-    if (!filtered.length) {
-        c.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><i class="fas fa-folder-open"></i>Aucun projet dans cette catégorie.</div>`;
-        return;
-    }
-    c.innerHTML = filtered.map(p => `
-        <div class="projet-card fade-up" data-id="${p.id}">
-            <div class="projet-img-wrap">
-                <img src="${p.images?.[0] || 'https://via.placeholder.com/600x300?text=3APLUS'}" alt="${p.titre}" loading="lazy">
-                <span class="projet-tag">${catLabel(p.cat)}</span>
-            </div>
-            <div class="projet-body">
-                <div class="projet-date"><i class="fas fa-calendar-alt"></i> ${p.date}</div>
-                <h3>${p.titre}</h3>
-                <p>${(p.description||'').substring(0, 110)}…</p>
-                <div class="projet-footer">
-                    <span class="projet-read-more">Lire plus <i class="fas fa-arrow-right"></i></span>
-                </div>
-            </div>
-        </div>
-    `).join('');
-    c.querySelectorAll('.projet-card').forEach(card => {
-        card.addEventListener('click', () => openProjModal(parseInt(card.dataset.id)));
-    });
-    observeFadeUps();
+function isNew(dateStr) {
+    if (!dateStr) return false;
+    try {
+        const d = new Date(dateStr);
+        const diff = (Date.now() - d.getTime()) / (1000*60*60*24);
+        return diff <= 90;
+    } catch { return false; }
 }
 
 function catLabel(cat) {
     return { education:'Éducation', sante:'Santé', environnement:'Environnement', social:'Social' }[cat] || cat;
 }
 
+/* ── CHARGEMENT JSON ── */
+async function loadJSON(name) {
+    try {
+        const r = await fetch(`/_data/${name}.json`);
+        if (!r.ok) throw new Error('404');
+        const data = await r.json();
+        if (data && typeof data === 'object' && !Array.isArray(data)) return data[name] || [];
+        return Array.isArray(data) ? data : [];
+    } catch { return DEFAULTS[name] || []; }
+}
+
+async function fetchAllData() {
+    [STATE.projets, STATE.galerie, STATE.membres, STATE.temoignages, STATE.impact] = await Promise.all([
+        loadJSON('projets'), loadJSON('galerie'), loadJSON('membres'), loadJSON('temoignages'), loadJSON('impact')
+    ]);
+}
+
+/* ── RENDER IMPACT ── */
+function renderImpact() {
+    const c = document.getElementById('impact-container');
+    if (!STATE.impact.length) {
+        c.innerHTML = `<div class="empty-state" style="grid-column:1/-1;color:rgba(255,255,255,0.4)"><i class="fas fa-chart-bar"></i><p>Ajoutez vos données d'impact depuis /admin</p></div>`;
+        return;
+    }
+    c.innerHTML = STATE.impact.map(item => `
+        <div class="impact-card fade-up">
+            <i class="${item.icone || 'fas fa-star'}"></i>
+            <div class="impact-val">${item.valeur}</div>
+            <div class="impact-lbl">${item.label}</div>
+        </div>`).join('');
+    observeFadeUps();
+}
+
+/* ── RENDER PROJETS ── */
+function renderProjets() {
+    const c = document.getElementById('projets-container');
+    const list = STATE.currentFilter === 'all' ? STATE.projets : STATE.projets.filter(p => p.cat === STATE.currentFilter);
+    if (!list.length) {
+        c.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><i class="fas fa-folder-open"></i><p>Aucun projet dans cette catégorie.</p></div>`;
+        return;
+    }
+    c.innerHTML = list.map(p => {
+        const newBadge = isNew(p.date) ? `<span class="badge-new">Nouveau</span>` : '';
+        const img = (p.images && p.images[0]) ? p.images[0] : 'https://via.placeholder.com/600x300/0B1F4B/E8A020?text=3APLUS';
+        const desc = (p.description || '').substring(0, 115);
+        const waText = encodeURIComponent(`Découvrez ce projet de 3APLUS-TOGO : "${p.titre}" — https://3aplus.netlify.app/#projets`);
+        return `
+        <div class="projet-card fade-up" data-id="${p.id}">
+            <div class="projet-img-wrap">
+                <img src="${img}" alt="${p.titre}" loading="lazy">
+                <span class="projet-tag">${catLabel(p.cat)}</span>
+            </div>
+            <div class="projet-body">
+                <div class="projet-meta">
+                    <span class="projet-date"><i class="fas fa-calendar-alt"></i> ${p.date}</span>${newBadge}
+                </div>
+                <h3>${p.titre}</h3>
+                <p class="projet-desc">${desc}${desc.length >= 115 ? '…' : ''}</p>
+                <div class="projet-footer">
+                    <span class="projet-read-more">Lire plus <i class="fas fa-arrow-right"></i></span>
+                    <a href="https://wa.me/?text=${waText}" target="_blank" class="projet-share" onclick="event.stopPropagation()"><i class="fab fa-whatsapp"></i> Partager</a>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+    c.querySelectorAll('.projet-card').forEach(card => {
+        card.addEventListener('click', () => openProjModal(parseInt(card.dataset.id)));
+    });
+    observeFadeUps();
+}
+
 /* ── RENDER GALERIE ── */
 function renderGalerie() {
     const c = document.getElementById('galerie-container');
     if (!STATE.galerie.length) {
-        c.innerHTML = `<div class="empty-state" style="grid-column:1/-1;color:rgba(255,255,255,0.5)"><i class="fas fa-images"></i>Aucune image.</div>`;
+        c.innerHTML = `<div class="empty-state" style="grid-column:1/-1;color:rgba(255,255,255,0.45)"><i class="fas fa-images"></i><p>Aucune image pour l'instant.</p></div>`;
         return;
     }
     c.innerHTML = STATE.galerie.map((img, idx) => `
         <div class="galerie-item" data-idx="${idx}">
-            <img src="${img.url}" alt="${img.legende||''}" loading="lazy">
+            <img src="${img.url}" alt="${img.legende||'Photo 3APLUS'}" loading="lazy">
             <div class="galerie-overlay"><p>${img.legende||''}</p></div>
-        </div>
-    `).join('');
+        </div>`).join('');
     c.querySelectorAll('.galerie-item').forEach(item => {
         item.addEventListener('click', () => openLightbox(parseInt(item.dataset.idx)));
     });
@@ -782,24 +848,21 @@ function renderGalerie() {
 function renderMembres() {
     const c = document.getElementById('membres-container');
     if (!STATE.membres.length) {
-        c.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><i class="fas fa-users"></i>Aucun membre.</div>`;
+        c.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><i class="fas fa-users"></i><p>Aucun membre pour l'instant.</p></div>`;
         return;
     }
     c.innerHTML = STATE.membres.map(m => `
         <div class="membre-card fade-up">
-            <div class="membre-photo-wrap">
-                <img src="${m.photo || 'https://via.placeholder.com/300?text=Photo'}" alt="${m.nom}" loading="lazy">
-            </div>
+            <div class="membre-photo-wrap"><img src="${m.photo||'https://via.placeholder.com/300/EDF2F7/94A3B8?text=Photo'}" alt="${m.nom}" loading="lazy"></div>
             <div class="membre-body">
                 <h3>${m.nom}</h3>
                 <p class="membre-fonction">${m.fonction}</p>
                 <div class="membre-contacts">
                     ${m.email ? `<a href="mailto:${m.email}" title="Email"><i class="fas fa-envelope"></i></a>` : ''}
-                    ${m.tel ? `<a href="tel:${m.tel}" title="Téléphone"><i class="fas fa-phone"></i></a>` : ''}
+                    ${m.tel ? `<a href="tel:${m.tel}" title="Appeler"><i class="fas fa-phone"></i></a>` : ''}
                 </div>
             </div>
-        </div>
-    `).join('');
+        </div>`).join('');
     observeFadeUps();
 }
 
@@ -807,7 +870,7 @@ function renderMembres() {
 function renderTemoignages() {
     const c = document.getElementById('temoignages-container');
     if (!STATE.temoignages.length) {
-        c.innerHTML = `<div class="empty-state"><i class="fas fa-comment"></i>Aucun témoignage.</div>`;
+        c.innerHTML = `<div class="empty-state"><i class="fas fa-comment-dots"></i><p>Aucun témoignage pour l'instant.</p></div>`;
         return;
     }
     c.innerHTML = STATE.temoignages.map(t => `
@@ -815,23 +878,13 @@ function renderTemoignages() {
             <div class="temoignage-quote">"</div>
             <p class="temoignage-text">${t.texte}</p>
             <div class="temoignage-author">
-                <img src="${t.photo || 'https://via.placeholder.com/80?text=Photo'}" alt="${t.nom}">
-                <div>
-                    <div class="temoignage-name">${t.nom}</div>
-                    <div class="temoignage-role">${t.role}</div>
-                </div>
+                <img src="${t.photo||'https://via.placeholder.com/80/EDF2F7/94A3B8?text=?'}" alt="${t.nom}">
+                <div><div class="temoignage-name">${t.nom}</div><div class="temoignage-role">${t.role}</div></div>
             </div>
-        </div>
-    `).join('');
+        </div>`).join('');
 }
 
-function renderAll() {
-    renderImpact();
-    renderProjets();
-    renderGalerie();
-    renderMembres();
-    renderTemoignages();
-}
+function renderAll() { renderImpact(); renderProjets(); renderGalerie(); renderMembres(); renderTemoignages(); }
 
 /* ── MODAL PROJET ── */
 function openProjModal(id) {
@@ -840,19 +893,22 @@ function openProjModal(id) {
     document.getElementById('modal-tag').textContent = catLabel(p.cat);
     document.getElementById('modal-title').textContent = p.titre;
     document.getElementById('modal-date').innerHTML = `<i class="fas fa-calendar-alt"></i> ${p.date}`;
-    document.getElementById('modal-desc').textContent = p.description;
+    document.getElementById('modal-desc').textContent = p.description || '';
     document.getElementById('modal-images').innerHTML = (p.images||[]).map(src => `<img src="${src}" alt="${p.titre}">`).join('');
+    const waText = encodeURIComponent(`Découvrez le projet "${p.titre}" de 3APLUS-TOGO : https://3aplus.netlify.app/#projets`);
+    document.getElementById('modal-share-wa').href = `https://wa.me/?text=${waText}`;
     document.getElementById('proj-modal').classList.add('open');
 }
 
 /* ── LIGHTBOX ── */
 function openLightbox(idx) {
+    if (idx < 0 || idx >= STATE.galerie.length) return;
     STATE.lightboxIndex = idx;
-    document.getElementById('lightbox-img').src = STATE.galerie[idx]?.url || '';
+    document.getElementById('lightbox-img').src = STATE.galerie[idx].url;
     document.getElementById('lightbox').classList.add('open');
 }
 
-/* ── FILTRES ── */
+/* ── EVENTS ── */
 document.getElementById('proj-filters').addEventListener('click', e => {
     const btn = e.target.closest('.filter-btn');
     if (!btn) return;
@@ -862,104 +918,86 @@ document.getElementById('proj-filters').addEventListener('click', e => {
     renderProjets();
 });
 
-/* ── THEME ── */
 document.getElementById('theme-toggle').addEventListener('click', () => {
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
-    document.getElementById('theme-icon').className = isDark ? 'fas fa-moon' : 'fas fa-sun';
-    localStorage.setItem('3a_theme', isDark ? 'light' : 'dark');
+    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.documentElement.setAttribute('data-theme', dark ? 'light' : 'dark');
+    document.getElementById('theme-icon').className = dark ? 'fas fa-moon' : 'fas fa-sun';
+    localStorage.setItem('3a_theme', dark ? 'light' : 'dark');
 });
-(function() {
-    if (localStorage.getItem('3a_theme') === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        document.getElementById('theme-icon').className = 'fas fa-sun';
-    }
-})();
+(function(){ if(localStorage.getItem('3a_theme')==='dark'){ document.documentElement.setAttribute('data-theme','dark'); document.getElementById('theme-icon').className='fas fa-sun'; }})();
 
-/* ── MENU MOBILE ── */
-document.getElementById('menu-toggle').addEventListener('click', () => {
-    document.getElementById('nav-links').classList.toggle('open');
-});
-document.querySelectorAll('.nav-links a').forEach(a => {
-    a.addEventListener('click', () => document.getElementById('nav-links').classList.remove('open'));
-});
+document.getElementById('menu-toggle').addEventListener('click', () => document.getElementById('nav-links').classList.toggle('open'));
+document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('nav-links').classList.remove('open')));
 
-/* ── MODALS CLOSE ── */
-document.querySelectorAll('[data-close]').forEach(btn => {
-    btn.addEventListener('click', () => document.getElementById(btn.dataset.close).classList.remove('open'));
-});
-document.querySelectorAll('.modal-backdrop').forEach(modal => {
-    modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
-});
+document.querySelectorAll('[data-close]').forEach(btn => btn.addEventListener('click', () => document.getElementById(btn.dataset.close).classList.remove('open')));
+document.querySelectorAll('.modal-backdrop').forEach(m => m.addEventListener('click', e => { if(e.target===m) m.classList.remove('open'); }));
 
-/* ── LIGHTBOX NAV ── */
 document.getElementById('lightbox-close').addEventListener('click', () => document.getElementById('lightbox').classList.remove('open'));
 document.getElementById('lightbox-prev').addEventListener('click', () => {
     STATE.lightboxIndex = (STATE.lightboxIndex - 1 + STATE.galerie.length) % STATE.galerie.length;
-    document.getElementById('lightbox-img').src = STATE.galerie[STATE.lightboxIndex]?.url || '';
+    document.getElementById('lightbox-img').src = STATE.galerie[STATE.lightboxIndex].url;
 });
 document.getElementById('lightbox-next').addEventListener('click', () => {
     STATE.lightboxIndex = (STATE.lightboxIndex + 1) % STATE.galerie.length;
-    document.getElementById('lightbox-img').src = STATE.galerie[STATE.lightboxIndex]?.url || '';
+    document.getElementById('lightbox-img').src = STATE.galerie[STATE.lightboxIndex].url;
 });
 document.addEventListener('keydown', e => {
-    if (document.getElementById('lightbox').classList.contains('open')) {
-        if (e.key === 'ArrowLeft') document.getElementById('lightbox-prev').click();
-        if (e.key === 'ArrowRight') document.getElementById('lightbox-next').click();
-        if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
+    if(document.getElementById('lightbox').classList.contains('open')){
+        if(e.key==='ArrowLeft') document.getElementById('lightbox-prev').click();
+        if(e.key==='ArrowRight') document.getElementById('lightbox-next').click();
+        if(e.key==='Escape') document.getElementById('lightbox').classList.remove('open');
     }
-    if (document.getElementById('proj-modal').classList.contains('open') && e.key === 'Escape')
+    if(document.getElementById('proj-modal').classList.contains('open') && e.key==='Escape')
         document.getElementById('proj-modal').classList.remove('open');
 });
 
-/* ── SCROLL ── */
-const header = document.getElementById('site-header');
-const backTop = document.getElementById('back-to-top');
 window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', scrollY > 40);
-    backTop.classList.toggle('visible', scrollY > 400);
-}, { passive: true });
-backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    document.getElementById('site-header').classList.toggle('scrolled', scrollY > 40);
+    document.getElementById('back-to-top').classList.toggle('visible', scrollY > 400);
+}, { passive:true });
+document.getElementById('back-to-top').addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
 
-/* ── ACTIVE NAV ── */
-const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-        if (e.isIntersecting) {
-            document.querySelectorAll('.nav-links a').forEach(l =>
-                l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
-        }
-    });
-}, { rootMargin: '-50% 0px -50% 0px' });
-document.querySelectorAll('section[id]').forEach(s => io.observe(s));
+const navIO = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) document.querySelectorAll('.nav-links a').forEach(l => l.classList.toggle('active', l.getAttribute('href')==='#'+e.target.id)); });
+}, { rootMargin:'-50% 0px -50% 0px' });
+document.querySelectorAll('section[id]').forEach(s => navIO.observe(s));
 
-/* ── FADE UP ── */
 function observeFadeUps() {
     const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-    }, { threshold: 0.1 });
+        entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }});
+    }, { threshold:0.1 });
     document.querySelectorAll('.fade-up:not(.visible)').forEach(el => obs.observe(el));
 }
 
-/* ── NEWSLETTER ── */
 document.getElementById('nl-submit').addEventListener('click', () => {
-    const email = document.getElementById('nl-email').value.trim();
-    if (!email || !email.includes('@')) { toast('Veuillez entrer un email valide', 'error'); return; }
-    toast('Merci ! Vous êtes inscrit à la newsletter.', 'success');
+    const v = document.getElementById('nl-email').value.trim();
+    if(!v || !v.includes('@')){ toast('Entrez un email valide','error'); return; }
+    toast('Merci ! Vous êtes abonné à la newsletter.','success');
     document.getElementById('nl-email').value = '';
 });
 
-/* ── CONTACT FORM ── */
-document.getElementById('contact-form').addEventListener('submit', async e => {
-    e.preventDefault();
-    try {
-        const r = await fetch(e.target.action, { method:'POST', body: new FormData(e.target), headers:{'Accept':'application/json'} });
-        if (r.ok) { toast('Message envoyé ! Nous répondrons sous 48h.', 'success'); e.target.reset(); }
-        else toast('Erreur lors de l\'envoi. Réessayez.', 'error');
-    } catch { toast('Problème réseau. Vérifiez votre connexion.', 'error'); }
-});
+async function handleForm(formId) {
+    const form = document.getElementById(formId);
+    if(!form) return;
+    form.addEventListener('submit', async e => {
+        e.preventDefault();
+        const btn = form.querySelector('[type=submit]');
+        btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi…';
+        try {
+            const r = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
+            if(r.ok){ toast('Message envoyé ! Nous répondrons sous 48h.','success'); form.reset(); }
+            else toast('Erreur lors de l\'envoi. Réessayez.','error');
+        } catch { toast('Problème réseau.','error'); }
+        btn.disabled = false;
+        btn.innerHTML = formId === 'volontaire-form'
+            ? '<i class="fas fa-paper-plane"></i> Envoyer ma candidature'
+            : '<i class="fas fa-paper-plane"></i> Envoyer';
+    });
+}
+handleForm('contact-form');
+handleForm('volontaire-form');
 
-/* ── INIT ── */
-(async function init() {
+(async function init(){
     await fetchAllData();
     renderAll();
     observeFadeUps();
