@@ -94,9 +94,11 @@ h3{font-size:clamp(1.2rem,2vw,1.5rem)}
 ═══════════════════════════════════════ */
 #hdr{position:sticky;top:0;z-index:900;background:rgba(9,24,58,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06);transition:box-shadow var(--t)}
 #hdr.scrolled{box-shadow:0 4px 28px rgba(0,0,0,.32)}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:15px 0;gap:16px}
-.logo{font-family:var(--fd);font-size:1.55rem;font-weight:700;color:#fff;letter-spacing:-.01em}
-.logo em{color:var(--gold);font-style:normal}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0;gap:16px}
+.logo-link{display:flex;align-items:center;height:48px;flex-shrink:0}
+.logo-svg{height:44px;width:auto;display:block}
+.logo-text{font-family:var(--fd);font-size:1.55rem;font-weight:700;color:#fff;letter-spacing:-.01em;display:none}
+.logo-text em{color:var(--gold);font-style:normal}
 .nav-list{display:flex;align-items:center;gap:24px;list-style:none}
 .nav-list a{color:rgba(255,255,255,.65);font-size:.84rem;font-weight:500;transition:color var(--t);position:relative;padding-bottom:2px}
 .nav-list a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:var(--gold);border-radius:2px;transition:width var(--t)}
@@ -214,18 +216,27 @@ h1.hero-title em{color:var(--gold);font-style:italic}
 .proj-count{font-size:.82rem;color:var(--muted);text-align:center;margin-top:10px}
 
 /* ═══════════════════════════════════════
-   GALERIE — GRILLE + PAGINATION
+   GALERIE — STRIP HORIZONTAL
 ═══════════════════════════════════════ */
-#galerie{background:var(--night)}
+#galerie{background:var(--night);padding:72px 0}
 #galerie .eyebrow{color:var(--gold)}
 #galerie h2{color:#fff}
-.galerie-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:32px}
-.gal-item{position:relative;border-radius:var(--r-sm);overflow:hidden;cursor:zoom-in;aspect-ratio:4/3}
+.galerie-wrap{position:relative;margin-top:32px}
+.galerie-strip{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:10px;height:280px;align-items:stretch}
+.galerie-strip::-webkit-scrollbar{display:none}
+.gal-item{flex:0 0 auto;width:280px;height:100%;border-radius:var(--r-sm);overflow:hidden;cursor:zoom-in;scroll-snap-align:start;position:relative}
 .gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
 .gal-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(9,24,58,.85) 0%,transparent 55%);opacity:0;transition:var(--t);display:flex;align-items:flex-end;padding:12px}
 .gal-ov p{color:#fff;font-size:.8rem;font-weight:500}
 .gal-item:hover img{transform:scale(1.08)}
 .gal-item:hover .gal-ov{opacity:1}
+/* Flèches de navigation horizontale */
+.gal-nav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;background:rgba(9,24,58,.7);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;transition:background var(--t);font-size:.9rem}
+.gal-nav:hover{background:var(--gold)}
+.gal-prev{left:-12px}
+.gal-next{right:-12px}
+/* Pagination galerie */
+.gal-pagination{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:16px}
 
 /* ═══════════════════════════════════════
    TEMOIGNAGES
@@ -332,8 +343,8 @@ h1.hero-title em{color:var(--gold);font-style:italic}
 ═══════════════════════════════════════ */
 footer{background:#050E22;color:rgba(255,255,255,.45);padding:56px 0 24px}
 .ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
-.ft-logo{font-family:var(--fd);font-size:1.45rem;font-weight:700;color:#fff;margin-bottom:12px}
-.ft-logo em{color:var(--gold);font-style:normal}
+.ft-logo-wrap{display:flex;align-items:center;margin-bottom:12px}
+.ft-logo-svg{height:48px;width:auto}
 .ft-desc{font-size:.83rem;line-height:1.72;max-width:260px}
 .ft-col h4{color:#fff;font-size:.8rem;font-weight:600;margin-bottom:16px;letter-spacing:.06em;text-transform:uppercase}
 .ft-links{list-style:none;display:flex;flex-direction:column;gap:8px}
@@ -425,6 +436,8 @@ footer{background:#050E22;color:rgba(255,255,255,.45);padding:56px 0 24px}
     .hero-stats{grid-template-columns:1fr;gap:16px;border-top:none;padding-top:0}
     .hero-stat{border-right:none;padding:0;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:12px}
     .hero-stat:last-child{border-bottom:none}
+    .galerie-strip{height:240px}
+    .gal-item{width:240px}
 }
 @media(max-width:768px){
     .container{padding:0 16px}
@@ -442,6 +455,11 @@ footer{background:#050E22;color:rgba(255,255,255,.45);padding:56px 0 24px}
     .hero-btns .btn{justify-content:center}
     .about-badge{display:none}
     .temo-card{flex:0 0 260px}
+    .galerie-strip{height:200px}
+    .gal-item{width:200px}
+    .gal-nav{width:32px;height:32px;font-size:.75rem}
+    .gal-prev{left:-8px}
+    .gal-next{right:-8px}
 }
 @media(prefers-reduced-motion:reduce){
     *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
@@ -454,7 +472,38 @@ footer{background:#050E22;color:rgba(255,255,255,.45);padding:56px 0 24px}
 <header id="hdr">
     <div class="container">
         <nav class="nav">
-            <a href="#hero" class="logo">3APLUS<em>-TOGO</em></a>
+            <!-- Logo SVG remplaçant le texte -->
+            <a href="#hero" class="logo-link" aria-label="3APLUS-TOGO Accueil">
+                <svg class="logo-svg" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Fond transparent -->
+                    <!-- Figures humaines unies -->
+                    <g transform="translate(110,110)">
+                        <!-- Figurine supérieure rouge -->
+                        <circle cx="0" cy="-70" r="12" fill="#EE2A24"/>
+                        <path d="M -18,-58 Q 0,-20 18,-58" fill="none" stroke="#EE2A24" stroke-width="12" stroke-linecap="round"/>
+                        <!-- Figurine inférieure gauche jaune -->
+                        <circle cx="-60" cy="45" r="12" fill="#FBD202"/>
+                        <path d="M -45,33 Q -25,68 -15,50" fill="none" stroke="#FBD202" stroke-width="12" stroke-linecap="round"/>
+                        <!-- Figurine inférieure droite bleue -->
+                        <circle cx="60" cy="45" r="12" fill="#0067C1"/>
+                        <path d="M 45,33 Q 25,68 15,50" fill="none" stroke="#0067C1" stroke-width="12" stroke-linecap="round"/>
+                    </g>
+                    <!-- Cercle central avec 3A+ -->
+                    <circle cx="110" cy="110" r="24" fill="none" stroke="#ddd" stroke-width="1"/>
+                    <text x="98" y="118" font-family="'Inter',sans-serif" font-weight="bold" font-size="16" fill="#000" text-anchor="end">3A</text>
+                    <g transform="translate(110,110)">
+                        <line x1="6" y1="-8" x2="6" y2="8" stroke="#000" stroke-width="2"/>
+                        <line x1="-2" y1="0" x2="14" y2="0" stroke="#000" stroke-width="2"/>
+                    </g>
+                    <!-- Arche de texte -->
+                    <defs>
+                        <path id="arc" d="M 30,100 A 80,80 0 0,1 190,100" fill="none"/>
+                    </defs>
+                    <text font-family="'Inter',sans-serif" font-weight="600" font-size="11" fill="#000" letter-spacing="1">
+                        <textPath href="#arc" startOffset="50%" text-anchor="middle">Associer nos Actions pour un Avenir Plus</textPath>
+                    </text>
+                </svg>
+            </a>
             <ul class="nav-list" id="nav-list">
                 <li><a href="#about">À propos</a></li>
                 <li><a href="#missions">Missions</a></li>
@@ -612,13 +661,17 @@ footer{background:#050E22;color:rgba(255,255,255,.45);padding:56px 0 24px}
     </div>
 </section>
 
-<!-- GALERIE -->
+<!-- GALERIE (strip horizontal) -->
 <section id="galerie" class="sec">
     <div class="container">
         <span class="eyebrow tc fade">Nos moments</span>
         <h2 class="tc fade" style="color:#fff">Galerie photos</h2>
-        <div class="galerie-grid" id="gal-grid"></div>
-        <div class="pagination" id="gal-pages" style="margin-top:28px"></div>
+        <div class="galerie-wrap fade">
+            <div class="galerie-strip" id="gal-strip"></div>
+            <button class="gal-nav gal-prev" id="gal-prev" aria-label="Précédent"><i class="fas fa-chevron-left"></i></button>
+            <button class="gal-nav gal-next" id="gal-next" aria-label="Suivant"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="gal-pagination" id="gal-pages"></div>
     </div>
 </section>
 
@@ -810,7 +863,28 @@ footer{background:#050E22;color:rgba(255,255,255,.45);padding:56px 0 24px}
     <div class="container">
         <div class="ft-grid">
             <div>
-                <div class="ft-logo">3APLUS<em>-TOGO</em></div>
+                <div class="ft-logo-wrap">
+                    <svg class="ft-logo-svg" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                        <g transform="translate(110,110)">
+                            <circle cx="0" cy="-70" r="12" fill="#EE2A24"/>
+                            <path d="M -18,-58 Q 0,-20 18,-58" fill="none" stroke="#EE2A24" stroke-width="12" stroke-linecap="round"/>
+                            <circle cx="-60" cy="45" r="12" fill="#FBD202"/>
+                            <path d="M -45,33 Q -25,68 -15,50" fill="none" stroke="#FBD202" stroke-width="12" stroke-linecap="round"/>
+                            <circle cx="60" cy="45" r="12" fill="#0067C1"/>
+                            <path d="M 45,33 Q 25,68 15,50" fill="none" stroke="#0067C1" stroke-width="12" stroke-linecap="round"/>
+                        </g>
+                        <circle cx="110" cy="110" r="24" fill="none" stroke="#ddd" stroke-width="1"/>
+                        <text x="98" y="118" font-family="'Inter',sans-serif" font-weight="bold" font-size="16" fill="#fff" text-anchor="end">3A</text>
+                        <g transform="translate(110,110)">
+                            <line x1="6" y1="-8" x2="6" y2="8" stroke="#fff" stroke-width="2"/>
+                            <line x1="-2" y1="0" x2="14" y2="0" stroke="#fff" stroke-width="2"/>
+                        </g>
+                        <defs><path id="arc2" d="M 30,100 A 80,80 0 0,1 190,100" fill="none"/></defs>
+                        <text font-family="'Inter',sans-serif" font-weight="600" font-size="11" fill="#fff" letter-spacing="1">
+                            <textPath href="#arc2" startOffset="50%" text-anchor="middle">Associer nos Actions pour un Avenir Plus</textPath>
+                        </text>
+                    </svg>
+                </div>
                 <p class="ft-desc">Association de solidarité internationale à but non lucratif et apolitique, active depuis 2015 à Tsévié, Togo. Camps chantiers, volontariat, éducation, santé, environnement.</p>
                 <p class="ft-desc" style="margin-top:8px;font-size:.75rem">N° 0105/MATDCL-SG-DLPAP-DOCA</p>
                 <div class="socials">
@@ -896,7 +970,7 @@ footer{background:#050E22;color:rgba(255,255,255,.45);padding:56px 0 24px}
 
 /* ══ CONFIG ══ */
 const PER_PAGE_PROJ = 6;
-const PER_PAGE_GAL  = 9;
+const PER_PAGE_GAL  = 20; // Plus de photos par page grâce au strip horizontal
 
 /* ══ STATE ══ */
 const S = {
@@ -1011,21 +1085,21 @@ function renderProjets(){
     observeFades();
 }
 
-/* ══ RENDER GALERIE ══ */
+/* ══ RENDER GALERIE HORIZONTALE ══ */
 function renderGalerie(){
     const total=S.galerie.length;
     const pages=Math.ceil(total/PER_PAGE_GAL)||1;
     if(S.galPage>=pages) S.galPage=0;
     const slice=S.galerie.slice(S.galPage*PER_PAGE_GAL,(S.galPage+1)*PER_PAGE_GAL);
 
-    const g=document.getElementById('gal-grid');
+    const strip=document.getElementById('gal-strip');
     if(!slice.length){
-        g.innerHTML=`<div class="empty" style="grid-column:1/-1;color:rgba(255,255,255,.4)"><i class="fas fa-images"></i><p>Aucune photo pour l'instant.</p></div>`;
+        strip.innerHTML=`<div class="empty" style="grid-column:1/-1;color:rgba(255,255,255,.4);width:100%"><i class="fas fa-images"></i><p>Aucune photo pour l'instant.</p></div>`;
         document.getElementById('gal-pages').innerHTML='';
         return;
     }
 
-    g.innerHTML=slice.map((img,i)=>{
+    strip.innerHTML=slice.map((img,i)=>{
         const realIdx=S.galPage*PER_PAGE_GAL+i;
         return`<div class="gal-item" data-idx="${realIdx}">
             <img src="${img.url}" alt="${img.legende||'Photo 3APLUS'}" loading="lazy">
@@ -1033,9 +1107,22 @@ function renderGalerie(){
         </div>`;
     }).join('');
 
-    g.querySelectorAll('.gal-item').forEach(it=>it.addEventListener('click',()=>openLB(parseInt(it.dataset.idx))));
+    strip.querySelectorAll('.gal-item').forEach(it=>it.addEventListener('click',()=>openLB(parseInt(it.dataset.idx))));
+
+    // Pagination simple
     renderPagination('gal-pages', pages, S.galPage, n=>{S.galPage=n;renderGalerie();});
+
+    // Défilement automatique à gauche après changement de page
+    strip.scrollTo({left:0, behavior:'smooth'});
 }
+
+// Flèches de navigation horizontale (scroll dans le strip)
+document.getElementById('gal-prev').addEventListener('click',()=>{
+    document.getElementById('gal-strip').scrollBy({left:-300, behavior:'smooth'});
+});
+document.getElementById('gal-next').addEventListener('click',()=>{
+    document.getElementById('gal-strip').scrollBy({left:300, behavior:'smooth'});
+});
 
 /* ══ PAGINATION ══ */
 function renderPagination(id, pages, current, cb){
