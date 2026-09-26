@@ -24,6 +24,20 @@
         "/images/uploads/1000247620.jpg",
         "/images/uploads/1000247622.jpg"
       ]
+    },
+    {
+      "id": 2,
+      "titre": "Un bâtiment à réhabiliter, un projet pour les élèves",
+      "date": "25-09-2026",
+      "cat": "education",
+      "description": "Tout a commencé par une idée simple : transformer un ancien bâtiment scolaire fortement dégradé en un espace utile aux élèves et à la communauté.\n\nÀ l'origine de cette initiative se trouve Magee, notre partenaire et ancienne volontaire du Corps de la Paix au Togo. Sensibilisée aux difficultés rencontrées par certains élèves, elle a souhaité contribuer à la mise en place d'une cantine scolaire destinée notamment aux élèves les plus vulnérables. Un partenariat s'est progressivement établi avec 3APLUS, qui assure le relais et l'accompagnement du projet au niveau local.\n\nL'objectif est concret : réhabiliter une partie de ce bâtiment pour y aménager une cantine scolaire où des repas pourront être proposés aux élèves qui en ont le plus besoin. Mais avant d'arriver aux repas servis aux enfants, il fallait d'abord redonner vie à ces murs. C'est là que l'aventure a commencé.",
+      "images": [
+        "/images/uploads/1000321193.jpg",
+        "/images/uploads/1000321196.jpg",
+        "/images/uploads/1000321194.jpg",
+        "/images/uploads/1000321195.jpg",
+        "/images/uploads/1000321189.jpg"
+      ]
     }
   ]
 }
