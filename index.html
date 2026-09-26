@@ -1,1977 +1,1225 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>3APLUS-TOGO | Association Humanitaire Internationale</title>
-<meta name="description" content="3APLUS-TOGO, association humanitaire de solidarité internationale à Tsévié, Togo. Camps chantiers, volontariat, éducation, santé, environnement depuis 2015.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-/* ============================================
-   VARIABLES
-   ============================================ */
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>3APLUS-TOGO | Association humanitaire internationale</title>
+    <meta name="description" content="3APLUS-TOGO, association humanitaire de solidarité internationale à Tsévié, Togo. Camps chantiers, volontariat, éducation, santé, environnement depuis 2015.">
+    <meta property="og:title" content="3APLUS-TOGO | Solidarité, action, avenir">
+    <meta property="og:description" content="Association humanitaire togolaise active depuis 2015.">
+    <meta property="og:url" content="https://3aplus.netlify.app">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
 :root{
-  --navy:#0A1A3A;
-  --navy-soft:#132657;
-  --white:#FFFFFF;
-  --gold:#C9A227;
-  --gold-soft:#E8C84A;
-  --cream:#F8F9FA;
-  --grey:#6B7A90;
-  --grey-light:#E9ECF0;
-  --font-body:'Inter',system-ui,sans-serif;
-  --font-title:'Cormorant Garamond',Georgia,serif;
-  --ease:cubic-bezier(.25,.46,.45,.94);
-  --ease-out:cubic-bezier(.16,1,.3,1);
-  --shadow-sm:0 2px 12px rgba(10,26,58,.06);
-  --shadow-md:0 12px 40px rgba(10,26,58,.10);
-  --shadow-lg:0 24px 64px rgba(10,26,58,.16);
-  --radius:20px;
-  --radius-sm:12px;
+    --night:#09183A;
+    --navy:#132657;
+    --gold:#C8860A;
+    --gold-soft:#E9C87C;
+    --green:#1E5C3A;
+    --cream:#F8F5EF;
+    --white:#FFFFFF;
+    --ink:#0D1326;
+    --body:#4C5772;
+    --muted:#8B97B0;
+    --line:#E4E0D6;
+    --ease:cubic-bezier(.16,1,.3,1);
+    --t:.3s var(--ease);
+    --fd:'Fraunces',Georgia,serif;
+    --fb:'Inter',system-ui,-apple-system,sans-serif;
+    --max:1280px;
+    --gutter:32px;
+}
+[data-theme="dark"]{
+    --cream:#0A1226;
+    --white:#101B36;
+    --ink:#EDEFF5;
+    --body:#A6B0C6;
+    --muted:#5C6884;
+    --line:#233252;
+    --gold-soft:#8C6420;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{
-  font-family:var(--font-body);
-  background:var(--cream);
-  color:var(--navy);
-  line-height:1.7;
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-}
+body{font-family:var(--fb);background:var(--cream);color:var(--body);line-height:1.6;font-size:16px;transition:background var(--t),color var(--t);overflow-x:hidden}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
-button{font-family:var(--font-body);cursor:pointer;border:none;background:none}
-h1,h2,h3,h4{font-family:var(--font-title);line-height:1.15;font-weight:600;color:var(--navy)}
-h1{font-size:clamp(3rem,7vw,5.5rem);letter-spacing:-.02em}
-h2{font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-.01em}
-h3{font-size:clamp(1.1rem,1.8vw,1.4rem)}
-.container{max-width:1280px;margin:0 auto;padding:0 32px}
-.sec{padding:120px 0}
-@media(max-width:768px){.sec{padding:80px 0}.container{padding:0 20px}}
-
-/* ============================================
-   ANIMATIONS AU SCROLL
-   ============================================ */
-.reveal{
-  opacity:0;
-  transform:translateY(40px);
-  transition:opacity .9s var(--ease-out),transform .9s var(--ease-out);
-}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-delay-1{transition-delay:.1s}
-.reveal-delay-2{transition-delay:.2s}
-.reveal-delay-3{transition-delay:.3s}
-.reveal-delay-4{transition-delay:.4s}
-.reveal-delay-5{transition-delay:.5s}
-.reveal-delay-6{transition-delay:.6s}
-
-/* Barre de progression de lecture */
-.progress-bar{
-  position:fixed;top:0;left:0;height:3px;
-  background:var(--gold);
-  z-index:9999;
-  width:0%;
-  transition:width .1s linear;
-}
-
-/* ============================================
-   HEADER
-   ============================================ */
-#header{
-  position:fixed;top:0;left:0;right:0;z-index:900;
-  background:rgba(10,26,58,.85);
-  backdrop-filter:blur(24px);
-  -webkit-backdrop-filter:blur(24px);
-  border-bottom:1px solid rgba(255,255,255,.06);
-  transition:background .4s var(--ease),box-shadow .4s var(--ease);
-}
-#header.scrolled{
-  background:rgba(10,26,58,.96);
-  box-shadow:0 4px 32px rgba(0,0,0,.24);
-}
-.nav{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:16px 0;gap:20px;
-}
-.logo-link{display:flex;align-items:center;gap:12px;flex-shrink:0}
-.logo-svg{width:44px;height:44px}
-.brand{
-  font-family:var(--font-body);font-weight:900;font-size:1.15rem;
-  color:var(--white);white-space:nowrap;letter-spacing:-.01em;
-}
-.brand .plus{color:var(--gold);font-size:.7em;vertical-align:super}
-.nav-menu{display:flex;align-items:center;gap:28px;list-style:none}
-.nav-menu a{
-  color:rgba(255,255,255,.6);font-size:.82rem;font-weight:500;
-  transition:color .3s var(--ease);position:relative;padding-bottom:4px;
-}
-.nav-menu a::after{
-  content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;
-  background:var(--gold);transition:width .4s var(--ease-out);
-}
-.nav-menu a:hover,.nav-menu a.active{color:var(--white)}
-.nav-menu a:hover::after,.nav-menu a.active::after{width:100%}
-.nav-actions{display:flex;align-items:center;gap:10px}
-.btn-don{
-  padding:10px 22px;border-radius:50px;
-  background:var(--gold);color:var(--navy);
-  font-weight:600;font-size:.82rem;
-  transition:transform .3s var(--ease-out),box-shadow .3s var(--ease-out);
-  display:inline-flex;align-items:center;gap:6px;
-}
-.btn-don:hover{
-  transform:translateY(-2px);
-  box-shadow:0 8px 24px rgba(201,162,39,.35);
-}
-.burger{display:none;color:var(--white);font-size:1.4rem;padding:4px}
-@media(max-width:900px){
-  .nav-menu{
-    display:none;position:absolute;top:100%;left:0;right:0;
-    background:rgba(10,26,58,.98);
-    flex-direction:column;align-items:center;gap:24px;
-    padding:32px;border-top:1px solid rgba(255,255,255,.06);
-  }
-  .nav-menu.open{display:flex}
-  .burger{display:block}
-}
-
-/* ============================================
-   HERO
-   ============================================ */
-#hero{
-  position:relative;min-height:100vh;
-  display:flex;align-items:center;
-  background:var(--navy);overflow:hidden;
-}
-.hero-bg{
-  position:absolute;inset:0;
-  background:url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1800&q=80') center/cover;
-  opacity:.10;
-}
-.hero-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(160deg,rgba(10,26,58,.95) 0%,rgba(10,26,58,.7) 50%,rgba(19,38,87,.85) 100%);
-}
-.hero-content{position:relative;z-index:2;max-width:720px}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:8px 18px;border-radius:50px;
-  border:1px solid rgba(201,162,39,.3);
-  background:rgba(201,162,39,.08);
-  color:var(--gold);font-size:.72rem;font-weight:600;
-  letter-spacing:.12em;text-transform:uppercase;
-  margin-bottom:28px;
-}
-.hero-content h1{
-  color:var(--white);margin-bottom:24px;
-  font-size:clamp(2.8rem,6.5vw,5rem);
-}
-.hero-content h1 em{
-  color:var(--gold);font-style:italic;
-  position:relative;
-}
-.hero-content p{
-  color:rgba(255,255,255,.55);
-  font-size:1.05rem;line-height:1.8;
-  max-width:520px;margin-bottom:40px;
-}
-.hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:64px}
-.btn-primary{
-  padding:16px 32px;border-radius:50px;
-  background:var(--gold);color:var(--navy);
-  font-weight:600;font-size:.9rem;
-  transition:transform .35s var(--ease-out),box-shadow .35s var(--ease-out);
-  display:inline-flex;align-items:center;gap:8px;
-}
-.btn-primary:hover{
-  transform:translateY(-3px);
-  box-shadow:0 12px 32px rgba(201,162,39,.4);
-}
-.btn-secondary{
-  padding:16px 32px;border-radius:50px;
-  border:1.5px solid rgba(255,255,255,.25);
-  color:var(--white);font-weight:500;font-size:.9rem;
-  transition:all .35s var(--ease-out);
-  display:inline-flex;align-items:center;gap:8px;
-}
-.btn-secondary:hover{
-  background:var(--white);color:var(--navy);
-  border-color:var(--white);
-}
-.hero-stats{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:32px;border-top:1px solid rgba(255,255,255,.1);
-  padding-top:40px;
-}
-.hero-stat h3{
-  font-family:var(--font-body);font-weight:800;
-  font-size:clamp(1.6rem,3vw,2.2rem);
-  color:var(--white);margin-bottom:4px;
-}
-.hero-stat p{
-  color:rgba(255,255,255,.4);
-  font-size:.78rem;line-height:1.5;
-}
-@media(max-width:768px){
-  .hero-stats{grid-template-columns:1fr;gap:20px}
-  .hero-btns{flex-direction:column}
-  .hero-btns .btn-primary,.hero-btns .btn-secondary{justify-content:center}
-}
-
-/* ============================================
-   SECTIONS GÉNÉRIQUES
-   ============================================ */
-.sec-label{
-  display:block;font-size:.7rem;font-weight:600;
-  letter-spacing:.18em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:16px;
-}
-.sec-title{margin-bottom:20px}
-.sec-desc{
-  color:var(--grey);font-size:1rem;line-height:1.8;
-  max-width:560px;
-}
-.sec-header{margin-bottom:64px}
-.sec-header.center{text-align:center}
-.sec-header.center .sec-desc{margin:0 auto}
-
-/* ============================================
-   À PROPOS
-   ============================================ */
-#about{background:var(--white)}
-.about-grid{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:80px;align-items:center;
-}
+button{font-family:var(--fb);cursor:pointer;border:none;background:none;color:inherit}
+h1,h2,h3,h4{font-family:var(--fd);color:var(--ink);line-height:1.05;font-weight:500;letter-spacing:-.01em}
+h1{font-size:clamp(3.2rem,8vw,6.8rem);font-weight:500}
+h2{font-size:clamp(2.2rem,4.6vw,3.6rem)}
+h3{font-family:var(--fb);font-size:clamp(1.1rem,1.8vw,1.3rem);font-weight:700}
+p{max-width:58ch}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.container{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+.sec{padding:150px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:72px}
+.sec-head .htext{max-width:640px}
+.sec-head .hside{max-width:320px;font-size:.94rem;padding-bottom:8px}
+.eyebrow{font-family:var(--fb);font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:16px}
+.tc{text-align:center}
+.fade{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.fade.in{opacity:1;transform:none}
+.fade-l{opacity:0;transform:translateX(-32px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.fade-l.in{opacity:1;transform:none}
+.fade-r{opacity:0;transform:translateX(32px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.fade-r.in{opacity:1;transform:none}
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;padding:16px 32px;border-radius:100px;font-weight:600;font-size:.92rem;transition:transform var(--t),background var(--t),color var(--t),border-color var(--t);cursor:pointer;border:1px solid transparent;letter-spacing:.01em;overflow:hidden}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-gold:hover{background:var(--night);transform:translateY(-2px)}
+.btn-outline{background:transparent;border-color:rgba(255,255,255,.4);color:#fff}
+.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.08);transform:translateY(-2px)}
+.btn-ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.btn-sm{padding:11px 22px;font-size:.82rem}
+.btn-full{width:100%;justify-content:center}
+.btn i{transition:transform var(--t)}
+.btn:hover i.fa-arrow-right,.btn:hover i.fa-hands-helping{transform:translateX(3px)}
+.badge-new{display:inline-block;color:var(--gold);font-size:.68rem;font-weight:700;letter-spacing:.03em;vertical-align:middle;margin-left:8px}
+#hdr{position:sticky;top:0;z-index:900;background:rgba(9,24,58,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transition:padding var(--t),box-shadow var(--t)}
+#hdr.scrolled{box-shadow:0 1px 0 rgba(255,255,255,.08)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;gap:24px;transition:padding var(--t)}
+#hdr.scrolled .nav{padding:14px 0}
+.logo-link{display:flex;align-items:center}
+.logo-container{display:flex;align-items:center;gap:10px}
+.logo-svg{width:40px;height:40px;flex-shrink:0;transition:width var(--t),height var(--t)}
+.brand-text{font-family:var(--fd);font-weight:500;font-size:1.2rem;color:#fff;white-space:nowrap}
+.brand-text .sup-plus{color:var(--gold);font-size:.7em;vertical-align:super;margin-left:1px}
+.nav-list{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-list a{position:relative;color:rgba(255,255,255,.6);font-size:.86rem;font-weight:500;transition:color var(--t);padding:4px 0}
+.nav-list a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:width var(--t)}
+.nav-list a:hover,.nav-list a.active{color:#fff}
+.nav-list a:hover::after,.nav-list a.active::after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:16px}
+.th-btn{width:32px;height:32px;color:rgba(255,255,255,.7);font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:color var(--t)}
+.th-btn:hover{color:var(--gold)}
+.m-toggle{display:none;color:#fff;font-size:1.3rem;padding:4px}
+#hero{position:relative;background:var(--night);overflow:hidden;padding-top:64px}
+.hero-top{position:relative;z-index:2}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--fb);font-size:.8rem;font-weight:600;letter-spacing:.03em;color:var(--gold-soft);margin-bottom:28px}
+.hero-eyebrow::before{content:'';width:26px;height:1px;background:var(--gold-soft)}
+h1.hero-title{color:#fff;max-width:16ch;margin-bottom:0}
+h1.hero-title em{font-style:italic;color:var(--gold-soft)}
+.hero-bottom{display:grid;grid-template-columns:1.1fr .9fr;gap:0;align-items:end;margin-top:-40px}
+.hero-sub-col{padding:0 0 64px}
+.hero-sub{color:rgba(255,255,255,.6);font-size:1.1rem;max-width:420px;margin-bottom:36px;line-height:1.7}
+.hero-btns{display:flex;flex-wrap:wrap;gap:14px}
+.hero-visual{position:relative;aspect-ratio:4/5}
+.hero-visual img{width:100%;height:100%;object-fit:cover}
+.hero-visual::before{content:'';position:absolute;inset:-14px -14px 14px 14px;border:1px solid rgba(255,255,255,.18);z-index:-1}
+.hero-stats{position:relative;border-top:1px solid rgba(255,255,255,.12);background:var(--navy)}
+.hero-stats-row{display:flex;flex-wrap:wrap}
+.hero-stat{flex:1 1 220px;padding:36px var(--gutter);border-right:1px solid rgba(255,255,255,.08);transition:background var(--t)}
+.hero-stat:hover{background:rgba(200,134,10,.08)}
+.hero-stat:last-child{border-right:none}
+.hero-stat-val{font-family:var(--fd);font-size:1.9rem;font-weight:500;color:#fff;line-height:1}
+.hero-stat-lbl{color:rgba(255,255,255,.5);font-size:.82rem;margin-top:8px}
+#about{background:var(--white);overflow:hidden}
+.about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:110px;align-items:center}
 .about-visual{position:relative}
-.about-img{
-  width:100%;aspect-ratio:4/5;object-fit:cover;
-  border-radius:var(--radius);box-shadow:var(--shadow-lg);
-}
-.about-badge{
-  position:absolute;bottom:-24px;right:-24px;
-  background:var(--gold);color:var(--navy);
-  padding:24px 28px;border-radius:var(--radius-sm);
-  text-align:center;box-shadow:var(--shadow-md);
-}
-.about-badge strong{
-  font-family:var(--font-title);font-size:2.2rem;
-  font-weight:700;display:block;line-height:1;
-}
-.about-badge span{font-size:.75rem;font-weight:600;opacity:.8}
-.about-text h2{margin-bottom:20px}
-.about-text p{
-  color:var(--grey);font-size:.95rem;line-height:1.85;
-  margin-bottom:16px;
-}
-.about-quote{
-  border-left:3px solid var(--gold);
-  padding:16px 24px;margin:28px 0;
-  background:rgba(201,162,39,.05);
-  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
-}
-.about-quote p{
-  font-family:var(--font-title);font-size:1.15rem;
-  font-style:italic;color:var(--navy);margin-bottom:8px;
-}
-.about-quote small{color:var(--grey);font-size:.8rem}
-.reg-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:.78rem;color:var(--grey);
-  padding:10px 18px;border:1px solid var(--grey-light);
-  border-radius:50px;margin-top:24px;
-}
-.reg-badge i{color:var(--gold)}
-@media(max-width:900px){
-  .about-grid{grid-template-columns:1fr;gap:48px}
-  .about-badge{display:none}
-}
-
-/* ============================================
-   MISSIONS
-   ============================================ */
+.about-visual img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.about-badge{position:absolute;left:-36px;bottom:-36px;background:var(--night);color:#fff;padding:28px 30px;max-width:220px;box-shadow:0 24px 48px -20px rgba(9,24,58,.4)}
+.about-badge strong{font-family:var(--fd);font-size:2.4rem;display:block;line-height:1;color:var(--gold-soft)}
+.about-badge span{font-size:.78rem;color:rgba(255,255,255,.6);display:block;margin-top:8px}
+.about-text p{margin-bottom:20px;font-size:1.02rem;line-height:1.85}
+.about-text p:last-of-type{margin-bottom:0}
+.about-text blockquote{font-family:var(--fd);font-style:italic;font-size:clamp(1.35rem,2.2vw,1.7rem);color:var(--ink);line-height:1.45;margin:36px 0;padding-left:28px;border-left:2px solid var(--gold)}
+.about-text blockquote small{display:block;font-family:var(--fb);font-style:normal;font-size:.78rem;color:var(--muted);margin-top:12px;letter-spacing:.02em}
+.reg-note{font-size:.8rem;color:var(--muted);margin-top:36px;padding-top:24px;border-top:1px solid var(--line)}
 #missions{background:var(--cream)}
-.missions-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:20px;
-}
-.mission-card{
-  background:var(--white);border-radius:var(--radius);
-  padding:36px 28px;
-  transition:transform .4s var(--ease-out),box-shadow .4s var(--ease-out);
-  position:relative;overflow:hidden;
-}
-.mission-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;
-  height:3px;background:var(--gold);
-  transform:scaleX(0);transform-origin:left;
-  transition:transform .5s var(--ease-out);
-}
-.mission-card:hover::before{transform:scaleX(1)}
-.mission-card:hover{
-  transform:translateY(-6px);
-  box-shadow:var(--shadow-lg);
-}
-.mission-icon{
-  width:52px;height:52px;border-radius:14px;
-  background:rgba(201,162,39,.1);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.3rem;color:var(--gold);margin-bottom:20px;
-  transition:transform .4s var(--ease-out);
-}
-.mission-card:hover .mission-icon{transform:scale(1.1) rotate(-4deg)}
-.mission-card h3{font-size:1.05rem;margin-bottom:10px}
-.mission-card p{color:var(--grey);font-size:.88rem;line-height:1.7}
-
-/* ============================================
-   IMPACT
-   ============================================ */
-#impact{background:var(--navy);padding:100px 0}
-#impact .sec-label{color:var(--gold)}
-#impact .sec-title{color:var(--white)}
-.impact-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:2px;background:rgba(255,255,255,.06);
-  border-radius:var(--radius);overflow:hidden;
-}
-.impact-card{
-  background:var(--navy);padding:48px 32px;
-  text-align:center;transition:background .4s var(--ease);
-}
-.impact-card:hover{background:rgba(201,162,39,.08)}
-.impact-card i{
-  font-size:1.6rem;color:var(--gold);
-  margin-bottom:16px;display:block;
-}
-.impact-val{
-  font-family:var(--font-title);font-size:2.6rem;
-  font-weight:700;color:var(--white);line-height:1;
-  margin-bottom:8px;
-}
-.impact-lbl{
-  color:rgba(255,255,255,.45);font-size:.82rem;
-  line-height:1.5;
-}
-
-/* ============================================
-   PROJETS
-   ============================================ */
+.missions-list{display:grid;grid-template-columns:repeat(2,1fr);column-gap:64px}
+.mission-row{position:relative;display:flex;align-items:flex-start;gap:24px;padding:36px 0;border-top:1px solid var(--line);overflow:hidden}
+.missions-list .mission-row:nth-last-child(-n+2){border-bottom:1px solid var(--line)}
+.mission-row::after{content:'';position:absolute;left:0;bottom:-1px;width:0;height:2px;background:var(--gold);transition:width .5s var(--ease)}
+.mission-row:hover::after{width:100%}
+.mission-ghost{font-family:var(--fd);font-size:2.6rem;color:var(--line);line-height:1;flex-shrink:0;width:64px;transition:color var(--t)}
+.mission-row:hover .mission-ghost{color:var(--gold-soft)}
+.mission-row h3{font-size:1.06rem;margin-bottom:6px;transition:transform var(--t);font-family:var(--fb);font-weight:700}
+.mission-row:hover h3{transform:translateX(6px)}
+.mission-row p{font-size:.92rem;line-height:1.6}
+#impact{background:var(--night);padding:120px 0;position:relative;overflow:hidden}
+.impact-head{max-width:560px;margin:0 auto 64px;text-align:center}
+.impact-head h2{color:#fff}
+.impact-head p{color:rgba(255,255,255,.5);margin:14px auto 0;font-size:.96rem}
+.impact-grid{display:flex;flex-wrap:wrap;justify-content:center;border-top:1px solid rgba(255,255,255,.12)}
+.impact-card{flex:1 1 200px;text-align:center;padding:44px 24px;border-right:1px solid rgba(255,255,255,.1);transition:background var(--t)}
+.impact-card:hover{background:rgba(200,134,10,.06)}
+.impact-card:last-child{border-right:none}
+.impact-card i{display:none}
+.impact-val{font-family:var(--fd);font-size:clamp(2.6rem,5vw,4.2rem);font-weight:500;color:#fff;line-height:1}
+.impact-lbl{color:rgba(255,255,255,.5);font-size:.85rem;margin-top:12px}
 #projets{background:var(--white)}
-.filters{
-  display:flex;flex-wrap:wrap;gap:8px;
-  margin-bottom:48px;
-}
-.filter-btn{
-  padding:10px 22px;border-radius:50px;
-  background:var(--cream);color:var(--navy);
-  border:1.5px solid var(--grey-light);
-  font-size:.82rem;font-weight:500;
-  transition:all .35s var(--ease-out);
-}
-.filter-btn:hover{border-color:var(--gold)}
-.filter-btn.active{
-  background:var(--navy);color:var(--white);
-  border-color:var(--navy);
-}
-.projets-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:24px;
-}
-.proj-card{
-  background:var(--white);border-radius:var(--radius);
-  overflow:hidden;box-shadow:var(--shadow-sm);
-  transition:transform .45s var(--ease-out),box-shadow .45s var(--ease-out);
-  cursor:pointer;display:flex;flex-direction:column;
-}
-.proj-card:hover{
-  transform:translateY(-8px);
-  box-shadow:var(--shadow-lg);
-}
-.proj-img{
-  position:relative;overflow:hidden;height:220px;
-}
-.proj-img img{
-  width:100%;height:100%;object-fit:cover;
-  transition:transform .7s var(--ease-out);
-}
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:64px}
+.filter-btn{padding:9px 20px;border-radius:100px;background:transparent;color:var(--body);border:1px solid var(--line);font-size:.82rem;font-weight:600;transition:var(--t);cursor:pointer}
+.filter-btn.active{background:var(--night);color:#fff;border-color:var(--night)}
+.filter-btn:not(.active):hover{border-color:var(--gold);color:var(--gold)}
+.projets-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:48px 40px}
+.proj-card{cursor:pointer;grid-column:span 3}
+.proj-card:nth-child(6n+1){grid-column:span 6}
+.proj-card:nth-child(6n+1) .proj-img{aspect-ratio:21/9}
+.proj-card:nth-child(6n+1) h3{font-size:clamp(1.5rem,3vw,2.1rem)}
+.proj-card:nth-child(3n+2){margin-top:56px}
+.proj-img{overflow:hidden;aspect-ratio:4/3;margin-bottom:26px;position:relative}
+.proj-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
 .proj-card:hover .proj-img img{transform:scale(1.06)}
-.proj-tag{
-  position:absolute;top:14px;left:14px;
-  background:var(--navy);color:var(--white);
-  padding:5px 14px;border-radius:50px;
-  font-size:.7rem;font-weight:600;letter-spacing:.04em;
-}
-.proj-body{
-  padding:24px 24px 20px;flex:1;
-  display:flex;flex-direction:column;
-}
-.proj-date{
-  color:var(--gold);font-size:.78rem;
-  font-weight:600;margin-bottom:8px;
-}
-.proj-body h3{
-  font-size:1.1rem;margin-bottom:10px;line-height:1.3;
-}
-.proj-desc{
-  color:var(--grey);font-size:.86rem;line-height:1.65;
-  flex:1;margin-bottom:16px;
-  display:-webkit-box;-webkit-line-clamp:2;
-  -webkit-box-orient:vertical;overflow:hidden;
-}
-.proj-foot{
-  display:flex;justify-content:space-between;align-items:center;
-  padding-top:16px;border-top:1px solid var(--grey-light);
-}
-.proj-more{
-  color:var(--gold);font-size:.82rem;font-weight:600;
-  display:flex;align-items:center;gap:6px;
-  transition:gap .3s var(--ease-out);
-}
-.proj-card:hover .proj-more{gap:10px}
-.pagination{
-  display:flex;align-items:center;justify-content:center;
-  gap:8px;margin-top:48px;
-}
-.page-btn{
-  width:40px;height:40px;border-radius:50%;
-  background:var(--cream);border:1.5px solid var(--grey-light);
-  color:var(--navy);font-size:.85rem;font-weight:500;
-  display:flex;align-items:center;justify-content:center;
-  transition:all .35s var(--ease-out);cursor:pointer;
-}
-.page-btn:hover,.page-btn.active{
-  background:var(--navy);border-color:var(--navy);color:var(--white);
-}
-.page-btn:disabled{opacity:.3;cursor:default}
-@media(max-width:900px){
-  .projets-grid{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:600px){
-  .projets-grid{grid-template-columns:1fr}
-}
-
-/* ============================================
-   GALERIE
-   ============================================ */
-#galerie{background:var(--navy);padding:100px 0}
-#galerie .sec-label{color:var(--gold)}
-#galerie .sec-title{color:var(--white)}
-.galerie-strip{
-  display:flex;gap:12px;overflow-x:auto;
-  scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:none;padding-bottom:12px;
-  height:320px;
-}
-.galerie-strip::-webkit-scrollbar{display:none}
-.gal-item{
-  flex:0 0 auto;width:320px;height:100%;
-  border-radius:var(--radius-sm);overflow:hidden;
-  cursor:zoom-in;scroll-snap-align:start;
-  position:relative;
-}
-.gal-item img{
-  width:100%;height:100%;object-fit:cover;
-  transition:transform .7s var(--ease-out);
-}
-.gal-item:hover img{transform:scale(1.08)}
-.gal-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(10,26,58,.8) 0%,transparent 50%);
-  opacity:0;transition:opacity .4s var(--ease);
-  display:flex;align-items:flex-end;padding:20px;
-}
-.gal-item:hover .gal-overlay{opacity:1}
-.gal-overlay p{color:var(--white);font-size:.85rem;font-weight:500}
-.gal-nav{
-  position:absolute;top:50%;transform:translateY(-50%);
-  width:44px;height:44px;border-radius:50%;
-  background:rgba(10,26,58,.7);color:var(--white);
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;z-index:2;font-size:.9rem;
-  transition:background .3s var(--ease),transform .3s var(--ease-out);
-}
-.gal-nav:hover{background:var(--gold);transform:translateY(-50%) scale(1.1)}
-.gal-prev{left:-16px}
-.gal-next{right:-16px}
+.proj-meta{display:flex;align-items:center;gap:0;margin-bottom:10px;font-size:.78rem;color:var(--gold);font-weight:700;letter-spacing:.02em;text-transform:uppercase}
+.proj-body h3{font-size:1.35rem;font-family:var(--fd);font-weight:500;margin-bottom:12px}
+.proj-desc{font-size:.94rem;line-height:1.7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:18px;max-width:52ch}
+.proj-foot{display:flex;justify-content:space-between;align-items:center}
+.proj-more{color:var(--ink);font-size:.85rem;font-weight:700;display:flex;align-items:center;gap:6px;transition:gap var(--t),color var(--t)}
+.proj-card:hover .proj-more{gap:11px;color:var(--gold)}
+.proj-wa{color:var(--muted);font-size:.82rem;display:flex;align-items:center;gap:5px;transition:color var(--t)}
+.proj-wa:hover{color:#25D366}
+.pagination{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:72px}
+.page-btn{width:36px;height:36px;background:transparent;border:none;color:var(--muted);font-size:.85rem;font-weight:600;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--t);border-radius:50%}
+.page-btn:hover{background:var(--cream)}
+.page-btn.active{background:var(--night);color:#fff}
+.page-arrow{width:36px;height:36px;background:transparent;border:1px solid var(--line);color:var(--body);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--t);font-size:.85rem;border-radius:50%}
+.page-arrow:hover:not(:disabled){border-color:var(--gold);color:var(--gold)}
+.page-arrow:disabled{opacity:.3;cursor:default}
+.proj-count{font-size:.82rem;color:var(--muted);text-align:center;margin-top:18px}
+#galerie{background:var(--cream);padding:150px 0}
 .galerie-wrap{position:relative}
-@media(max-width:768px){
-  .galerie-strip{height:240px}
-  .gal-item{width:240px}
-  .gal-nav{width:36px;height:36px}
-}
-
-/* ============================================
-   TÉMOIGNAGES
-   ============================================ */
+.galerie-strip{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;height:64vh;max-height:600px;align-items:stretch}
+.galerie-strip::-webkit-scrollbar{display:none}
+.gal-item{flex:0 0 auto;width:min(74vw,560px);height:100%;overflow:hidden;cursor:zoom-in;scroll-snap-align:start;position:relative}
+.gal-item:nth-child(even){margin-top:44px;height:calc(100% - 44px)}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.gal-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(9,24,58,.75) 0%,transparent 45%);opacity:0;transition:var(--t);display:flex;align-items:flex-end;padding:22px}
+.gal-ov p{color:#fff;font-size:.86rem}
+.gal-item:hover img{transform:scale(1.05)}
+.gal-item:hover .gal-ov{opacity:1}
+.gal-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;background:var(--white);color:var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;transition:var(--t);font-size:.85rem;box-shadow:0 12px 32px -10px rgba(9,24,58,.3)}
+.gal-nav:hover{color:var(--gold);transform:translateY(-50%) scale(1.08)}
+.gal-prev{left:-10px}
+.gal-next{right:-10px}
+.gal-pagination{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:32px}
 #temoignages{background:var(--white)}
-.temo-track{
-  display:flex;gap:24px;overflow-x:auto;
-  scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:none;padding-bottom:12px;
-}
+.temo-track{display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .temo-track::-webkit-scrollbar{display:none}
-.temo-card{
-  flex:0 0 340px;scroll-snap-align:start;
-  background:var(--cream);border-radius:var(--radius);
-  padding:36px 32px;
-  transition:transform .4s var(--ease-out),box-shadow .4s var(--ease-out);
-}
-.temo-card:hover{
-  transform:translateY(-4px);
-  box-shadow:var(--shadow-md);
-}
-.temo-quote{
-  font-family:var(--font-title);font-size:3rem;
-  color:var(--gold);line-height:1;margin-bottom:12px;
-}
-.temo-text{
-  color:var(--grey);font-size:.92rem;
-  font-style:italic;line-height:1.75;
-  margin-bottom:24px;
-}
+.temo-card{flex:0 0 min(80vw,600px);scroll-snap-align:start;padding-right:90px;position:relative}
+.temo-q{position:absolute;top:-36px;left:-8px;font-family:var(--fd);font-size:6rem;color:var(--line);line-height:1;z-index:0;user-select:none}
+.temo-txt{position:relative;font-family:var(--fd);font-size:clamp(1.35rem,2.4vw,1.8rem);font-style:italic;color:var(--ink);line-height:1.5;margin-bottom:32px;z-index:1}
 .temo-author{display:flex;align-items:center;gap:14px}
-.temo-author img{
-  width:48px;height:48px;border-radius:50%;
-  object-fit:cover;border:2px solid var(--gold);
-}
-.temo-name{font-weight:600;font-size:.9rem;color:var(--navy)}
-.temo-role{font-size:.78rem;color:var(--grey);margin-top:2px}
-
-/* ============================================
-   ÉQUIPE
-   ============================================ */
+.temo-author img{width:48px;height:48px;border-radius:50%;object-fit:cover}
+.temo-name{font-weight:700;font-size:.9rem;color:var(--ink)}
+.temo-role{font-size:.8rem;color:var(--muted);margin-top:1px}
 #membres{background:var(--cream)}
-.membres-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
-  gap:24px;
-}
-.membre-card{
-  background:var(--white);border-radius:var(--radius);
-  overflow:hidden;text-align:center;
-  transition:transform .4s var(--ease-out),box-shadow .4s var(--ease-out);
-}
-.membre-card:hover{
-  transform:translateY(-6px);
-  box-shadow:var(--shadow-lg);
-}
-.membre-img{height:240px;overflow:hidden}
-.membre-img img{
-  width:100%;height:100%;object-fit:cover;
-  transition:transform .7s var(--ease-out);
-}
-.membre-card:hover .membre-img img{transform:scale(1.06)}
-.membre-body{padding:24px 20px}
-.membre-body h3{font-size:1rem;margin-bottom:4px}
-.membre-role{
-  color:var(--gold);font-size:.82rem;
-  font-weight:600;margin-bottom:16px;
-}
-.membre-links{display:flex;justify-content:center;gap:10px}
-.membre-links a{
-  width:36px;height:36px;border-radius:50%;
-  background:var(--cream);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--navy);font-size:.85rem;
-  transition:all .3s var(--ease-out);
-}
-.membre-links a:hover{background:var(--gold);color:var(--navy)}
-
-/* ============================================
-   VOLONTARIAT
-   ============================================ */
+.membres-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:44px 32px}
+.membre-card:nth-child(even){margin-top:40px}
+.membre-img{aspect-ratio:3/4;overflow:hidden;margin-bottom:18px;position:relative}
+.membre-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease),filter var(--t);filter:grayscale(.5)}
+.membre-card:hover .membre-img img{transform:scale(1.05);filter:grayscale(0)}
+.membre-body h3{font-size:1rem;margin-bottom:3px}
+.membre-fn{color:var(--muted);font-size:.82rem;margin-bottom:10px}
+.membre-cta{display:flex;gap:14px}
+.membre-cta a{font-size:.78rem;color:var(--gold)}
 #volontaire{background:var(--white)}
-.volo-grid{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:80px;align-items:start;
-}
-.volo-left h3{font-size:1.4rem;margin-bottom:16px}
-.volo-left p{color:var(--grey);font-size:.93rem;line-height:1.8;margin-bottom:16px}
-.volo-list{display:flex;flex-direction:column;gap:12px;margin:28px 0 32px}
-.volo-item{
-  display:flex;align-items:flex-start;gap:12px;
-  font-size:.9rem;color:var(--navy);line-height:1.6;
-}
-.volo-item i{color:var(--gold);margin-top:4px;font-size:.8rem;flex-shrink:0}
-.volo-form label{
-  display:block;font-size:.82rem;font-weight:600;
-  color:var(--navy);margin-bottom:6px;margin-top:16px;
-}
+.volo-grid{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start}
+.volo-left h3{font-size:clamp(1.6rem,3vw,2.1rem);margin-bottom:20px;font-family:var(--fd);font-weight:500}
+.volo-left p{font-size:1rem;line-height:1.8;margin-bottom:18px}
+.volo-missions{display:flex;flex-direction:column;gap:14px;margin:28px 0 36px}
+.volo-mission{display:flex;align-items:flex-start;gap:14px;font-size:.92rem;line-height:1.55}
+.volo-mission i{color:var(--gold);margin-top:5px;flex-shrink:0;font-size:.5rem}
+.volo-form{background:var(--cream);padding:44px}
+.volo-form label{display:block;font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:8px;margin-top:20px}
 .volo-form label:first-child{margin-top:0}
-.volo-form input,.volo-form select,.volo-form textarea{
-  width:100%;padding:14px 18px;
-  border-radius:var(--radius-sm);
-  border:1.5px solid var(--grey-light);
-  background:var(--cream);
-  font-family:var(--font-body);font-size:.9rem;
-  color:var(--navy);outline:none;
-  transition:border-color .3s var(--ease),box-shadow .3s var(--ease);
-}
-.volo-form input:focus,.volo-form textarea:focus{
-  border-color:var(--gold);
-  box-shadow:0 0 0 3px rgba(201,162,39,.12);
-}
-.volo-form textarea{resize:vertical;min-height:100px}
-.volo-form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.volo-form input,.volo-form select,.volo-form textarea{width:100%;padding:13px 0;border:none;border-bottom:1px solid var(--line);background:transparent;font-family:var(--fb);font-size:.94rem;color:var(--ink);outline:none;transition:border-color var(--t)}
+.volo-form input:focus,.volo-form textarea:focus,.volo-form select:focus{border-color:var(--gold)}
+.volo-form textarea{resize:vertical;min-height:80px}
+.volo-form .row{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .volo-form .row label{margin-top:0}
-.btn-submit{
-  width:100%;padding:16px;border-radius:50px;
-  background:var(--gold);color:var(--navy);
-  font-weight:600;font-size:.92rem;
-  transition:transform .3s var(--ease-out),box-shadow .3s var(--ease-out);
-  margin-top:20px;display:flex;align-items:center;justify-content:center;gap:8px;
-}
-.btn-submit:hover{
-  transform:translateY(-2px);
-  box-shadow:0 8px 28px rgba(201,162,39,.35);
-}
-@media(max-width:900px){
-  .volo-grid{grid-template-columns:1fr;gap:48px}
-  .volo-form .row{grid-template-columns:1fr}
-}
-
-/* ============================================
-   DON
-   ============================================ */
-#don{
-  background:var(--navy);padding:120px 0;
-  position:relative;overflow:hidden;
-}
-#don::before{
-  content:'';position:absolute;
-  top:-50%;right:-20%;width:600px;height:600px;
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(201,162,39,.08) 0%,transparent 70%);
-}
-.don-content{position:relative;z-index:1;text-align:center}
-.don-content .sec-label{color:var(--gold)}
-.don-content h2{color:var(--white);margin-bottom:16px}
-.don-content > p{
-  color:rgba(255,255,255,.5);
-  max-width:560px;margin:0 auto 56px;
-  font-size:.98rem;line-height:1.8;
-}
-.don-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:20px;max-width:880px;margin:0 auto 32px;
-}
-.don-card{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:var(--radius);
-  padding:36px 28px;
-  transition:all .4s var(--ease-out);
-  display:flex;flex-direction:column;align-items:center;
-  text-align:center;
-}
-.don-card:hover{
-  background:rgba(201,162,39,.08);
-  border-color:rgba(201,162,39,.3);
-  transform:translateY(-4px);
-}
-.don-card .icon{font-size:2rem;margin-bottom:16px}
-.don-card h3{color:var(--white);font-size:1rem;margin-bottom:8px}
-.don-card p{
-  color:rgba(255,255,255,.45);
-  font-size:.84rem;line-height:1.6;
-  margin-bottom:20px;flex:1;
-}
-.btn-don-card{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:12px 24px;border-radius:50px;
-  background:var(--gold);color:var(--navy);
-  font-weight:600;font-size:.85rem;
-  transition:transform .3s var(--ease-out);
-}
-.btn-don-card:hover{transform:scale(1.05)}
-.btn-don-card.outline{
-  background:transparent;
-  border:1.5px solid rgba(255,255,255,.3);
-  color:var(--white);
-}
-.btn-don-card.outline:hover{
-  background:rgba(255,255,255,.1);
-  border-color:var(--white);
-}
-.don-note{
-  color:rgba(255,255,255,.3);
-  font-size:.78rem;
-  display:flex;align-items:center;justify-content:center;gap:8px;
-}
-.don-note i{color:var(--gold)}
-@media(max-width:768px){
-  .don-grid{grid-template-columns:1fr;max-width:400px}
-}
-
-/* ============================================
-   NEWSLETTER
-   ============================================ */
-#newsletter{background:var(--gold);padding:72px 0}
-.nl-inner{
-  display:flex;flex-wrap:wrap;gap:32px;
-  align-items:center;justify-content:space-between;
-}
-.nl-text h2{
-  color:var(--navy);font-size:1.8rem;margin-bottom:6px;
-}
-.nl-text p{color:rgba(10,26,58,.6);font-size:.9rem}
-.nl-form{display:flex;gap:12px;flex-wrap:wrap}
-.nl-form input{
-  padding:16px 24px;border-radius:50px;
-  border:none;background:var(--white);
-  font-size:.9rem;width:280px;
-  font-family:var(--font-body);outline:none;
-  color:var(--navy);
-}
-.nl-form button{
-  padding:16px 28px;border-radius:50px;
-  background:var(--navy);color:var(--white);
-  font-weight:600;font-size:.88rem;
-  transition:transform .3s var(--ease-out);
-  display:flex;align-items:center;gap:8px;
-}
-.nl-form button:hover{transform:translateY(-2px)}
-@media(max-width:768px){
-  .nl-form{width:100%}
-  .nl-form input{width:100%}
-  .nl-form button{width:100%;justify-content:center}
-}
-
-/* ============================================
-   CONTACT
-   ============================================ */
-#contact{background:var(--cream)}
-.contact-grid{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:64px;
-}
-.contact-info h3{margin-bottom:28px}
-.c-item{
-  display:flex;gap:16px;align-items:flex-start;
-  margin-bottom:24px;
-}
-.c-icon{
-  width:44px;height:44px;border-radius:12px;
-  background:rgba(201,162,39,.1);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--gold);font-size:.9rem;flex-shrink:0;
-}
-.c-item strong{
-  display:block;font-size:.82rem;
-  font-weight:600;color:var(--navy);margin-bottom:4px;
-}
-.c-item span,.c-item a{
-  font-size:.9rem;color:var(--grey);line-height:1.6;
-}
-.c-item a{color:var(--gold);transition:color .3s var(--ease)}
-.c-item a:hover{color:var(--navy)}
-.contact-form label{
-  display:block;font-size:.82rem;font-weight:600;
-  color:var(--navy);margin-bottom:6px;margin-top:16px;
-}
-.contact-form label:first-child{margin-top:0}
-.contact-form input,.contact-form select,.contact-form textarea{
-  width:100%;padding:14px 18px;
-  border-radius:var(--radius-sm);
-  border:1.5px solid var(--grey-light);
-  background:var(--white);
-  font-family:var(--font-body);font-size:.9rem;
-  color:var(--navy);outline:none;
-  transition:border-color .3s var(--ease),box-shadow .3s var(--ease);
-}
-.contact-form input:focus,.contact-form textarea:focus{
-  border-color:var(--gold);
-  box-shadow:0 0 0 3px rgba(201,162,39,.12);
-}
-.contact-form textarea{resize:vertical;min-height:120px}
-.contact-form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.contact-form .row label{margin-top:0}
-.map-wrap{
-  margin-top:28px;border-radius:var(--radius);
-  overflow:hidden;box-shadow:var(--shadow-sm);
-}
-.map-wrap iframe{display:block;width:100%;height:240px;border:0}
-@media(max-width:900px){
-  .contact-grid{grid-template-columns:1fr;gap:48px}
-  .contact-form .row{grid-template-columns:1fr}
-}
-
-/* ============================================
-   FOOTER
-   ============================================ */
-footer{
-  background:#050E22;
-  color:rgba(255,255,255,.4);
-  padding:72px 0 32px;
-}
-.ft-grid{
-  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
-  gap:48px;margin-bottom:48px;
-}
-.ft-logo{display:flex;align-items:center;gap:12px;margin-bottom:20px}
-.ft-logo .logo-svg{width:52px;height:52px}
-.ft-desc{
-  font-size:.86rem;line-height:1.75;
-  max-width:280px;margin-bottom:12px;
-}
-.ft-reg{
-  font-size:.75rem;color:rgba(255,255,255,.25);
-  margin-bottom:24px;
-}
-.ft-social{display:flex;gap:10px}
-.ft-social a{
-  width:38px;height:38px;border-radius:50%;
-  background:rgba(255,255,255,.06);
-  display:flex;align-items:center;justify-content:center;
-  color:rgba(255,255,255,.5);font-size:.88rem;
-  transition:all .3s var(--ease-out);
-}
-.ft-social a:hover{background:var(--gold);color:var(--navy)}
-.ft-col h4{
-  color:var(--white);font-size:.8rem;
-  font-weight:600;letter-spacing:.08em;
-  text-transform:uppercase;margin-bottom:20px;
-}
-.ft-links{list-style:none;display:flex;flex-direction:column;gap:10px}
-.ft-links a{
-  font-size:.86rem;transition:color .3s var(--ease);
-}
+.volo-form button{margin-top:36px}
+#don{position:relative;background:var(--night);padding:150px 0;text-align:center;overflow:hidden}
+#don::before{content:'';position:absolute;top:0;right:-10%;width:60%;height:100%;background:linear-gradient(135deg,var(--green) 0%,transparent 70%);opacity:.18;transform:skewX(-12deg)}
+.don-in{position:relative;max-width:700px;margin:0 auto}
+#don h2{color:#fff;margin-bottom:18px}
+.don-sub{color:rgba(255,255,255,.6);margin:0 auto 64px;font-size:1rem;line-height:1.75}
+.don-methods{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.14);text-align:left}
+.don-method{padding:36px 22px 0;border-right:1px solid rgba(255,255,255,.1);transition:transform var(--t)}
+.don-method:hover{transform:translateY(-6px)}
+.don-method:last-child{border-right:none}
+.don-ico{display:none}
+.don-method h3{color:#fff;font-size:.96rem;margin-bottom:10px;font-weight:700}
+.don-method p{color:rgba(255,255,255,.5);font-size:.84rem;margin-bottom:18px;line-height:1.6}
+.don-btn{display:inline-flex;align-items:center;gap:8px;color:var(--gold-soft);font-weight:700;font-size:.86rem;text-decoration:none}
+.don-btn:hover{color:var(--gold)}
+.don-btn.outline{color:rgba(255,255,255,.75)}
+.don-btn.outline:hover{color:#fff}
+.don-note{color:rgba(255,255,255,.35);font-size:.78rem;margin-top:48px}
+#newsletter{background:var(--cream);padding:96px 0}
+.nl-in{max-width:600px;margin:0 auto;text-align:center}
+.nl-text h2{font-size:clamp(1.8rem,3vw,2.4rem)}
+.nl-text p{margin-top:10px;font-size:.94rem;color:var(--body)}
+.nl-form{display:flex;gap:0;margin-top:32px;border-bottom:2px solid var(--ink);max-width:440px;margin-left:auto;margin-right:auto}
+.nl-form input{flex:1;padding:14px 0;border:none;background:transparent;font-size:.96rem;font-family:var(--fb);outline:none;color:var(--ink)}
+.nl-form button{padding:14px 6px;font-size:1.1rem;transition:transform var(--t)}
+.nl-form button:hover{transform:translateX(4px)}
+#contact{background:var(--white)}
+.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:90px}
+.contact-info h3{margin-bottom:32px;font-size:clamp(1.4rem,2.4vw,1.7rem);font-family:var(--fd);font-weight:500}
+.c-line{margin-bottom:26px;font-size:.94rem;line-height:1.6}
+.c-line strong{display:block;font-size:.76rem;color:var(--gold);font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em}
+.c-line a{color:var(--ink)}
+.c-line a:hover{color:var(--gold)}
+.map-wrap{margin-top:36px;overflow:hidden;position:relative}
+.map-wrap::after{content:'';position:absolute;inset:0;box-shadow:inset 0 0 0 1px var(--line);pointer-events:none}
+.map-wrap iframe{display:block;width:100%;height:300px;border:0;filter:grayscale(.3)}
+.cf label{display:block;font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:8px;margin-top:20px}
+.cf label:first-child{margin-top:0}
+.cf input,.cf select,.cf textarea{width:100%;padding:13px 0;border:none;border-bottom:1px solid var(--line);background:transparent;font-family:var(--fb);font-size:.94rem;color:var(--ink);outline:none;transition:border-color var(--t)}
+.cf input:focus,.cf textarea:focus,.cf select:focus{border-color:var(--gold)}
+.cf textarea{resize:vertical;min-height:90px}
+.cf .row{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.cf button{margin-top:32px}
+footer{background:var(--night);color:rgba(255,255,255,.45);padding:96px 0 32px}
+.ft-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:48px;margin-bottom:72px}
+.ft-logo-wrap{display:flex;align-items:center;margin-bottom:18px}
+.ft-logo-svg{height:52px;width:auto;display:block}
+.ft-desc{font-size:.86rem;line-height:1.75;max-width:280px}
+.ft-desc.small{margin-top:10px;font-size:.74rem}
+.ft-col h4{color:#fff;font-size:.78rem;font-weight:700;margin-bottom:20px;letter-spacing:.03em;text-transform:uppercase}
+.ft-links{list-style:none;display:flex;flex-direction:column;gap:12px}
+.ft-links a{font-size:.87rem;transition:color var(--t)}
 .ft-links a:hover{color:var(--gold)}
-.ft-bottom{
-  border-top:1px solid rgba(255,255,255,.05);
-  padding-top:24px;
-  display:flex;justify-content:space-between;
-  align-items:center;flex-wrap:wrap;gap:12px;
-  font-size:.8rem;
-}
+.socials{display:flex;gap:18px;margin-top:22px}
+.soc{color:rgba(255,255,255,.5);font-size:.95rem;transition:color var(--t),transform var(--t)}
+.soc:hover{color:var(--gold);transform:translateY(-2px)}
+.ft-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:26px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-size:.79rem}
 .ft-bottom a:hover{color:var(--gold)}
-@media(max-width:900px){
-  .ft-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:600px){
-  .ft-grid{grid-template-columns:1fr}
-  .ft-bottom{flex-direction:column;text-align:center}
-}
-
-/* ============================================
-   BOUTONS FLOTTANTS
-   ============================================ */
-.wa-fab{
-  position:fixed;bottom:28px;right:28px;
-  width:56px;height:56px;border-radius:50%;
-  background:#25D366;color:var(--white);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.5rem;z-index:800;
-  box-shadow:0 6px 24px rgba(37,211,102,.4);
-  transition:transform .35s var(--ease-out);
-}
-.wa-fab:hover{transform:scale(1.12)}
-.top-btn{
-  position:fixed;bottom:96px;right:28px;
-  width:44px;height:44px;border-radius:50%;
-  background:var(--navy);color:var(--white);
-  display:flex;align-items:center;justify-content:center;
-  font-size:.9rem;z-index:800;cursor:pointer;
-  opacity:0;pointer-events:none;
-  transition:opacity .4s var(--ease),transform .4s var(--ease-out);
-  box-shadow:var(--shadow-md);
-}
+.wa-fab{position:fixed;bottom:24px;right:24px;width:54px;height:54px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.4rem;z-index:800;box-shadow:0 8px 24px rgba(37,211,102,.4);transition:transform var(--t)}
+.wa-fab:hover{transform:scale(1.08)}
+.top-btn{position:fixed;bottom:90px;right:24px;width:44px;height:44px;border-radius:50%;background:var(--night);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;z-index:800;cursor:pointer;opacity:0;pointer-events:none;transition:var(--t)}
 .top-btn.on{opacity:1;pointer-events:all}
 .top-btn:hover{transform:translateY(-3px)}
-
-/* ============================================
-   MODAL
-   ============================================ */
-.modal-bg{
-  display:none;position:fixed;inset:0;
-  background:rgba(5,14,34,.92);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-  z-index:1000;align-items:center;justify-content:center;
-  padding:20px;
-}
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(9,24,58,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:1000;align-items:center;justify-content:center;padding:20px}
 .modal-bg.open{display:flex}
-.modal-box{
-  background:var(--white);border-radius:24px;
-  width:100%;max-width:720px;max-height:90vh;
-  overflow-y:auto;position:relative;padding:36px;
-}
-.modal-close{
-  position:sticky;top:0;float:right;
-  width:40px;height:40px;border-radius:50%;
-  background:var(--cream);color:var(--navy);
-  display:flex;align-items:center;justify-content:center;
-  font-size:.95rem;cursor:pointer;
-  transition:all .3s var(--ease);
-}
-.modal-close:hover{background:var(--navy);color:var(--white)}
-.carousel{position:relative;margin:20px 0;border-radius:var(--radius-sm);overflow:hidden}
-.carousel-track{display:flex;transition:transform .4s var(--ease-out)}
-.carousel-track img{flex:0 0 100%;width:100%;height:300px;object-fit:cover}
-.carousel-btn{
-  position:absolute;top:50%;transform:translateY(-50%);
-  width:42px;height:42px;border-radius:50%;
-  background:rgba(10,26,58,.7);color:var(--white);
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;font-size:.9rem;
-  transition:background .3s var(--ease);
-}
-.carousel-btn:hover{background:var(--gold)}
-.carousel-prev{left:12px}
-.carousel-next{right:12px}
-.carousel-dots{display:flex;justify-content:center;gap:6px;margin-top:12px}
-.c-dot{
-  width:8px;height:8px;border-radius:50%;
-  background:var(--grey-light);cursor:pointer;
-  transition:background .3s var(--ease);
-}
-.c-dot.active{background:var(--gold)}
-.modal-title{font-size:1.6rem;margin:8px 0 12px}
-.modal-date{color:var(--gold);font-size:.85rem;font-weight:600;margin-bottom:16px}
-.modal-desc{color:var(--grey);font-size:.95rem;line-height:1.85}
-
-/* ============================================
-   LIGHTBOX
-   ============================================ */
-#lb{
-  display:none;position:fixed;inset:0;
-  background:rgba(0,0,0,.97);z-index:1100;
-  align-items:center;justify-content:center;
-}
+.modal-box{background:var(--white);width:100%;max-width:700px;max-height:90vh;overflow-y:auto;position:relative;padding:44px}
+.modal-x{position:absolute;top:22px;right:22px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:.95rem;color:var(--body);cursor:pointer;transition:transform var(--t),color var(--t)}
+.modal-x:hover{color:var(--gold);transform:rotate(90deg)}
+.modal-carousel{position:relative;margin:22px 0;overflow:hidden;background:var(--cream)}
+.carousel-track{display:flex;transition:transform .4s var(--ease)}
+.carousel-track img{flex:0 0 100%;width:100%;height:320px;object-fit:cover}
+.carousel-prev,.carousel-next{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;background:rgba(255,255,255,.92);color:var(--ink);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.85rem;transition:var(--t);z-index:2}
+.carousel-prev:hover,.carousel-next:hover{color:var(--gold)}
+.carousel-prev{left:14px}
+.carousel-next{right:14px}
+.carousel-dots{display:flex;justify-content:center;gap:7px;margin-top:12px}
+.c-dot{width:6px;height:6px;border-radius:50%;background:var(--line);cursor:pointer;transition:var(--t)}
+.c-dot.active{background:var(--gold);transform:scale(1.3)}
+.modal-no-img{display:flex;align-items:center;justify-content:center;height:110px;background:var(--cream);color:var(--muted);font-size:.85rem;margin:20px 0}
+.modal-share{margin-top:28px;padding-top:22px;border-top:1px solid var(--line);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.modal-share span{font-size:.82rem;color:var(--muted)}
+.share-wa{display:inline-flex;align-items:center;gap:6px;color:#25D366;font-size:.86rem;font-weight:700}
+#lb{display:none;position:fixed;inset:0;background:rgba(6,12,28,.97);z-index:1100;align-items:center;justify-content:center}
 #lb.open{display:flex}
-#lb img{max-width:92vw;max-height:88vh;border-radius:var(--radius-sm);object-fit:contain}
-#lb-close{
-  position:absolute;top:20px;right:24px;
-  color:var(--white);font-size:1.6rem;cursor:pointer;
-  background:rgba(255,255,255,.08);
-  width:44px;height:44px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  transition:background .3s var(--ease);border:none;
-}
-#lb-close:hover{background:rgba(255,255,255,.2)}
-#lb-prev,#lb-next{
-  position:absolute;top:50%;transform:translateY(-50%);
-  background:rgba(255,255,255,.08);color:var(--white);
-  border:none;width:48px;height:48px;border-radius:50%;
-  font-size:1rem;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  transition:background .3s var(--ease);
-}
-#lb-prev:hover,#lb-next:hover{background:var(--gold)}
-#lb-prev{left:20px}
-#lb-next{right:20px}
-
-/* ============================================
-   TOAST
-   ============================================ */
-#toasts{
-  position:fixed;top:80px;right:24px;z-index:2000;
-  display:flex;flex-direction:column;gap:10px;
-}
-.toast{
-  background:var(--navy);color:var(--white);
-  padding:14px 20px;border-radius:var(--radius-sm);
-  font-size:.88rem;box-shadow:var(--shadow-lg);
-  display:flex;align-items:center;gap:10px;
-  animation:toastIn .35s var(--ease-out);
-  min-width:240px;max-width:320px;
-}
+#lb img{max-width:92vw;max-height:88vh;object-fit:contain}
+#lb-x{position:absolute;top:20px;right:22px;color:#fff;font-size:1.4rem;cursor:pointer;background:transparent;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background var(--t),transform var(--t);border:none}
+#lb-x:hover{background:rgba(255,255,255,.1);transform:rotate(90deg)}
+#lb-p,#lb-n{position:absolute;top:50%;transform:translateY(-50%);background:transparent;color:#fff;border:none;width:48px;height:48px;border-radius:50%;font-size:1.05rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background var(--t)}
+#lb-p:hover,#lb-n:hover{background:rgba(255,255,255,.1)}
+#lb-p{left:18px}
+#lb-n{right:18px}
+#toasts{position:fixed;top:70px;right:18px;z-index:2000;display:flex;flex-direction:column;gap:8px}
+.toast{background:var(--night);color:#fff;padding:15px 20px;font-size:.86rem;display:flex;align-items:center;gap:10px;animation:tIn .4s var(--ease);min-width:220px;max-width:300px;box-shadow:0 16px 40px -12px rgba(9,24,58,.4)}
 .toast.ok{border-left:3px solid #22C55E}
 .toast.err{border-left:3px solid #EF4444}
-@keyframes toastIn{from{transform:translateX(120%);opacity:0}to{transform:none;opacity:1}}
-
-/* ============================================
-   EMPTY STATE
-   ============================================ */
-.empty{
-  text-align:center;padding:64px 24px;
-  color:var(--grey);
+.toast.inf{border-left:3px solid var(--gold)}
+@keyframes tIn{from{transform:translateX(110%);opacity:0}to{transform:none;opacity:1}}
+.empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.empty i{font-size:1.6rem;display:block;margin-bottom:12px;opacity:.5}
+.empty p{font-size:.88rem;margin:0 auto}
+@media(max-width:1100px){
+    .hero-bottom{grid-template-columns:1fr;gap:48px}
+    .hero-visual{aspect-ratio:16/9;margin-top:12px}
+    .hero-visual::before{display:none}
+    .about-grid{grid-template-columns:1fr;gap:64px}
+    .about-badge{left:20px;bottom:-28px}
+    .missions-list{grid-template-columns:1fr}
+    .missions-list .mission-row:nth-last-child(-n+2){border-bottom:none}
+    .missions-list .mission-row:last-child{border-bottom:1px solid var(--line)}
+    .membres-grid{grid-template-columns:repeat(3,1fr)}
+    .membre-card:nth-child(even){margin-top:0}
+    .projets-grid{grid-template-columns:1fr;gap:56px}
+    .proj-card{grid-column:span 1 !important;margin-top:0 !important}
+    .proj-card .proj-img{aspect-ratio:16/10 !important}
+    .sec-head{flex-direction:column;align-items:flex-start;gap:16px}
 }
-.empty i{font-size:2.4rem;display:block;margin-bottom:16px;opacity:.3}
-.empty p{font-size:.9rem}
-
-/* ============================================
-   REDUCED MOTION
-   ============================================ */
+@media(max-width:900px){
+    .ft-grid{grid-template-columns:1fr 1fr}
+    .contact-grid,.volo-grid{grid-template-columns:1fr;gap:56px}
+    .don-methods{grid-template-columns:1fr;border-top:none}
+    .don-method{border-right:none;border-top:1px solid rgba(255,255,255,.14);padding-top:28px}
+    .membres-grid{grid-template-columns:repeat(2,1fr)}
+    .hero-stats-row{flex-direction:column}
+    .hero-stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.08)}
+    .hero-stat:last-child{border-bottom:none}
+    .volo-form{padding:28px}
+}
+@media(max-width:768px){
+    .container{padding:0 20px}
+    .sec{padding:88px 0}
+    #impact{padding:80px 0}
+    #don{padding:96px 0}
+    #galerie{padding:88px 0}
+    .nav-list{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(9,24,58,.98);flex-direction:column;align-items:flex-start;gap:20px;padding:28px 24px;z-index:99}
+    .nav-list.open{display:flex}
+    .m-toggle{display:block}
+    .ft-grid{grid-template-columns:1fr;gap:36px}
+    .cf .row,.volo-form .row{grid-template-columns:1fr}
+    .hero-btns{flex-direction:column;align-items:stretch}
+    .temo-card{flex:0 0 88vw;padding-right:24px}
+    .temo-q{display:none}
+    .membres-grid{grid-template-columns:repeat(2,1fr);gap:28px 20px}
+    .gal-item{width:78vw}
+    .gal-item:nth-child(even){margin-top:0;height:100%}
+    .galerie-strip{height:50vh}
+    .brand-text{font-size:1.05rem}
+    .logo-svg{width:34px;height:34px}
+    .about-badge{position:static;margin-top:20px;max-width:none;display:flex;align-items:center;gap:16px}
+    .about-badge strong{font-size:1.8rem}
+}
 @media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{
-    animation-duration:.01ms !important;
-    transition-duration:.01ms !important;
-  }
+    *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
 }
-</style>
+    </style>
 </head>
 <body>
 
-<!-- Barre de progression -->
-<div class="progress-bar" id="progressBar"></div>
-
-<!-- HEADER -->
-<header id="header">
-  <div class="container">
-    <nav class="nav">
-      <a href="#hero" class="logo-link" aria-label="3APLUS-TOGO Accueil">
-        <svg class="logo-svg" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <path id="arc-h" d="M 20,115 A 100,100 0 0,1 220,115" fill="none"/>
-          </defs>
-          <circle cx="120" cy="135" r="28" fill="#132657"/>
-          <g stroke-width="16" stroke-linecap="round" fill="none">
-            <path d="M 98,118 C 70,50 170,50 142,118" stroke="#EE2A24"/>
-            <path d="M 112,158 C 40,180 40,75 92,108" stroke="#FBD202"/>
-            <path d="M 128,158 C 200,180 200,75 148,108" stroke="#0067C1"/>
-          </g>
-          <circle cx="120" cy="52" r="14" fill="#EE2A24"/>
-          <circle cx="52" cy="148" r="14" fill="#FBD202"/>
-          <circle cx="188" cy="148" r="14" fill="#0067C1"/>
-          <text x="116" y="145" font-family="'Inter',sans-serif" font-weight="900" font-size="26" fill="#fff" text-anchor="end" letter-spacing="-1">3A</text>
-          <g transform="translate(122,131)">
-            <line x1="-6" y1="0" x2="6" y2="0" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
-            <line x1="0" y1="-6" x2="0" y2="6" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
-          </g>
-          <text font-family="'Inter',sans-serif" font-weight="600" font-size="13" fill="#fff" letter-spacing="0.5">
-            <textPath href="#arc-h" startOffset="50%" text-anchor="middle">Associer nos Actions pour un Avenir Plus</textPath>
-          </text>
-        </svg>
-        <span class="brand">3A<span class="plus">+</span> Togo</span>
-      </a>
-      <ul class="nav-menu" id="navMenu">
-        <li><a href="#about">À propos</a></li>
-        <li><a href="#missions">Missions</a></li>
-        <li><a href="#projets">Projets</a></li>
-        <li><a href="#galerie">Galerie</a></li>
-        <li><a href="#membres">Équipe</a></li>
-        <li><a href="#volontaire">Volontariat</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <div class="nav-actions">
-        <a href="#don" class="btn-don"><i class="fas fa-heart"></i> Faire un don</a>
-        <button class="burger" id="burger" aria-label="Menu"><i class="fas fa-bars"></i></button>
-      </div>
-    </nav>
-  </div>
+<header id="hdr">
+    <div class="container">
+        <nav class="nav">
+            <a href="#hero" class="logo-link" aria-label="3APLUS-TOGO, retour à l'accueil">
+                <div class="logo-container">
+                    <svg class="logo-svg" viewBox="0 0 240 240" width="40" height="40" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                        <defs><path id="arc-text-hdr" d="M 20, 115 A 100,100 0 0,1 220, 115" fill="none" /></defs>
+                        <circle cx="120" cy="135" r="28" fill="#1A2744" />
+                        <g stroke-width="16" stroke-linecap="round" fill="none">
+                            <path d="M 98,118 C 70,50 170,50 142,118" stroke="#EE2A24" />
+                            <path d="M 112,158 C 40,180 40,75 92,108" stroke="#FBD202" />
+                            <path d="M 128,158 C 200,180 200,75 148,108" stroke="#0067C1" />
+                        </g>
+                        <circle cx="120" cy="52" r="14" fill="#EE2A24" />
+                        <circle cx="52" cy="148" r="14" fill="#FBD202" />
+                        <circle cx="188" cy="148" r="14" fill="#0067C1" />
+                        <text x="116" y="145" font-family="'Inter', sans-serif" font-weight="900" font-size="26" fill="#ffffff" text-anchor="end" letter-spacing="-1">3A</text>
+                        <g transform="translate(122, 131)">
+                            <line x1="-6" y1="0" x2="6" y2="0" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+                            <line x1="0" y1="-6" x2="0" y2="6" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+                        </g>
+                        <text font-family="'Inter', sans-serif" font-weight="600" font-size="13" fill="#ffffff" letter-spacing="0.5">
+                            <textPath href="#arc-text-hdr" startOffset="50%" text-anchor="middle">Associer nos Actions pour un Avenir Plus</textPath>
+                        </text>
+                    </svg>
+                    <span class="brand-text">3A<span class="sup-plus">+</span> Togo</span>
+                </div>
+            </a>
+            <ul class="nav-list" id="nav-list">
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#missions">Missions</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#galerie">Galerie</a></li>
+                <li><a href="#membres">Équipe</a></li>
+                <li><a href="#volontaire">Volontariat</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="th-btn" id="th-btn" aria-label="Changer de thème"><i class="fas fa-moon" id="th-ico" aria-hidden="true"></i></button>
+                <a href="#don" class="btn btn-gold btn-sm">Faire un don</a>
+                <button class="m-toggle" id="m-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-list"><i class="fas fa-bars" aria-hidden="true"></i></button>
+            </div>
+        </nav>
+    </div>
 </header>
 
-<!-- HERO -->
 <section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-badge reveal">
-        <i class="fas fa-globe-africa"></i>
-        Tsévié, Togo · Depuis 2015
-      </div>
-      <h1 class="reveal reveal-delay-1">Agir ensemble pour <em>un monde plus juste</em></h1>
-      <p class="reveal reveal-delay-2">Camps chantiers internationaux, stages humanitaires, volontariat sans frontières. Nous croyons que chacun peut contribuer à transformer une communauté.</p>
-      <div class="hero-btns reveal reveal-delay-3">
-        <a href="#volontaire" class="btn-primary"><i class="fas fa-hands-helping"></i> Devenir volontaire</a>
-        <a href="#about" class="btn-secondary"><i class="fas fa-compass"></i> Découvrir notre mission</a>
-      </div>
-      <div class="hero-stats reveal reveal-delay-4">
-        <div class="hero-stat">
-          <h3 data-count="2015">2015</h3>
-          <p>Année de fondation à Tsévié</p>
-        </div>
-        <div class="hero-stat">
-          <h3 data-count="4">4</h3>
-          <p>Domaines d'action</p>
-        </div>
-        <div class="hero-stat">
-          <h3 data-count="12">12</h3>
-          <p>Mois d'activité par an</p>
-        </div>
-      </div>
+    <div class="container hero-top">
+        <span class="hero-eyebrow">Tsévié, Togo · depuis 2015</span>
+        <h1 class="hero-title">Agir ensemble pour <em>un avenir plus juste</em></h1>
     </div>
-  </div>
+    <div class="container">
+        <div class="hero-bottom">
+            <div class="hero-sub-col">
+                <p class="hero-sub">Camps chantiers, stages humanitaires et volontariat sans frontières : nous croyons que chacun peut contribuer à transformer une communauté.</p>
+                <div class="hero-btns">
+                    <a href="#volontaire" class="btn btn-gold">Devenir volontaire <i class="fas fa-hands-helping" aria-hidden="true"></i></a>
+                    <a href="#about" class="btn btn-outline">Découvrir notre mission</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80" alt="Volontaires et membres de la communauté lors d'une mission 3APLUS-TOGO">
+            </div>
+        </div>
+    </div>
+    <div class="hero-stats">
+        <div class="container">
+            <div class="hero-stats-row">
+                <div class="hero-stat">
+                    <div class="hero-stat-val">2015</div>
+                    <div class="hero-stat-lbl">Année de fondation</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-val">4 domaines</div>
+                    <div class="hero-stat-lbl">Éducation, santé, environnement, social</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-val">Toute l'année</div>
+                    <div class="hero-stat-lbl">Missions disponibles 12 mois sur 12</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
-<!-- À PROPOS -->
 <section id="about" class="sec">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-visual reveal">
-        <img class="about-img" src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=800&q=80" alt="Volontaires 3APLUS-TOGO sur le terrain">
-        <div class="about-badge">
-          <strong>+10</strong>
-          <span>années sur le terrain</span>
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-visual fade-l">
+                <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=700&q=80" alt="Volontaires 3APLUS-TOGO sur le terrain">
+                <div class="about-badge"><strong>10+</strong><span>années sur le terrain</span></div>
+            </div>
+            <div class="about-text fade-r">
+                <span class="eyebrow">Qui sommes-nous</span>
+                <h2>Une conviction : la solidarité change le monde</h2>
+                <p>3APLUS-TOGO est une association de solidarité internationale à but non lucratif et apolitique, enregistrée au Togo. Notre mission : contribuer à l'épanouissement des populations togolaises à travers des programmes de volontariat concrets, des camps chantiers et des stages humanitaires.</p>
+                <p>À travers notre programme « Volontaires sans frontières », nous créons des liens entre des bénévoles du monde entier et des structures sociales locales qui ont besoin d'appui. Chaque mission est une rencontre, un échange culturel, une transformation mutuelle.</p>
+                <blockquote>« Souciez-vous, en quittant ce monde, non d'avoir été bon, cela ne suffit pas, mais de quitter un monde bon. »<small>Bertolt Brecht</small></blockquote>
+                <p>Nous croyons que ce développement déséquilibré ne changera que si les gens décident de s'unir, dans un esprit de solidarité et de réciprocité, pour garantir un meilleur avenir aux générations suivantes.</p>
+                <p class="reg-note">N° d'enregistrement : 0105/MATDCL-SG-DLPAP-DOCA</p>
+            </div>
         </div>
-      </div>
-      <div class="about-text reveal reveal-delay-2">
-        <span class="sec-label">Qui sommes-nous</span>
-        <h2>Une conviction : la solidarité change le monde</h2>
-        <p>3APLUS-TOGO est une association de solidarité internationale à but non lucratif et apolitique, enregistrée au Togo. Notre mission contribuer à l'épanouissement des populations togolaises à travers des programmes de volontariat concrets, des camps chantiers et des stages humanitaires.</p>
-        <p>À travers notre programme Volontaires sans frontières, nous créons des liens entre des bénévoles du monde entier et des structures sociales locales qui ont besoin d'appui. Chaque mission est une rencontre, un échange culturel, une transformation mutuelle.</p>
-        <div class="about-quote">
-          <p>« Souciez-vous, en quittant ce monde, non d'avoir été bon, cela ne suffit pas, mais de quitter un monde bon. »</p>
-          <small>Bertolt Brecht</small>
-        </div>
-        <p>Nous croyons que ce développement déséquilibré ne changera que si les gens décident de s'unir, dans un esprit de solidarité et de réciprocité, pour garantir un meilleur avenir aux générations suivantes.</p>
-        <div class="reg-badge">
-          <i class="fas fa-certificate"></i>
-          N° 0105/MATDCL-SG-DLPAP-DOCA
-        </div>
-      </div>
     </div>
-  </div>
 </section>
 
-<!-- MISSIONS -->
 <section id="missions" class="sec">
-  <div class="container">
-    <div class="sec-header center reveal">
-      <span class="sec-label">Ce que nous faisons</span>
-      <h2 class="sec-title">Nos domaines d'action</h2>
-      <p class="sec-desc">Huit programmes complémentaires pour répondre aux besoins des communautés togolaises.</p>
+    <div class="container">
+        <div class="sec-head fade">
+            <div class="htext">
+                <span class="eyebrow">Ce que nous faisons</span>
+                <h2>Nos domaines d'action</h2>
+            </div>
+            <p class="hside">Huit façons concrètes de s'impliquer, portées par des volontaires du monde entier.</p>
+        </div>
+        <div class="missions-list fade">
+            <div class="mission-row"><span class="mission-ghost">01</span><div><h3>Soutien scolaire</h3><p>Cours en français, maths, anglais et musique dans les villages manquant d'enseignants.</p></div></div>
+            <div class="mission-row"><span class="mission-ghost">02</span><div><h3>Aide aux préscolaires</h3><p>Animation socioéducative avec des enfants de moins de 5 ans : éveil, dessin, chant, danse.</p></div></div>
+            <div class="mission-row"><span class="mission-ghost">03</span><div><h3>Mission santé</h3><p>Assistance aux équipes soignantes des dispensaires ruraux, ouverte sans expérience obligatoire.</p></div></div>
+            <div class="mission-row"><span class="mission-ghost">04</span><div><h3>Encadrement sportif</h3><p>Foot, basket et handball comme vecteurs d'insertion sociale pour les jeunes.</p></div></div>
+            <div class="mission-row"><span class="mission-ghost">05</span><div><h3>Éco-volontariat</h3><p>Reboisement, agriculture biologique, protection de la faune et de la flore locales.</p></div></div>
+            <div class="mission-row"><span class="mission-ghost">06</span><div><h3>Missions construction</h3><p>Rénovation d'écoles, dispensaires et latrines, sous direction d'artisans locaux.</p></div></div>
+            <div class="mission-row"><span class="mission-ghost">07</span><div><h3>Culture et développement</h3><p>Immersion dans les arts, la musique et les jardins communautaires de la région.</p></div></div>
+            <div class="mission-row"><span class="mission-ghost">08</span><div><h3>Aide aux orphelins</h3><p>Animation quotidienne et cours de langue aux côtés d'équipes locales permanentes.</p></div></div>
+        </div>
     </div>
-    <div class="missions-grid">
-      <div class="mission-card reveal">
-        <div class="mission-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-        <h3>Soutien scolaire</h3>
-        <p>Cours en français, maths, anglais et musique dans les villages manquant d'enseignants.</p>
-      </div>
-      <div class="mission-card reveal reveal-delay-1">
-        <div class="mission-icon"><i class="fas fa-baby"></i></div>
-        <h3>Aide aux préscolaires</h3>
-        <p>Animation socioéducative avec des enfants de moins de 5 ans : éveil, dessin, chant et danse.</p>
-      </div>
-      <div class="mission-card reveal reveal-delay-2">
-        <div class="mission-icon"><i class="fas fa-stethoscope"></i></div>
-        <h3>Mission santé</h3>
-        <p>Assistance aux équipes soignantes des dispensaires ruraux, ouverte à tous les profils motivés.</p>
-      </div>
-      <div class="mission-card reveal reveal-delay-3">
-        <div class="mission-icon"><i class="fas fa-futbol"></i></div>
-        <h3>Encadrement sportif</h3>
-        <p>Foot, basket et handball comme vecteurs d'insertion sociale et de discipline pour les jeunes.</p>
-      </div>
-      <div class="mission-card reveal">
-        <div class="mission-icon"><i class="fas fa-leaf"></i></div>
-        <h3>Éco-volontariat</h3>
-        <p>Reboisement, agriculture biologique et protection de la faune et de la flore locales.</p>
-      </div>
-      <div class="mission-card reveal reveal-delay-1">
-        <div class="mission-icon"><i class="fas fa-hard-hat"></i></div>
-        <h3>Missions construction</h3>
-        <p>Construction et rénovation d'écoles, dispensaires et latrines sous direction d'artisans locaux.</p>
-      </div>
-      <div class="mission-card reveal reveal-delay-2">
-        <div class="mission-icon"><i class="fas fa-drum"></i></div>
-        <h3>Culture et développement</h3>
-        <p>Immersion culturelle totale : arts, musique, jardins communautaires et agriculture.</p>
-      </div>
-      <div class="mission-card reveal reveal-delay-3">
-        <div class="mission-icon"><i class="fas fa-child"></i></div>
-        <h3>Aide aux orphelins</h3>
-        <p>Animation quotidienne et activités socioéducatives dans les orphelinats de la région.</p>
-      </div>
-    </div>
-  </div>
 </section>
 
-<!-- IMPACT -->
 <section id="impact">
-  <div class="container">
-    <div class="sec-header center reveal">
-      <span class="sec-label">Notre empreinte</span>
-      <h2 class="sec-title">Ce que nous avons accompli</h2>
-      <p class="sec-desc">Chaque chiffre représente une vie touchée, une communauté renforcée.</p>
+    <div class="container">
+        <div class="impact-head fade">
+            <span class="eyebrow">Notre empreinte</span>
+            <h2>Ce que nous avons accompli</h2>
+            <p>Chaque chiffre représente une vie touchée, une communauté renforcée.</p>
+        </div>
+        <div class="impact-grid" id="impact-grid"></div>
     </div>
-    <div class="impact-grid" id="impactGrid"></div>
-  </div>
 </section>
 
-<!-- PROJETS -->
 <section id="projets" class="sec">
-  <div class="container">
-    <div class="sec-header reveal">
-      <span class="sec-label">Sur le terrain</span>
-      <h2 class="sec-title">Nos projets</h2>
+    <div class="container">
+        <div class="sec-head fade">
+            <div class="htext">
+                <span class="eyebrow">Sur le terrain</span>
+                <h2>Nos projets</h2>
+            </div>
+        </div>
+        <div class="filters fade" id="proj-filters">
+            <button class="filter-btn active" data-cat="all">Tous</button>
+            <button class="filter-btn" data-cat="education">Éducation</button>
+            <button class="filter-btn" data-cat="sante">Santé</button>
+            <button class="filter-btn" data-cat="environnement">Environnement</button>
+            <button class="filter-btn" data-cat="social">Social</button>
+        </div>
+        <div class="projets-grid" id="proj-grid"></div>
+        <p class="proj-count" id="proj-count"></p>
+        <div class="pagination" id="proj-pages"></div>
     </div>
-    <div class="filters reveal" id="projFilters">
-      <button class="filter-btn active" data-cat="all">Tous</button>
-      <button class="filter-btn" data-cat="education">Éducation</button>
-      <button class="filter-btn" data-cat="sante">Santé</button>
-      <button class="filter-btn" data-cat="environnement">Environnement</button>
-      <button class="filter-btn" data-cat="social">Social</button>
-    </div>
-    <div class="projets-grid" id="projGrid"></div>
-    <p style="text-align:center;margin-top:24px;font-size:.85rem;color:var(--grey)" id="projCount"></p>
-    <div class="pagination" id="projPages"></div>
-  </div>
 </section>
 
-<!-- GALERIE -->
-<section id="galerie" class="sec">
-  <div class="container">
-    <div class="sec-header center reveal">
-      <span class="sec-label">Nos moments</span>
-      <h2 class="sec-title" style="color:var(--white)">Galerie photos</h2>
+<section id="galerie">
+    <div class="container">
+        <div class="sec-head fade">
+            <div class="htext">
+                <span class="eyebrow">Nos moments</span>
+                <h2>Galerie photos</h2>
+            </div>
+        </div>
+        <div class="galerie-wrap fade">
+            <div class="galerie-strip" id="gal-strip"></div>
+            <button class="gal-nav gal-prev" id="gal-prev" aria-label="Photo précédente"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+            <button class="gal-nav gal-next" id="gal-next" aria-label="Photo suivante"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+        </div>
+        <div class="gal-pagination" id="gal-pages"></div>
     </div>
-    <div class="galerie-wrap reveal">
-      <div class="galerie-strip" id="galStrip"></div>
-      <button class="gal-nav gal-prev" id="galPrev" aria-label="Précédent"><i class="fas fa-chevron-left"></i></button>
-      <button class="gal-nav gal-next" id="galNext" aria-label="Suivant"><i class="fas fa-chevron-right"></i></button>
-    </div>
-  </div>
 </section>
 
-<!-- TÉMOIGNAGES -->
 <section id="temoignages" class="sec">
-  <div class="container">
-    <div class="sec-header center reveal">
-      <span class="sec-label">Ils parlent de nous</span>
-      <h2 class="sec-title">Témoignages</h2>
+    <div class="container">
+        <div class="sec-head fade">
+            <div class="htext">
+                <span class="eyebrow">Ils parlent de nous</span>
+                <h2>Témoignages</h2>
+            </div>
+        </div>
+        <div class="temo-track fade" id="temo-track"></div>
     </div>
-    <div class="temo-track" id="temoTrack"></div>
-  </div>
 </section>
 
-<!-- ÉQUIPE -->
 <section id="membres" class="sec">
-  <div class="container">
-    <div class="sec-header center reveal">
-      <span class="sec-label">L'équipe</span>
-      <h2 class="sec-title">Les visages derrière la mission</h2>
+    <div class="container">
+        <div class="sec-head fade">
+            <div class="htext">
+                <span class="eyebrow">L'équipe</span>
+                <h2>Les visages derrière la mission</h2>
+            </div>
+        </div>
+        <div class="membres-grid fade" id="membres-grid"></div>
     </div>
-    <div class="membres-grid" id="membresGrid"></div>
-  </div>
 </section>
 
-<!-- VOLONTARIAT -->
 <section id="volontaire" class="sec">
-  <div class="container">
-    <div class="sec-header center reveal">
-      <span class="sec-label">Rejoignez-nous</span>
-      <h2 class="sec-title">Devenir volontaire</h2>
-    </div>
-    <div class="volo-grid">
-      <div class="volo-left reveal">
-        <h3>Votre engagement, notre force commune</h3>
-        <p>Chaque année, des volontaires du monde entier rejoignent 3APLUS-TOGO pour des missions de 2 semaines à plusieurs mois. Aucune compétence particulière n'est requise pour la majorité de nos programmes. Seulement de la motivation et l'envie d'agir.</p>
-        <p>En participant, vous optez d'être solidairement actif dans un projet d'intérêt général. Vous avez la chance de rencontrer des peuples et des cultures différents des vôtres, de découvrir les joies et les réalités de ces populations.</p>
-        <div class="volo-list">
-          <div class="volo-item"><i class="fas fa-circle"></i><span>Logement et repas pris en charge sur place par l'association</span></div>
-          <div class="volo-item"><i class="fas fa-circle"></i><span>Encadrement par des animateurs locaux expérimentés tout au long du séjour</span></div>
-          <div class="volo-item"><i class="fas fa-circle"></i><span>Missions adaptées à votre profil, disponibles toute l'année</span></div>
-          <div class="volo-item"><i class="fas fa-circle"></i><span>Découverte des richesses culturelles du Togo, l'Afrique en miniature</span></div>
-          <div class="volo-item"><i class="fas fa-circle"></i><span>Certificat de participation officiel de l'association</span></div>
+    <div class="container">
+        <div class="volo-grid">
+            <div class="volo-left fade-l">
+                <span class="eyebrow">Rejoignez-nous</span>
+                <h3>Devenir volontaire</h3>
+                <p>Chaque année, des volontaires du monde entier rejoignent 3APLUS-TOGO pour des missions de deux semaines à plusieurs mois. Aucune compétence particulière n'est requise pour la majorité de nos programmes, seulement de la motivation et l'envie d'agir.</p>
+                <p>En participant, vous rencontrez des peuples et des cultures différents des vôtres, et découvrez les réalités de ces populations. C'est s'ouvrir à un autre monde et le vivre différemment.</p>
+                <div class="volo-missions">
+                    <div class="volo-mission"><i class="fas fa-circle" aria-hidden="true"></i><span>Logement et repas pris en charge sur place par l'association</span></div>
+                    <div class="volo-mission"><i class="fas fa-circle" aria-hidden="true"></i><span>Encadrement par des animateurs locaux expérimentés tout au long du séjour</span></div>
+                    <div class="volo-mission"><i class="fas fa-circle" aria-hidden="true"></i><span>Missions adaptées à votre profil, disponibles toute l'année</span></div>
+                    <div class="volo-mission"><i class="fas fa-circle" aria-hidden="true"></i><span>Découverte des richesses culturelles du Togo, l'Afrique en miniature</span></div>
+                    <div class="volo-mission"><i class="fas fa-circle" aria-hidden="true"></i><span>Certificat de participation officiel de l'association</span></div>
+                </div>
+                <a href="https://wa.me/22870121798?text=Bonjour%2C%20je%20souhaite%20devenir%20volontaire%20avec%203APLUS-TOGO" target="_blank" rel="noopener" class="btn btn-ghost"><i class="fab fa-whatsapp" aria-hidden="true"></i> Nous contacter sur WhatsApp</a>
+            </div>
+            <div class="fade-r">
+                <!-- ID Formspree "xyz123" à remplacer par l'ID réel de l'association -->
+                <form class="volo-form" id="volo-form" action="https://formspree.io/f/xyz123" method="POST">
+                    <div class="row">
+                        <div><label for="v-prenom">Prénom</label><input id="v-prenom" type="text" name="prenom" required placeholder="Votre prénom"></div>
+                        <div><label for="v-nom">Nom</label><input id="v-nom" type="text" name="nom" required placeholder="Votre nom"></div>
+                    </div>
+                    <label for="v-email">Email</label>
+                    <input id="v-email" type="email" name="email" required placeholder="votre@email.com">
+                    <label for="v-pays">Pays d'origine</label>
+                    <input id="v-pays" type="text" name="pays" placeholder="France, Allemagne, Togo…">
+                    <label for="v-domaine">Domaine de compétence</label>
+                    <select id="v-domaine" name="domaine">
+                        <option value="">Sélectionnez un domaine</option>
+                        <option>Enseignement / Éducation</option>
+                        <option>Santé / Médecine / Soins infirmiers</option>
+                        <option>Construction / BTP</option>
+                        <option>Agriculture / Environnement</option>
+                        <option>Sport / Animation</option>
+                        <option>Culture / Arts</option>
+                        <option>Communication / Design</option>
+                        <option>Autre / Pas de spécialité</option>
+                    </select>
+                    <label for="v-duree">Durée de disponibilité</label>
+                    <select id="v-duree" name="duree">
+                        <option value="">Sélectionnez une durée</option>
+                        <option>2 semaines</option>
+                        <option>1 mois</option>
+                        <option>2 mois</option>
+                        <option>Plus de 2 mois</option>
+                    </select>
+                    <label for="v-motiv">Motivation</label>
+                    <textarea id="v-motiv" name="motivation" placeholder="Parlez-nous de votre motivation et de ce que vous espérez vivre…"></textarea>
+                    <button type="submit" class="btn btn-gold btn-full">Envoyer ma candidature</button>
+                </form>
+            </div>
         </div>
-        <a href="https://wa.me/22870121798?text=Bonjour%2C%20je%20souhaite%20devenir%20volontaire%20avec%203APLUS-TOGO" target="_blank" rel="noopener" class="btn-secondary" style="border-color:var(--gold);color:var(--gold)"><i class="fab fa-whatsapp"></i> Nous contacter sur WhatsApp</a>
-      </div>
-      <div class="reveal reveal-delay-2">
-        <form class="volo-form" id="voloForm" action="https://formspree.io/f/xyz123" method="POST">
-          <div class="row">
-            <div><label>Prénom</label><input type="text" name="prenom" required placeholder="Votre prénom"></div>
-            <div><label>Nom</label><input type="text" name="nom" required placeholder="Votre nom"></div>
-          </div>
-          <label>Email</label>
-          <input type="email" name="email" required placeholder="votre@email.com">
-          <label>Pays d'origine</label>
-          <input type="text" name="pays" placeholder="France, Allemagne, Togo…">
-          <label>Domaine de compétence</label>
-          <select name="domaine">
-            <option value="">Sélectionnez un domaine</option>
-            <option>Enseignement / Éducation</option>
-            <option>Santé / Médecine / Soins infirmiers</option>
-            <option>Construction / BTP</option>
-            <option>Agriculture / Environnement</option>
-            <option>Sport / Animation</option>
-            <option>Culture / Arts</option>
-            <option>Communication / Design</option>
-            <option>Autre / Pas de spécialité</option>
-          </select>
-          <label>Durée de disponibilité</label>
-          <select name="duree">
-            <option value="">Sélectionnez une durée</option>
-            <option>2 semaines</option>
-            <option>1 mois</option>
-            <option>2 mois</option>
-            <option>Plus de 2 mois</option>
-          </select>
-          <label>Motivation</label>
-          <textarea name="motivation" placeholder="Parlez-nous de votre motivation et de ce que vous espérez vivre…"></textarea>
-          <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Envoyer ma candidature</button>
-        </form>
-      </div>
     </div>
-  </div>
 </section>
 
-<!-- DON -->
 <section id="don">
-  <div class="container">
-    <div class="don-content">
-      <span class="sec-label reveal">Agir ensemble</span>
-      <h2 class="reveal reveal-delay-1">Chaque don change une vie</h2>
-      <p class="reveal reveal-delay-2">Soutenez nos actions directement depuis votre téléphone, sans compte bancaire nécessaire. Choisissez votre moyen de paiement.</p>
-      <div class="don-grid">
-        <div class="don-card reveal">
-          <div class="icon">📱</div>
-          <h3>Flooz Moov Africa</h3>
-          <p>Envoyez votre don via Flooz depuis n'importe quel téléphone Moov au Togo, instantanément.</p>
-          <a href="tel:+22898045576" class="btn-don-card"><i class="fas fa-phone"></i> +228 98 04 55 76</a>
+    <div class="don-in container">
+        <span class="eyebrow">Agir ensemble</span>
+        <h2>Chaque don change une vie</h2>
+        <p class="don-sub">Soutenez nos actions directement depuis votre téléphone, sans compte bancaire nécessaire. Choisissez votre moyen de paiement :</p>
+        <div class="don-methods">
+            <div class="don-method">
+                <h3>Flooz — Moov Africa</h3>
+                <p>Envoyez votre don via Flooz depuis n'importe quel téléphone Moov au Togo, instantanément.</p>
+                <a href="tel:+22898045576" class="don-btn"><i class="fas fa-phone" aria-hidden="true"></i> +228 98 04 55 76</a>
+            </div>
+            <div class="don-method">
+                <h3>T-Money — Togocel</h3>
+                <p>Transférez via T-Money depuis votre téléphone Togocel en quelques secondes.</p>
+                <a href="tel:+22870121798" class="don-btn"><i class="fas fa-phone" aria-hidden="true"></i> +228 70 12 17 98</a>
+            </div>
+            <div class="don-method">
+                <h3>Depuis l'étranger</h3>
+                <p>Pour un don depuis l'Europe ou l'international, contactez-nous directement par email.</p>
+                <a href="mailto:troisaplustogo@gmail.com?subject=Don%20international%20-%203APLUS-TOGO" class="don-btn outline"><i class="fas fa-envelope" aria-hidden="true"></i> Nous écrire</a>
+            </div>
         </div>
-        <div class="don-card reveal reveal-delay-1">
-          <div class="icon">💛</div>
-          <h3>T-Money Togocel</h3>
-          <p>Transférez via T-Money depuis votre téléphone Togocel en quelques secondes seulement.</p>
-          <a href="tel:+22870121798" class="btn-don-card"><i class="fas fa-phone"></i> +228 70 12 17 98</a>
-        </div>
-        <div class="don-card reveal reveal-delay-2">
-          <div class="icon">✉️</div>
-          <h3>Depuis l'étranger</h3>
-          <p>Pour les dons depuis l'Europe ou l'international, contactez-nous directement par email.</p>
-          <a href="mailto:troisaplustogo@gmail.com?subject=Don%20international%20-%203APLUS-TOGO" class="btn-don-card outline"><i class="fas fa-envelope"></i> Nous écrire</a>
-        </div>
-      </div>
-      <p class="don-note reveal reveal-delay-3"><i class="fas fa-shield-alt"></i> Votre don est utilisé directement sur le terrain. Accusé de réception disponible sur demande.</p>
+        <p class="don-note">Votre don est utilisé directement sur le terrain. Accusé de réception disponible sur demande.</p>
     </div>
-  </div>
 </section>
 
-<!-- NEWSLETTER -->
 <section id="newsletter">
-  <div class="container">
-    <div class="nl-inner">
-      <div class="nl-text reveal">
-        <span class="sec-label" style="color:var(--navy);opacity:.6">Restez informés</span>
-        <h2>Notre newsletter</h2>
-        <p>Actualités des projets, dates de chantiers et appels aux dons.</p>
-      </div>
-      <div class="nl-form reveal reveal-delay-1">
-        <input type="email" id="nlEmail" placeholder="votre@email.com">
-        <button type="button" id="nlBtn"><i class="fas fa-paper-plane"></i> S'abonner</button>
-      </div>
+    <div class="container">
+        <div class="nl-in">
+            <div class="nl-text">
+                <h2>Notre newsletter</h2>
+                <p>Actualités des projets, dates de chantiers, appels aux dons.</p>
+            </div>
+            <form class="nl-form" id="nl-form">
+                <label for="nl-email" style="position:absolute;left:-9999px">Adresse email</label>
+                <input type="email" id="nl-email" placeholder="votre@email.com" required>
+                <button type="submit" id="nl-btn" aria-label="S'abonner"><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+            </form>
+        </div>
     </div>
-  </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact" class="sec">
-  <div class="container">
-    <div class="sec-header center reveal">
-      <span class="sec-label">Parlons-nous</span>
-      <h2 class="sec-title">Contactez-nous</h2>
+    <div class="container">
+        <div class="sec-head fade">
+            <div class="htext">
+                <span class="eyebrow">Parlons-nous</span>
+                <h2>Contactez-nous</h2>
+            </div>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info fade-l">
+                <h3>Nous trouver</h3>
+                <div class="c-line"><strong>Adresse</strong>Route Tsévié-Tabligbo (GATI-AGODOU)<br>Quartier Apegam, maison AVOUME<br>BP 114 TSÉVIÉ, TOGO</div>
+                <div class="c-line"><strong>Téléphone</strong><a href="tel:+22898045576">+228 98 04 55 76</a><br><a href="tel:+22870121798">+228 70 12 17 98</a></div>
+                <div class="c-line"><strong>Email</strong><a href="mailto:troisaplustogo@gmail.com">troisaplustogo@gmail.com</a></div>
+                <div class="c-line"><strong>WhatsApp</strong><a href="https://wa.me/22870121798" target="_blank" rel="noopener">+228 70 12 17 98</a></div>
+                <!-- Coordonnées Maps centrées sur Tsévié ; à remplacer par l'embed exact du lieu si disponible -->
+                <div class="map-wrap">
+                    <iframe title="Localisation 3APLUS-TOGO, Tsévié" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15858.218623481362!2d1.1995471!3d6.4303519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10223b7d7b5c7b5f%3A0x4a2b5c8d9e0f1a2b!2sTs%C3%A9vi%C3%A9!5e0!3m2!1sfr!2stg!4v1712345678901!5m2!1sfr!2stg" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            <div class="fade-r">
+                <h3 style="font-size:clamp(1.4rem,2.4vw,1.7rem);font-family:var(--fd);font-weight:500;margin-bottom:24px">Envoyer un message</h3>
+                <!-- ID Formspree "xyz123" à remplacer par l'ID réel de l'association -->
+                <form class="cf" id="cf" action="https://formspree.io/f/xyz123" method="POST">
+                    <div class="row">
+                        <div><label for="c-prenom">Prénom</label><input id="c-prenom" type="text" name="prenom" required placeholder="Prénom"></div>
+                        <div><label for="c-nom">Nom</label><input id="c-nom" type="text" name="nom" required placeholder="Nom"></div>
+                    </div>
+                    <label for="c-email">Email</label>
+                    <input id="c-email" type="email" name="email" required placeholder="votre@email.com">
+                    <label for="c-type">Type de demande</label>
+                    <select id="c-type" name="type">
+                        <option value="">Sélectionnez</option>
+                        <option>Don / parrainage</option>
+                        <option>Volontariat</option>
+                        <option>Partenariat</option>
+                        <option>Presse</option>
+                        <option>Autre</option>
+                    </select>
+                    <label for="c-msg">Message</label>
+                    <textarea id="c-msg" name="message" required placeholder="Votre message…"></textarea>
+                    <button type="submit" class="btn btn-gold btn-full">Envoyer</button>
+                </form>
+                <p style="font-size:.78rem;color:var(--muted);margin-top:16px">Vos données ne sont pas partagées avec des tiers.</p>
+            </div>
+        </div>
     </div>
-    <div class="contact-grid">
-      <div class="reveal">
-        <h3>Nous trouver</h3>
-        <div class="c-item">
-          <div class="c-icon"><i class="fas fa-map-marker-alt"></i></div>
-          <div>
-            <strong>Adresse</strong>
-            <span>Route Tsévié-Tabligbo (GATI-AGODOU)<br>Quartier Apegam, maison AVOUME<br>BP 114 TSÉVIÉ, TOGO</span>
-          </div>
-        </div>
-        <div class="c-item">
-          <div class="c-icon"><i class="fas fa-phone"></i></div>
-          <div>
-            <strong>Téléphone</strong>
-            <span><a href="tel:+22898045576">+228 98 04 55 76</a><br><a href="tel:+22870121798">+228 70 12 17 98</a></span>
-          </div>
-        </div>
-        <div class="c-item">
-          <div class="c-icon"><i class="fas fa-envelope"></i></div>
-          <div>
-            <strong>Email</strong>
-            <span><a href="mailto:troisaplustogo@gmail.com">troisaplustogo@gmail.com</a></span>
-          </div>
-        </div>
-        <div class="c-item">
-          <div class="c-icon"><i class="fab fa-whatsapp"></i></div>
-          <div>
-            <strong>WhatsApp</strong>
-            <span><a href="https://wa.me/22870121798" target="_blank" rel="noopener">+228 70 12 17 98</a></span>
-          </div>
-        </div>
-        <div class="map-wrap">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15858.218623481362!2d1.1995471!3d6.4303519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10223b7d7b5c7b5f%3A0x4a2b5c8d9e0f1a2b!2sTs%C3%A9vi%C3%A9!5e0!3m2!1sfr!2stg!4v1712345678901!5m2!1sfr!2stg" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-      </div>
-      <div class="reveal reveal-delay-2">
-        <h3>Envoyer un message</h3>
-        <form class="contact-form" id="contactForm" action="https://formspree.io/f/xyz123" method="POST" style="margin-top:20px">
-          <div class="row">
-            <div><label>Prénom</label><input type="text" name="prenom" required placeholder="Prénom"></div>
-            <div><label>Nom</label><input type="text" name="nom" required placeholder="Nom"></div>
-          </div>
-          <label>Email</label>
-          <input type="email" name="email" required placeholder="votre@email.com">
-          <label>Type de demande</label>
-          <select name="type">
-            <option value="">Sélectionnez</option>
-            <option>Don / parrainage</option>
-            <option>Volontariat</option>
-            <option>Partenariat</option>
-            <option>Presse</option>
-            <option>Autre</option>
-          </select>
-          <label>Message</label>
-          <textarea name="message" required placeholder="Votre message…"></textarea>
-          <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Envoyer</button>
-        </form>
-        <p style="font-size:.78rem;color:var(--grey);margin-top:12px"><i class="fas fa-lock"></i> Vos données ne sont pas partagées avec des tiers.</p>
-      </div>
-    </div>
-  </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <div class="container">
-    <div class="ft-grid">
-      <div>
-        <div class="ft-logo">
-          <svg class="logo-svg" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <path id="arc-f" d="M 20,115 A 100,100 0 0,1 220,115" fill="none"/>
-            </defs>
-            <circle cx="120" cy="135" r="28" fill="#132657"/>
-            <g stroke-width="16" stroke-linecap="round" fill="none">
-              <path d="M 98,118 C 70,50 170,50 142,118" stroke="#EE2A24"/>
-              <path d="M 112,158 C 40,180 40,75 92,108" stroke="#FBD202"/>
-              <path d="M 128,158 C 200,180 200,75 148,108" stroke="#0067C1"/>
-            </g>
-            <circle cx="120" cy="52" r="14" fill="#EE2A24"/>
-            <circle cx="52" cy="148" r="14" fill="#FBD202"/>
-            <circle cx="188" cy="148" r="14" fill="#0067C1"/>
-            <text x="116" y="145" font-family="'Inter',sans-serif" font-weight="900" font-size="26" fill="#fff" text-anchor="end" letter-spacing="-1">3A</text>
-            <g transform="translate(122,131)">
-              <line x1="-6" y1="0" x2="6" y2="0" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
-              <line x1="0" y1="-6" x2="0" y2="6" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
-            </g>
-            <text font-family="'Inter',sans-serif" font-weight="600" font-size="13" fill="#fff" letter-spacing="0.5">
-              <textPath href="#arc-f" startOffset="50%" text-anchor="middle">Associer nos Actions pour un Avenir Plus</textPath>
-            </text>
-          </svg>
-          <span class="brand">3A<span class="plus">+</span> Togo</span>
+    <div class="container">
+        <div class="ft-grid">
+            <div>
+                <div class="ft-logo-wrap">
+                    <svg class="ft-logo-svg" viewBox="0 0 240 240" width="52" height="52" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                        <defs><path id="arc-text-ft" d="M 20, 115 A 100,100 0 0,1 220, 115" fill="none" /></defs>
+                        <circle cx="120" cy="135" r="28" fill="#1A2744" />
+                        <g stroke-width="16" stroke-linecap="round" fill="none">
+                            <path d="M 98,118 C 70,50 170,50 142,118" stroke="#EE2A24" />
+                            <path d="M 112,158 C 40,180 40,75 92,108" stroke="#FBD202" />
+                            <path d="M 128,158 C 200,180 200,75 148,108" stroke="#0067C1" />
+                        </g>
+                        <circle cx="120" cy="52" r="14" fill="#EE2A24" />
+                        <circle cx="52" cy="148" r="14" fill="#FBD202" />
+                        <circle cx="188" cy="148" r="14" fill="#0067C1" />
+                        <text x="116" y="145" font-family="'Inter', sans-serif" font-weight="900" font-size="26" fill="#ffffff" text-anchor="end" letter-spacing="-1">3A</text>
+                        <g transform="translate(122, 131)">
+                            <line x1="-6" y1="0" x2="6" y2="0" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+                            <line x1="0" y1="-6" x2="0" y2="6" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+                        </g>
+                        <text font-family="'Inter', sans-serif" font-weight="600" font-size="13" fill="#ffffff" letter-spacing="0.5">
+                            <textPath href="#arc-text-ft" startOffset="50%" text-anchor="middle">Associer nos Actions pour un Avenir Plus</textPath>
+                        </text>
+                    </svg>
+                </div>
+                <p class="ft-desc">Association de solidarité internationale à but non lucratif et apolitique, active depuis 2015 à Tsévié, Togo.</p>
+                <p class="ft-desc small">N° 0105/MATDCL-SG-DLPAP-DOCA</p>
+                <div class="socials">
+                    <a href="https://www.facebook.com/3APLUS.TG" target="_blank" rel="noopener" class="soc" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                    <!-- Instagram : URL à renseigner -->
+                    <a href="#" class="soc" aria-label="Instagram (lien à venir)"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <!-- Twitter/X : URL à renseigner -->
+                    <a href="#" class="soc" aria-label="Twitter (lien à venir)"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                    <a href="https://wa.me/22870121798" target="_blank" rel="noopener" class="soc" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="ft-col">
+                <h4>Navigation</h4>
+                <ul class="ft-links">
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#missions">Nos missions</a></li>
+                    <li><a href="#projets">Projets</a></li>
+                    <li><a href="#galerie">Galerie</a></li>
+                    <li><a href="#membres">Équipe</a></li>
+                </ul>
+            </div>
+            <div class="ft-col">
+                <h4>Agir</h4>
+                <ul class="ft-links">
+                    <li><a href="#don">Faire un don</a></li>
+                    <li><a href="#volontaire">Devenir volontaire</a></li>
+                    <li><a href="#newsletter">S'abonner</a></li>
+                    <li><a href="#contact">Partenariat</a></li>
+                </ul>
+            </div>
+            <div class="ft-col">
+                <h4>Contact</h4>
+                <ul class="ft-links">
+                    <li><a href="mailto:troisaplustogo@gmail.com">troisaplustogo@gmail.com</a></li>
+                    <li><a href="tel:+22898045576">+228 98 04 55 76</a></li>
+                    <li><a href="tel:+22870121798">+228 70 12 17 98</a></li>
+                    <li>Tsévié, Quartier Apegam</li>
+                </ul>
+            </div>
         </div>
-        <p class="ft-desc">Association de solidarité internationale à but non lucratif et apolitique, active depuis 2015 à Tsévié, Togo. Camps chantiers, volontariat, éducation, santé, environnement.</p>
-        <p class="ft-reg">N° 0105/MATDCL-SG-DLPAP-DOCA</p>
-        <div class="ft-social">
-          <a href="https://www.facebook.com/3APLUS.TG" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="https://wa.me/22870121798" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <div class="ft-bottom">
+            <span id="ft-copy"></span>
+            <span><a href="#">Mentions légales</a> · <a href="#">Confidentialité</a></span>
         </div>
-      </div>
-      <div class="ft-col">
-        <h4>Navigation</h4>
-        <ul class="ft-links">
-          <li><a href="#about">À propos</a></li>
-          <li><a href="#missions">Nos missions</a></li>
-          <li><a href="#projets">Projets</a></li>
-          <li><a href="#galerie">Galerie</a></li>
-          <li><a href="#membres">Équipe</a></li>
-        </ul>
-      </div>
-      <div class="ft-col">
-        <h4>Agir</h4>
-        <ul class="ft-links">
-          <li><a href="#don">Faire un don</a></li>
-          <li><a href="#volontaire">Devenir volontaire</a></li>
-          <li><a href="#newsletter">S'abonner</a></li>
-          <li><a href="#contact">Partenariat</a></li>
-        </ul>
-      </div>
-      <div class="ft-col">
-        <h4>Contact</h4>
-        <ul class="ft-links">
-          <li><a href="mailto:troisaplustogo@gmail.com">troisaplustogo@gmail.com</a></li>
-          <li><a href="tel:+22898045576">+228 98 04 55 76</a></li>
-          <li><a href="tel:+22870121798">+228 70 12 17 98</a></li>
-          <li>Tsévié, Quartier Apegam</li>
-        </ul>
-      </div>
     </div>
-    <div class="ft-bottom">
-      <span id="ftCopy"></span>
-      <span><a href="#">Mentions légales</a> · <a href="#">Confidentialité</a></span>
-    </div>
-  </div>
 </footer>
 
-<!-- FIXED -->
-<a href="https://wa.me/22870121798" class="wa-fab" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-<button class="top-btn" id="topBtn" aria-label="Retour en haut"><i class="fas fa-chevron-up"></i></button>
-<div id="toasts"></div>
+<a href="https://wa.me/22870121798" class="wa-fab" target="_blank" rel="noopener" aria-label="Nous contacter sur WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+<button class="top-btn" id="top-btn" aria-label="Retour en haut de page"><i class="fas fa-chevron-up" aria-hidden="true"></i></button>
+<div id="toasts" role="status" aria-live="polite"></div>
 
-<!-- MODAL PROJET -->
-<div class="modal-bg" id="projModal">
-  <div class="modal-box">
-    <button class="modal-close" data-close="projModal"><i class="fas fa-times"></i></button>
-    <span class="sec-label" id="mTag"></span>
-    <h2 class="modal-title" id="mTitle"></h2>
-    <p class="modal-date" id="mDate"></p>
-    <div class="carousel" id="mCarousel" style="display:none">
-      <div class="carousel-track" id="cTrack"></div>
-      <button class="carousel-btn carousel-prev" id="cPrev"><i class="fas fa-chevron-left"></i></button>
-      <button class="carousel-btn carousel-next" id="cNext"><i class="fas fa-chevron-right"></i></button>
-      <div class="carousel-dots" id="cDots"></div>
+<div class="modal-bg" id="proj-modal" role="dialog" aria-modal="true" aria-labelledby="m-title">
+    <div class="modal-box">
+        <button class="modal-x" data-close="proj-modal" aria-label="Fermer"><i class="fas fa-times" aria-hidden="true"></i></button>
+        <span class="eyebrow" id="m-tag"></span>
+        <h2 id="m-title" style="margin:4px 0 6px;font-size:1.8rem"></h2>
+        <p id="m-date" style="color:var(--gold);font-size:.84rem;margin-bottom:8px"></p>
+        <div id="m-carousel" class="modal-carousel" style="display:none">
+            <div class="carousel-track" id="c-track"></div>
+            <button class="carousel-prev" id="c-prev" aria-label="Image précédente"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+            <button class="carousel-next" id="c-next" aria-label="Image suivante"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+            <div class="carousel-dots" id="c-dots"></div>
+        </div>
+        <div id="m-noimg" class="modal-no-img" style="display:none"><i class="fas fa-image" aria-hidden="true" style="margin-right:8px"></i> Aucune photo pour ce projet</div>
+        <p id="m-desc" style="font-size:.94rem;line-height:1.8"></p>
+        <div class="modal-share">
+            <span>Partager :</span>
+            <a id="m-wa" href="#" target="_blank" rel="noopener" class="share-wa"><i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp</a>
+        </div>
     </div>
-    <p class="modal-desc" id="mDesc"></p>
-  </div>
 </div>
 
-<!-- LIGHTBOX -->
-<div id="lb">
-  <button id="lb-close"><i class="fas fa-times"></i></button>
-  <button id="lb-prev"><i class="fas fa-chevron-left"></i></button>
-  <img id="lbImg" src="" alt="Photo galerie">
-  <button id="lb-next"><i class="fas fa-chevron-right"></i></button>
+<div id="lb" role="dialog" aria-modal="true" aria-label="Visionneuse photo">
+    <button id="lb-x" aria-label="Fermer la photo"><i class="fas fa-times" aria-hidden="true"></i></button>
+    <button id="lb-p" aria-label="Photo précédente"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+    <img id="lb-img" src="" alt="Photo galerie 3APLUS-TOGO">
+    <button id="lb-n" aria-label="Photo suivante"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
 </div>
 
 <script>
 'use strict';
-
-/* ============================================
-   CONFIG
-   ============================================ */
 const PER_PAGE_PROJ = 6;
-
-/* ============================================
-   STATE
-   ============================================ */
+const PER_PAGE_GAL  = 20;
 const S = {
-  projets: [], galerie: [], membres: [], temoignages: [], impact: [],
-  projPage: 0, filter: 'all',
-  carouselIdx: 0, carouselImgs: [],
-  lbIdx: 0
+    projets:[], galerie:[], membres:[], temoignages:[], impact:[],
+    projPage:0, galPage:0, filter:'all',
+    carouselIdx:0, carouselImgs:[],
+    lbIdx:0
 };
-
-/* ============================================
-   INIT
-   ============================================ */
-document.getElementById('ftCopy').textContent = `© ${new Date().getFullYear()} 3APLUS-TOGO. Solidarité et action humanitaire.`;
-
-async function loadJSON(name) {
-  try {
-    const r = await fetch(`/_data/${name}.json`);
-    if (!r.ok) throw 0;
-    const d = await r.json();
-    if (d && typeof d === 'object' && !Array.isArray(d)) return d[name] || [];
-    return Array.isArray(d) ? d : [];
-  } catch { return []; }
+function esc(str){
+    if(str===undefined||str===null) return '';
+    return String(str)
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
-
-async function boot() {
-  [S.projets, S.galerie, S.membres, S.temoignages, S.impact] = await Promise.all([
-    loadJSON('projets'), loadJSON('galerie'), loadJSON('membres'),
-    loadJSON('temoignages'), loadJSON('impact')
-  ]);
-  renderAll();
-  initReveal();
+function safeUrl(url){
+    if(!url) return '';
+    try{
+        const u=new URL(url, window.location.href);
+        if(u.protocol==='http:'||u.protocol==='https:') return u.href;
+    }catch{}
+    return '';
 }
-
-/* ============================================
-   REVEAL AU SCROLL
-   ============================================ */
-function initReveal() {
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        obs.unobserve(e.target);
-      }
+document.getElementById('ft-copy').textContent = `© ${new Date().getFullYear()} 3APLUS-TOGO — Solidarité et action humanitaire`;
+function toast(msg, type='ok'){
+    const el=document.createElement('div');
+    el.className=`toast ${type}`;
+    const ic={ok:'check-circle',err:'exclamation-circle',inf:'info-circle'};
+    el.innerHTML=`<i class="fas fa-${ic[type]||'info-circle'}" aria-hidden="true"></i> ${esc(msg)}`;
+    document.getElementById('toasts').appendChild(el);
+    setTimeout(()=>el.remove(), 3800);
+}
+function isNew(d){
+    if(!d) return false;
+    try{ return (Date.now()-new Date(d).getTime())/(864e5)<=90; }catch{return false;}
+}
+function catLbl(c){return{education:'Éducation',sante:'Santé',environnement:'Environnement',social:'Social'}[c]||c}
+async function loadJSON(name){
+    try{
+        const r=await fetch(`/_data/${name}.json`);
+        if(!r.ok) throw 0;
+        const d=await r.json();
+        if(d&&typeof d==='object'&&!Array.isArray(d)) return d[name]||[];
+        return Array.isArray(d)?d:[];
+    }catch{return[];}
+}
+async function boot(){
+    [S.projets,S.galerie,S.membres,S.temoignages,S.impact]=await Promise.all([
+        loadJSON('projets'),loadJSON('galerie'),loadJSON('membres'),loadJSON('temoignages'),loadJSON('impact')
+    ]);
+    renderAll();
+}
+function animateCount(el, raw){
+    const match=String(raw).match(/^([^\d]*)(\d[\d\s]*)(.*)$/);
+    if(!match){ el.textContent=raw; return; }
+    const [,prefix,numRaw,suffix]=match;
+    const target=parseInt(numRaw.replace(/\s/g,''),10);
+    if(isNaN(target)){ el.textContent=raw; return; }
+    const dur=1400;
+    const start=performance.now();
+    function tick(now){
+        const p=Math.min((now-start)/dur,1);
+        const eased=1-Math.pow(1-p,3);
+        const val=Math.round(target*eased);
+        el.textContent=`${prefix}${val.toLocaleString('fr-FR')}${suffix}`;
+        if(p<1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+}
+function renderImpact(){
+    const c=document.getElementById('impact-grid');
+    if(!S.impact.length){
+        c.innerHTML=`<div class="empty" style="color:rgba(255,255,255,.4)"><i class="fas fa-chart-bar" aria-hidden="true"></i><p>Ajoutez vos données d'impact depuis /admin</p></div>`;
+        return;
+    }
+    c.innerHTML=S.impact.map(x=>`
+        <div class="impact-card fade">
+            <div class="impact-val" data-raw="${esc(x.valeur)}">0</div>
+            <div class="impact-lbl">${esc(x.label)}</div>
+        </div>`).join('');
+    observeFades();
+    const obs=new IntersectionObserver(entries=>{
+        entries.forEach(e=>{
+            if(e.isIntersecting){
+                animateCount(e.target, e.target.dataset.raw);
+                obs.unobserve(e.target);
+            }
+        });
+    },{threshold:.4});
+    document.querySelectorAll('.impact-val').forEach(el=>obs.observe(el));
+}
+function filteredProjets(){
+    return S.filter==='all'?S.projets:S.projets.filter(p=>p.cat===S.filter);
+}
+function renderProjets(){
+    const list=filteredProjets();
+    const total=list.length;
+    const pages=Math.ceil(total/PER_PAGE_PROJ)||1;
+    if(S.projPage>=pages) S.projPage=0;
+    const slice=list.slice(S.projPage*PER_PAGE_PROJ,(S.projPage+1)*PER_PAGE_PROJ);
+    const g=document.getElementById('proj-grid');
+    if(!slice.length){
+        g.innerHTML=`<div class="empty" style="grid-column:1/-1"><i class="fas fa-folder-open" aria-hidden="true"></i><p>Aucun projet dans cette catégorie.</p></div>`;
+        document.getElementById('proj-count').textContent='';
+        document.getElementById('proj-pages').innerHTML='';
+        return;
+    }
+    g.innerHTML=slice.map(p=>{
+        const img=safeUrl(p.images&&p.images[0])||'https://via.placeholder.com/900x560/132657/C8860A?text=3APLUS';
+        const nb=isNew(p.date)?`<span class="badge-new">Nouveau</span>`:'';
+        const desc=esc(p.description||'').substring(0,110);
+        const wa=encodeURIComponent(`Projet "${p.titre||''}" — 3APLUS-TOGO : https://3aplus.netlify.app/#projets`);
+        return`<div class="proj-card fade" data-id="${esc(p.id)}" role="button" tabindex="0" aria-label="Voir le projet ${esc(p.titre)}">
+            <div class="proj-img"><img src="${img}" alt="${esc(p.titre)}" loading="lazy"></div>
+            <div class="proj-body">
+                <div class="proj-meta">${catLbl(p.cat)} · ${esc(p.date)}${nb}</div>
+                <h3>${esc(p.titre)}</h3>
+                <p class="proj-desc">${desc}${desc.length>=110?'…':''}</p>
+                <div class="proj-foot">
+                    <span class="proj-more">Voir le projet <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                    <a href="https://wa.me/?text=${wa}" target="_blank" rel="noopener" class="proj-wa" onclick="event.stopPropagation()"><i class="fab fa-whatsapp" aria-hidden="true"></i> Partager</a>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+    g.querySelectorAll('.proj-card').forEach(c=>{
+        c.addEventListener('click',()=>openModal(c.dataset.id));
+        c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openModal(c.dataset.id);}});
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    const start=S.projPage*PER_PAGE_PROJ+1;
+    const end=Math.min((S.projPage+1)*PER_PAGE_PROJ,total);
+    document.getElementById('proj-count').textContent=`Affichage ${start}–${end} sur ${total} projet${total>1?'s':''}`;
+    renderPagination('proj-pages', pages, S.projPage, n=>{S.projPage=n;renderProjets();});
+    observeFades();
 }
-
-/* ============================================
-   BARRE DE PROGRESSION
-   ============================================ */
-window.addEventListener('scroll', () => {
-  const h = document.documentElement.scrollHeight - window.innerHeight;
-  const pct = (window.scrollY / h) * 100;
-  document.getElementById('progressBar').style.width = pct + '%';
-}, { passive: true });
-
-/* ============================================
-   HEADER
-   ============================================ */
-window.addEventListener('scroll', () => {
-  document.getElementById('header').classList.toggle('scrolled', scrollY > 60);
-  document.getElementById('topBtn').classList.toggle('on', scrollY > 500);
-}, { passive: true });
-
-document.getElementById('topBtn').addEventListener('click', () =>
-  window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-document.getElementById('burger').addEventListener('click', () =>
-  document.getElementById('navMenu').classList.toggle('open'));
-
-document.querySelectorAll('.nav-menu a').forEach(a =>
-  a.addEventListener('click', () =>
-    document.getElementById('navMenu').classList.remove('open')));
-
-/* ============================================
-   NAV ACTIVE
-   ============================================ */
-const navObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      document.querySelectorAll('.nav-menu a').forEach(l =>
-        l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+function renderGalerie(){
+    const total=S.galerie.length;
+    const pages=Math.ceil(total/PER_PAGE_GAL)||1;
+    if(S.galPage>=pages) S.galPage=0;
+    const slice=S.galerie.slice(S.galPage*PER_PAGE_GAL,(S.galPage+1)*PER_PAGE_GAL);
+    const strip=document.getElementById('gal-strip');
+    if(!slice.length){
+        strip.innerHTML=`<div class="empty" style="color:var(--muted);width:100%"><i class="fas fa-images" aria-hidden="true"></i><p>Aucune photo pour l'instant.</p></div>`;
+        document.getElementById('gal-pages').innerHTML='';
+        return;
     }
-  });
-}, { rootMargin: '-50% 0px -50% 0px' });
-document.querySelectorAll('section[id]').forEach(s => navObs.observe(s));
-
-/* ============================================
-   TOAST
-   ============================================ */
-function toast(msg, type = 'ok') {
-  const el = document.createElement('div');
-  el.className = `toast ${type}`;
-  const icons = { ok: 'check-circle', err: 'exclamation-circle' };
-  el.innerHTML = `<i class="fas fa-${icons[type] || 'check-circle'}"></i> ${msg}`;
-  document.getElementById('toasts').appendChild(el);
-  setTimeout(() => el.remove(), 4000);
+    strip.innerHTML=slice.map((img,i)=>{
+        const realIdx=S.galPage*PER_PAGE_GAL+i;
+        const url=safeUrl(img.url);
+        return`<div class="gal-item" data-idx="${realIdx}" role="button" tabindex="0" aria-label="Agrandir la photo">
+            <img src="${url}" alt="${esc(img.legende)||'Photo 3APLUS-TOGO'}" loading="lazy">
+            <div class="gal-ov"><p>${esc(img.legende)||''}</p></div>
+        </div>`;
+    }).join('');
+    strip.querySelectorAll('.gal-item').forEach(it=>{
+        it.addEventListener('click',()=>openLB(parseInt(it.dataset.idx)));
+        it.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLB(parseInt(it.dataset.idx));}});
+    });
+    renderPagination('gal-pages', pages, S.galPage, n=>{S.galPage=n;renderGalerie();});
+    strip.scrollTo({left:0, behavior:'smooth'});
 }
-
-/* ============================================
-   BADGE NOUVEAU
-   ============================================ */
-function isNew(d) {
-  if (!d) return false;
-  try { return (Date.now() - new Date(d).getTime()) / 864e5 <= 90; } catch { return false; }
-}
-
-/* ============================================
-   CATÉGORIE
-   ============================================ */
-function catLbl(c) {
-  return { education: 'Éducation', sante: 'Santé', environnement: 'Environnement', social: 'Social' }[c] || c;
-}
-
-/* ============================================
-   RENDER IMPACT
-   ============================================ */
-function renderImpact() {
-  const c = document.getElementById('impactGrid');
-  if (!S.impact.length) {
-    c.innerHTML = `<div class="empty" style="grid-column:1/-1;color:rgba(255,255,255,.35)"><i class="fas fa-chart-bar"></i><p>Ajoutez vos données d'impact depuis /admin</p></div>`;
-    return;
-  }
-  c.innerHTML = S.impact.map(x => `
-    <div class="impact-card reveal">
-      <i class="${x.icone || 'fas fa-star'}"></i>
-      <div class="impact-val">${x.valeur}</div>
-      <div class="impact-lbl">${x.label}</div>
-    </div>`).join('');
-}
-
-/* ============================================
-   RENDER PROJETS
-   ============================================ */
-function filteredProjets() {
-  return S.filter === 'all' ? S.projets : S.projets.filter(p => p.cat === S.filter);
-}
-
-function renderProjets() {
-  const list = filteredProjets();
-  const total = list.length;
-  const pages = Math.ceil(total / PER_PAGE_PROJ) || 1;
-  if (S.projPage >= pages) S.projPage = 0;
-  const slice = list.slice(S.projPage * PER_PAGE_PROJ, (S.projPage + 1) * PER_PAGE_PROJ);
-
-  const g = document.getElementById('projGrid');
-  if (!slice.length) {
-    g.innerHTML = `<div class="empty" style="grid-column:1/-1"><i class="fas fa-folder-open"></i><p>Aucun projet dans cette catégorie.</p></div>`;
-    document.getElementById('projCount').textContent = '';
-    document.getElementById('projPages').innerHTML = '';
-    return;
-  }
-
-  g.innerHTML = slice.map(p => {
-    const img = (p.images && p.images[0]) || 'https://via.placeholder.com/600x400/132657/C9A227?text=3APLUS';
-    const nb = isNew(p.date) ? '<span style="color:#16A34A;font-size:.7rem;font-weight:700;margin-left:6px">Nouveau</span>' : '';
-    const desc = (p.description || '').substring(0, 110);
-    return `<div class="proj-card reveal" data-id="${p.id}">
-      <div class="proj-img">
-        <img src="${img}" alt="${p.titre}" loading="lazy">
-        <span class="proj-tag">${catLbl(p.cat)}</span>
-      </div>
-      <div class="proj-body">
-        <div class="proj-date"><i class="fas fa-calendar-alt"></i> ${p.date} ${nb}</div>
-        <h3>${p.titre}</h3>
-        <p class="proj-desc">${desc}${desc.length >= 110 ? '…' : ''}</p>
-        <div class="proj-foot">
-          <span class="proj-more">Lire plus <i class="fas fa-arrow-right"></i></span>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-
-  g.querySelectorAll('.proj-card').forEach(c =>
-    c.addEventListener('click', () => openModal(parseInt(c.dataset.id))));
-
-  const start = S.projPage * PER_PAGE_PROJ + 1;
-  const end = Math.min((S.projPage + 1) * PER_PAGE_PROJ, total);
-  document.getElementById('projCount').textContent = `Affichage ${start} sur ${end} de ${total} projet${total > 1 ? 's' : ''}`;
-
-  renderPagination('projPages', pages, S.projPage, n => { S.projPage = n; renderProjets(); });
-  initReveal();
-}
-
-/* ============================================
-   PAGINATION
-   ============================================ */
-function renderPagination(id, pages, current, cb) {
-  const el = document.getElementById(id);
-  if (pages <= 1) { el.innerHTML = ''; return; }
-  let h = `<button class="page-btn" id="${id}-prev" ${current === 0 ? 'disabled' : ''}><i class="fas fa-chevron-left"></i></button>`;
-  for (let i = 0; i < pages; i++) {
-    if (pages > 7 && i > 1 && i < pages - 2 && Math.abs(i - current) > 1) {
-      if (i === 2 || i === pages - 3) h += `<span style="color:var(--grey);padding:0 4px">…</span>`;
-      continue;
+document.getElementById('gal-prev').addEventListener('click',()=>{
+    document.getElementById('gal-strip').scrollBy({left:-580, behavior:'smooth'});
+});
+document.getElementById('gal-next').addEventListener('click',()=>{
+    document.getElementById('gal-strip').scrollBy({left:580, behavior:'smooth'});
+});
+function renderPagination(id, pages, current, cb){
+    const el=document.getElementById(id);
+    if(pages<=1){el.innerHTML='';return;}
+    let h=`<button class="page-arrow" id="${id}-prev" aria-label="Page précédente" ${current===0?'disabled':''}><i class="fas fa-chevron-left" aria-hidden="true"></i></button>`;
+    for(let i=0;i<pages;i++){
+        if(pages>7&&i>1&&i<pages-2&&Math.abs(i-current)>1){
+            if(i===2||i===pages-3) h+=`<span style="color:var(--muted);display:flex;align-items:center;padding:0 4px">…</span>`;
+            continue;
+        }
+        h+=`<button class="page-btn${i===current?' active':''}" data-p="${i}" aria-label="Page ${i+1}" aria-current="${i===current?'true':'false'}">${i+1}</button>`;
     }
-    h += `<button class="page-btn${i === current ? ' active' : ''}" data-p="${i}">${i + 1}</button>`;
-  }
-  h += `<button class="page-btn" id="${id}-next" ${current === pages - 1 ? 'disabled' : ''}><i class="fas fa-chevron-right"></i></button>`;
-  el.innerHTML = h;
-  el.querySelector(`#${id}-prev`)?.addEventListener('click', () => { if (current > 0) cb(current - 1); });
-  el.querySelector(`#${id}-next`)?.addEventListener('click', () => { if (current < pages - 1) cb(current + 1); });
-  el.querySelectorAll('.page-btn[data-p]').forEach(b =>
-    b.addEventListener('click', () => cb(parseInt(b.dataset.p))));
+    h+=`<button class="page-arrow" id="${id}-next" aria-label="Page suivante" ${current===pages-1?'disabled':''}><i class="fas fa-chevron-right" aria-hidden="true"></i></button>`;
+    el.innerHTML=h;
+    el.querySelector(`#${id}-prev`)?.addEventListener('click',()=>{if(current>0)cb(current-1);});
+    el.querySelector(`#${id}-next`)?.addEventListener('click',()=>{if(current<pages-1)cb(current+1);});
+    el.querySelectorAll('.page-btn').forEach(b=>b.addEventListener('click',()=>cb(parseInt(b.dataset.p))));
 }
-
-/* ============================================
-   RENDER GALERIE
-   ============================================ */
-function renderGalerie() {
-  const strip = document.getElementById('galStrip');
-  if (!S.galerie.length) {
-    strip.innerHTML = `<div class="empty" style="width:100%;color:rgba(255,255,255,.35)"><i class="fas fa-images"></i><p>Aucune photo pour l'instant.</p></div>`;
-    return;
-  }
-  strip.innerHTML = S.galerie.map((img, i) => `
-    <div class="gal-item" data-idx="${i}">
-      <img src="${img.url}" alt="${img.legende || 'Photo 3APLUS'}" loading="lazy">
-      <div class="gal-overlay"><p>${img.legende || ''}</p></div>
-    </div>`).join('');
-
-  strip.querySelectorAll('.gal-item').forEach(it =>
-    it.addEventListener('click', () => openLB(parseInt(it.dataset.idx))));
+function renderMembres(){
+    const c=document.getElementById('membres-grid');
+    if(!S.membres.length){
+        c.innerHTML=`<div class="empty"><i class="fas fa-users" aria-hidden="true"></i><p>Aucun membre pour l'instant.</p></div>`;
+        return;
+    }
+    c.innerHTML=S.membres.map(m=>`
+        <div class="membre-card fade">
+            <div class="membre-img"><img src="${safeUrl(m.photo)||'https://via.placeholder.com/450x600/EDF2F7/8899B4?text=Photo'}" alt="${esc(m.nom)}" loading="lazy"></div>
+            <div class="membre-body">
+                <h3>${esc(m.nom)}</h3>
+                <p class="membre-fn">${esc(m.fonction)}</p>
+                <div class="membre-cta">
+                    ${m.email?`<a href="mailto:${esc(m.email)}" title="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>`:''}
+                    ${m.tel?`<a href="tel:${esc(m.tel)}" title="Appeler"><i class="fas fa-phone" aria-hidden="true"></i></a>`:''}
+                </div>
+            </div>
+        </div>`).join('');
+    observeFades();
 }
-
-document.getElementById('galPrev').addEventListener('click', () =>
-  document.getElementById('galStrip').scrollBy({ left: -340, behavior: 'smooth' }));
-document.getElementById('galNext').addEventListener('click', () =>
-  document.getElementById('galStrip').scrollBy({ left: 340, behavior: 'smooth' }));
-
-/* ============================================
-   RENDER MEMBRES
-   ============================================ */
-function renderMembres() {
-  const c = document.getElementById('membresGrid');
-  if (!S.membres.length) {
-    c.innerHTML = `<div class="empty" style="grid-column:1/-1"><i class="fas fa-users"></i><p>Aucun membre pour l'instant.</p></div>`;
-    return;
-  }
-  c.innerHTML = S.membres.map(m => `
-    <div class="membre-card reveal">
-      <div class="membre-img">
-        <img src="${m.photo || 'https://via.placeholder.com/400/EDF2F7/8899B4?text=Photo'}" alt="${m.nom}" loading="lazy">
-      </div>
-      <div class="membre-body">
-        <h3>${m.nom}</h3>
-        <p class="membre-role">${m.fonction}</p>
-        <div class="membre-links">
-          ${m.email ? `<a href="mailto:${m.email}" title="Email"><i class="fas fa-envelope"></i></a>` : ''}
-          ${m.tel ? `<a href="tel:${m.tel}" title="Appeler"><i class="fas fa-phone"></i></a>` : ''}
-        </div>
-      </div>
-    </div>`).join('');
+function renderTemoignages(){
+    const c=document.getElementById('temo-track');
+    if(!S.temoignages.length){
+        c.innerHTML=`<div class="empty"><i class="fas fa-comment-dots" aria-hidden="true"></i><p>Aucun témoignage pour l'instant.</p></div>`;
+        return;
+    }
+    c.innerHTML=S.temoignages.map(t=>`
+        <div class="temo-card">
+            <div class="temo-q" aria-hidden="true">"</div>
+            <p class="temo-txt">${esc(t.texte)}</p>
+            <div class="temo-author">
+                <img src="${safeUrl(t.photo)||'https://via.placeholder.com/96/EDF2F7/8899B4?text=?'}" alt="${esc(t.nom)}">
+                <div><div class="temo-name">${esc(t.nom)}</div><div class="temo-role">${esc(t.role)}</div></div>
+            </div>
+        </div>`).join('');
 }
-
-/* ============================================
-   RENDER TÉMOIGNAGES
-   ============================================ */
-function renderTemoignages() {
-  const c = document.getElementById('temoTrack');
-  if (!S.temoignages.length) {
-    c.innerHTML = `<div class="empty"><i class="fas fa-comment-dots"></i><p>Aucun témoignage pour l'instant.</p></div>`;
-    return;
-  }
-  c.innerHTML = S.temoignages.map(t => `
-    <div class="temo-card">
-      <div class="temo-quote">"</div>
-      <p class="temo-text">${t.texte}</p>
-      <div class="temo-author">
-        <img src="${t.photo || 'https://via.placeholder.com/80/EDF2F7/8899B4?text=?'}" alt="${t.nom}">
-        <div>
-          <div class="temo-name">${t.nom}</div>
-          <div class="temo-role">${t.role}</div>
-        </div>
-      </div>
-    </div>`).join('');
+function renderAll(){
+    renderImpact();
+    renderProjets();
+    renderGalerie();
+    renderMembres();
+    renderTemoignages();
+    observeFades();
 }
-
-/* ============================================
-   RENDER ALL
-   ============================================ */
-function renderAll() {
-  renderImpact();
-  renderProjets();
-  renderGalerie();
-  renderMembres();
-  renderTemoignages();
-  initReveal();
+function openModal(id){
+    const p=S.projets.find(x=>String(x.id)===String(id));
+    if(!p) return;
+    document.getElementById('m-tag').textContent=catLbl(p.cat);
+    document.getElementById('m-title').textContent=p.titre||'';
+    document.getElementById('m-date').innerHTML=`<i class="fas fa-calendar-alt" aria-hidden="true"></i> ${esc(p.date)}`;
+    document.getElementById('m-desc').textContent=p.description||'';
+    const imgs=(p.images||[]).map(safeUrl).filter(Boolean);
+    S.carouselImgs=imgs;
+    S.carouselIdx=0;
+    const carousel=document.getElementById('m-carousel');
+    const noimg=document.getElementById('m-noimg');
+    if(imgs.length){
+        carousel.style.display='block';
+        noimg.style.display='none';
+        document.getElementById('c-track').innerHTML=imgs.map(src=>`<img src="${src}" alt="${esc(p.titre)}">`).join('');
+        buildDots(imgs.length);
+        updateCarousel();
+        document.getElementById('c-prev').style.display=imgs.length>1?'flex':'none';
+        document.getElementById('c-next').style.display=imgs.length>1?'flex':'none';
+    } else {
+        carousel.style.display='none';
+        noimg.style.display='flex';
+    }
+    const wa=encodeURIComponent(`Projet "${p.titre||''}" — 3APLUS-TOGO : https://3aplus.netlify.app/#projets`);
+    document.getElementById('m-wa').href=`https://wa.me/?text=${wa}`;
+    document.getElementById('proj-modal').classList.add('open');
+    document.getElementById('proj-modal').querySelector('.modal-x').focus();
 }
-
-/* ============================================
-   MODAL PROJET
-   ============================================ */
-function openModal(id) {
-  const p = S.projets.find(x => x.id === id);
-  if (!p) return;
-  document.getElementById('mTag').textContent = catLbl(p.cat);
-  document.getElementById('mTitle').textContent = p.titre;
-  document.getElementById('mDate').innerHTML = `<i class="fas fa-calendar-alt"></i> ${p.date}`;
-  document.getElementById('mDesc').textContent = p.description || '';
-
-  const imgs = p.images || [];
-  S.carouselImgs = imgs;
-  S.carouselIdx = 0;
-
-  const carousel = document.getElementById('mCarousel');
-  if (imgs.length) {
-    carousel.style.display = 'block';
-    document.getElementById('cTrack').innerHTML = imgs.map(src => `<img src="${src}" alt="${p.titre}">`).join('');
-    buildDots(imgs.length);
+function buildDots(n){
+    document.getElementById('c-dots').innerHTML=Array.from({length:n},(_,i)=>`<div class="c-dot${i===0?' active':''}" data-i="${i}"></div>`).join('');
+    document.querySelectorAll('.c-dot').forEach(d=>d.addEventListener('click',()=>{S.carouselIdx=parseInt(d.dataset.i);updateCarousel();}));
+}
+function updateCarousel(){
+    document.getElementById('c-track').style.transform=`translateX(-${S.carouselIdx*100}%)`;
+    document.querySelectorAll('.c-dot').forEach((d,i)=>d.classList.toggle('active',i===S.carouselIdx));
+}
+document.getElementById('c-prev').addEventListener('click',()=>{
+    if(!S.carouselImgs.length) return;
+    S.carouselIdx=(S.carouselIdx-1+S.carouselImgs.length)%S.carouselImgs.length;
     updateCarousel();
-    document.getElementById('cPrev').style.display = imgs.length > 1 ? 'flex' : 'none';
-    document.getElementById('cNext').style.display = imgs.length > 1 ? 'flex' : 'none';
-  } else {
-    carousel.style.display = 'none';
-  }
-  document.getElementById('projModal').classList.add('open');
+});
+document.getElementById('c-next').addEventListener('click',()=>{
+    if(!S.carouselImgs.length) return;
+    S.carouselIdx=(S.carouselIdx+1)%S.carouselImgs.length;
+    updateCarousel();
+});
+function openLB(idx){
+    S.lbIdx=idx;
+    document.getElementById('lb-img').src=safeUrl(S.galerie[idx]?.url)||'';
+    document.getElementById('lb').classList.add('open');
+    document.getElementById('lb-x').focus();
 }
-
-function buildDots(n) {
-  document.getElementById('cDots').innerHTML = Array.from({ length: n }, (_, i) =>
-    `<div class="c-dot${i === 0 ? ' active' : ''}" data-i="${i}"></div>`).join('');
-  document.querySelectorAll('.c-dot').forEach(d =>
-    d.addEventListener('click', () => { S.carouselIdx = parseInt(d.dataset.i); updateCarousel(); }));
+document.getElementById('lb-x').addEventListener('click',()=>document.getElementById('lb').classList.remove('open'));
+document.getElementById('lb-p').addEventListener('click',()=>{
+    if(!S.galerie.length) return;
+    S.lbIdx=(S.lbIdx-1+S.galerie.length)%S.galerie.length;
+    document.getElementById('lb-img').src=safeUrl(S.galerie[S.lbIdx].url);
+});
+document.getElementById('lb-n').addEventListener('click',()=>{
+    if(!S.galerie.length) return;
+    S.lbIdx=(S.lbIdx+1)%S.galerie.length;
+    document.getElementById('lb-img').src=safeUrl(S.galerie[S.lbIdx].url);
+});
+document.getElementById('proj-filters').addEventListener('click',e=>{
+    const b=e.target.closest('.filter-btn');
+    if(!b) return;
+    document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    S.filter=b.dataset.cat;
+    S.projPage=0;
+    renderProjets();
+});
+document.getElementById('th-btn').addEventListener('click',()=>{
+    const dk=document.documentElement.getAttribute('data-theme')==='dark';
+    document.documentElement.setAttribute('data-theme',dk?'light':'dark');
+    document.getElementById('th-ico').className=dk?'fas fa-moon':'fas fa-sun';
+    try{localStorage.setItem('3a_th',dk?'light':'dark');}catch{}
+});
+(function(){
+    try{
+        if(localStorage.getItem('3a_th')==='dark'){
+            document.documentElement.setAttribute('data-theme','dark');
+            document.getElementById('th-ico').className='fas fa-sun';
+        }
+    }catch{}
+})();
+document.getElementById('m-toggle').addEventListener('click',()=>{
+    const open=document.getElementById('nav-list').classList.toggle('open');
+    document.getElementById('m-toggle').setAttribute('aria-expanded',open?'true':'false');
+});
+document.querySelectorAll('.nav-list a').forEach(a=>a.addEventListener('click',()=>{
+    document.getElementById('nav-list').classList.remove('open');
+    document.getElementById('m-toggle').setAttribute('aria-expanded','false');
+}));
+document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>document.getElementById(b.dataset.close).classList.remove('open')));
+document.querySelectorAll('.modal-bg').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');}));
+document.addEventListener('keydown',e=>{
+    if(document.getElementById('lb').classList.contains('open')){
+        if(e.key==='ArrowLeft') document.getElementById('lb-p').click();
+        if(e.key==='ArrowRight') document.getElementById('lb-n').click();
+        if(e.key==='Escape') document.getElementById('lb').classList.remove('open');
+    }
+    if(document.getElementById('proj-modal').classList.contains('open')){
+        if(e.key==='ArrowLeft') document.getElementById('c-prev').click();
+        if(e.key==='ArrowRight') document.getElementById('c-next').click();
+        if(e.key==='Escape') document.getElementById('proj-modal').classList.remove('open');
+    }
+});
+window.addEventListener('scroll',()=>{
+    document.getElementById('hdr').classList.toggle('scrolled',scrollY>40);
+    document.getElementById('top-btn').classList.toggle('on',scrollY>400);
+},{passive:true});
+document.getElementById('top-btn').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+const navIO=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting) document.querySelectorAll('.nav-list a').forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id));});
+},{rootMargin:'-50% 0px -50% 0px'});
+document.querySelectorAll('section[id]').forEach(s=>navIO.observe(s));
+function observeFades(){
+    const obs=new IntersectionObserver(entries=>{
+        entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});
+    },{threshold:.1});
+    document.querySelectorAll('.fade:not(.in), .fade-l:not(.in), .fade-r:not(.in)').forEach(el=>obs.observe(el));
 }
-
-function updateCarousel() {
-  document.getElementById('cTrack').style.transform = `translateX(-${S.carouselIdx * 100}%)`;
-  document.querySelectorAll('.c-dot').forEach((d, i) =>
-    d.classList.toggle('active', i === S.carouselIdx));
-}
-
-document.getElementById('cPrev').addEventListener('click', () => {
-  if (!S.carouselImgs.length) return;
-  S.carouselIdx = (S.carouselIdx - 1 + S.carouselImgs.length) % S.carouselImgs.length;
-  updateCarousel();
-});
-document.getElementById('cNext').addEventListener('click', () => {
-  if (!S.carouselImgs.length) return;
-  S.carouselIdx = (S.carouselIdx + 1) % S.carouselImgs.length;
-  updateCarousel();
-});
-
-/* ============================================
-   LIGHTBOX
-   ============================================ */
-function openLB(idx) {
-  S.lbIdx = idx;
-  document.getElementById('lbImg').src = S.galerie[idx]?.url || '';
-  document.getElementById('lb').classList.add('open');
-}
-document.getElementById('lb-close').addEventListener('click', () =>
-  document.getElementById('lb').classList.remove('open'));
-document.getElementById('lb-prev').addEventListener('click', () => {
-  S.lbIdx = (S.lbIdx - 1 + S.galerie.length) % S.galerie.length;
-  document.getElementById('lbImg').src = S.galerie[S.lbIdx].url;
-});
-document.getElementById('lb-next').addEventListener('click', () => {
-  S.lbIdx = (S.lbIdx + 1) % S.galerie.length;
-  document.getElementById('lbImg').src = S.galerie[S.lbIdx].url;
-});
-
-/* ============================================
-   FILTRES
-   ============================================ */
-document.getElementById('projFilters').addEventListener('click', e => {
-  const b = e.target.closest('.filter-btn');
-  if (!b) return;
-  document.querySelectorAll('.filter-btn').forEach(x => x.classList.remove('active'));
-  b.classList.add('active');
-  S.filter = b.dataset.cat;
-  S.projPage = 0;
-  renderProjets();
-});
-
-/* ============================================
-   MODAL CLOSE
-   ============================================ */
-document.querySelectorAll('[data-close]').forEach(b =>
-  b.addEventListener('click', () => document.getElementById(b.dataset.close).classList.remove('open')));
-document.querySelectorAll('.modal-bg').forEach(m =>
-  m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); }));
-
-/* ============================================
-   KEYBOARD
-   ============================================ */
-document.addEventListener('keydown', e => {
-  if (document.getElementById('lb').classList.contains('open')) {
-    if (e.key === 'ArrowLeft') document.getElementById('lb-prev').click();
-    if (e.key === 'ArrowRight') document.getElementById('lb-next').click();
-    if (e.key === 'Escape') document.getElementById('lb').classList.remove('open');
-  }
-  if (document.getElementById('projModal').classList.contains('open')) {
-    if (e.key === 'ArrowLeft') document.getElementById('cPrev').click();
-    if (e.key === 'ArrowRight') document.getElementById('cNext').click();
-    if (e.key === 'Escape') document.getElementById('projModal').classList.remove('open');
-  }
-});
-
-/* ============================================
-   NEWSLETTER
-   ============================================ */
-document.getElementById('nlBtn').addEventListener('click', () => {
-  const v = document.getElementById('nlEmail').value.trim();
-  if (!v || !v.includes('@')) { toast('Entrez un email valide', 'err'); return; }
-  toast('Merci, vous êtes abonné à la newsletter !');
-  document.getElementById('nlEmail').value = '';
-});
-
-/* ============================================
-   FORMULAIRES
-   ============================================ */
-async function handleForm(id) {
-  const f = document.getElementById(id);
-  if (!f) return;
-  f.addEventListener('submit', async e => {
+document.getElementById('nl-form').addEventListener('submit', e=>{
     e.preventDefault();
-    const btn = f.querySelector('[type=submit]');
-    const orig = btn.innerHTML;
-    btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours…';
-    try {
-      const r = await fetch(f.action, { method: 'POST', body: new FormData(f), headers: { 'Accept': 'application/json' } });
-      if (r.ok) { toast('Message envoyé ! Nous répondrons sous 48h.'); f.reset(); }
-      else toast('Erreur lors de l\'envoi. Veuillez réessayer.', 'err');
-    } catch { toast('Problème réseau. Vérifiez votre connexion.', 'err'); }
-    btn.disabled = false;
-    btn.innerHTML = orig;
-  });
+    const v=document.getElementById('nl-email').value.trim();
+    if(!v||!v.includes('@')){toast('Entrez un email valide','err');return;}
+    toast('Newsletter : intégration à connecter (voir commentaire dans le code)','inf');
+});
+function handleForm(id){
+    const f=document.getElementById(id);
+    if(!f) return;
+    f.addEventListener('submit',async e=>{
+        e.preventDefault();
+        const btn=f.querySelector('[type=submit]');
+        const orig=btn.innerHTML;
+        btn.disabled=true;
+        btn.innerHTML='<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Envoi en cours…';
+        try{
+            const r=await fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}});
+            if(r.ok){toast('Message envoyé ! Nous répondrons sous 48h.','ok');f.reset();}
+            else toast('Erreur lors de l\'envoi. Veuillez réessayer.','err');
+        }catch{toast('Problème réseau. Vérifiez votre connexion.','err');}
+        btn.disabled=false;
+        btn.innerHTML=orig;
+    });
 }
-handleForm('contactForm');
-handleForm('voloForm');
-
-/* ============================================
-   BOOT
-   ============================================ */
+handleForm('cf');
+handleForm('volo-form');
 boot();
 </script>
 </body>
