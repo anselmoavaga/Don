@@ -38,6 +38,18 @@
         "/images/uploads/1000321195.jpg",
         "/images/uploads/1000321189.jpg"
       ]
+    },
+    {
+      "id": 21,
+      "titre": "Tournoi de l'Union : 2ᵉ édition",
+      "date": "01-08-2026",
+      "cat": "social",
+      "description": "Après plusieurs semaines de préparation, de consultations et de démarches auprès des autorités administratives et traditionnelles, la deuxième édition du Tournoi de l'Union est enfin lancée à Gati.\n\nDu samedi 1er août au dimanche 6 septembre 2026, les équipes de la région se retrouvent autour du ballon pour plusieurs semaines de compétition. Le match d'ouverture oppose Gati Foot à Lumière FC de Yobo Sédzro. La grande finale, prévue le 6 septembre, s'inscrit dans le cadre des festivités traditionnelles de Tezan.\n\nPlus qu'une simple compétition, ce tournoi célèbre l'unité, la fraternité, le fair-play et le vivre-ensemble. Il rassemble les jeunes, les familles et toute la communauté autour d'un même événement.\n\nÀ Gati, le football est bien plus qu'un jeu : c'est un langage que nous partageons tous. Cette deuxième édition est l'occasion de renforcer les liens et de créer des souvenirs communs.",
+      "images": [
+        "/images/uploads/1000321207.jpg",
+        "/images/uploads/1000321206.jpg",
+        "/images/uploads/1000321204.jpg"
+      ]
     }
   ]
 }
